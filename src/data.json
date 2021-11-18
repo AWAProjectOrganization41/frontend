@@ -1,0 +1,30 @@
+[{
+    "companyName": "Heroku toimii",
+    "address": "Hampparikuja 13",
+    "city": "Oulu",
+    "rating": "✫✫✫"
+  },
+  {
+    "companyName": "Testaillaan herokua klo 16.17",
+    "address": "Päätie 0",
+    "city": "Kiiminki",
+    "rating": "✫✫"
+  },
+  {
+    "companyName": "Kallen Sisäelintarvike",
+    "address": "Jokukuja 1",
+    "city": "Oulu",
+    "rating": "✫✫✫✫"
+  },
+  {
+    "companyName": "Pizzapuliju",
+    "address": "Esimtie 12",
+    "city": "Kiiminki",
+    "rating": "✫"
+  },
+  {
+    "companyName": "Keksitaivas",
+    "address": "Esimerkkikatu 12",
+    "city": "Oulu",
+    "rating": "✫✫✫"
+  }]
