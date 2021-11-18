@@ -8,7 +8,7 @@ import Mercapp from './merchantsapp';
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Mercapp />, document.getElementById('root')
+    <Mercapp />
   </React.StrictMode>,
   document.getElementById('root')
 );

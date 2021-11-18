@@ -5,7 +5,7 @@ function App() {
     getMerchant();
   }, []);
   function getMerchant() {
-    fetch('http://localhost:3000')
+    fetch('https://projectawa.herokuapp.com/')
       .then(response => {
         return response.text();
       })
@@ -16,7 +16,7 @@ function App() {
   function createMerchant() {
     let name = prompt('Enter merchant name');
     let email = prompt('Enter merchant email');
-    fetch('http://localhost:3000/merchants', {
+    fetch('https://projectawa.herokuapp.com/merchants', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function App() {
   }
   function deleteMerchant() {
     let id = prompt('Enter merchant id');
-    fetch(`http://localhost:3000/merchants/${id}`, {
+    fetch(`https://projectawa.herokuapp.com/merchants/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
