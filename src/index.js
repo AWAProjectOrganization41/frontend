@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Mercapp from './merchantsapp';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <Mercapp />, document.getElementById('root')
   </React.StrictMode>,
   document.getElementById('root')
 );
