@@ -1,4 +1,4 @@
-const db = require("../dbConfig");
+/*const db = require("../dbConfig");
 
 module.exports = {
     add,
@@ -11,29 +11,29 @@ module.exports = {
 };
 
 async function add(lesson) {
-    return await db("lessons").insert(lesson, ['id', 'name'])
+    return await db("restaurants").insert(lesson, ['id', 'name'])
     //const [id] = await db("lessons").insert(lesson);
     //return this.findById(id);
 }
 
 function find() {
-    return db("lessons");
+    return db("restaurants");
 }
 
 function findById(id) {
-    return db("lessons")
+    return db("restaurants")
     .where({ id })
     .first();
 }
 
 function remove(id) {
-    return db("lessons")
+    return db("restaurants")
     .where({ id })
     .del();
 }
 
 function update(id, changes) {
-    return db("lessons")
+    return db("restaurants")
     .where({ id })
     .update(changes)
     .then(() => {
@@ -54,7 +54,7 @@ async function addMessage(message, lesson_id) {
 }
 
 function findLessonMessages(lesson_id) {
-    return db("lessons as l")
+    return db("restaurants as l")
     .join("messages as m", "l.id", "m.lesson_id")
     .select(
         "l.id as LessonID",
@@ -68,4 +68,4 @@ function findLessonMessages(lesson_id) {
 
 function removeMessage(id) {
     return db("messages").where({ id }).del();
-}
+}*/
