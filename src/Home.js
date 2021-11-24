@@ -9,6 +9,7 @@ export default function Home() {
       </p>
       <Link to="loginconsumer"><button>HEROKU TOIMII</button></Link>
       <Link to="loginrestaurant"><button>RAVINTOLOITSIJANA</button></Link>
+      <Link to="protected"><button>Protected</button></Link>
     </div>
   )
 }
