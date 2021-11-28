@@ -5,14 +5,60 @@ import LoginConsumer from './LoginConsumer';
 import RestaurantList from './RestaurantList'
 import RestaurantDetailView from './RestaurantDetailView'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import RestaurantData from './data.json';
 import { v4 as uuidv4 } from 'uuid';
+import React, {useState, useEffect} from 'react'
 
 function App() {
-  
-  const restaurants = RestaurantData.map(restaurant => {
-    return { ...restaurant, id: uuidv4() }
-  })
+
+// complicated new db code that should be in its own class
+
+  const [restaurant, setRestaurants] = useState([]);
+
+  useEffect(() => {
+    getRestaurant();
+  }, []);
+  function getRestaurant() {
+    fetch('http://localhost:3001')
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        setRestaurants(JSON.parse(data));
+      });
+  }
+  /*function createRestaurant() {
+    let name = prompt('Enter restaurant name');
+    let address = prompt('Enter restaurant address');
+    fetch('http://localhost:3001/restaurant', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name, address}),
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+        getRestaurant();
+      });
+  }
+  function deleteRestaurant() {
+    let id = prompt('Enter restaurant id');
+    fetch(`http://localhost:3001/restaurant/${id}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+        getRestaurant();
+      });
+  }*/
+
+  // complicated things end here
 
   return (
     <BrowserRouter>
@@ -26,8 +72,8 @@ function App() {
           <Route path="/" element={ <Home /> } />
           <Route path="/loginrestaurant" element={ <LoginRestaurant /> } />
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
-          <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurants }/> } >
-            <Route path=":restaurantId" element={ <RestaurantDetailView restaurants={ restaurants } /> } />
+          <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } >
+            <Route path="id" element={ <RestaurantDetailView restaurants={ restaurant } /> } />
           </Route>
         </Routes>
       </div>
