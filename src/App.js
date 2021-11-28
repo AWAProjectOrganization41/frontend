@@ -25,7 +25,7 @@ function App() {
         setRestaurants(JSON.parse(data));
       });
   }
-  /*function createRestaurant() {
+  function createRestaurant() {
     let name = prompt('Enter restaurant name');
     let address = prompt('Enter restaurant address');
     fetch('http://localhost:3001/restaurant', {
@@ -55,9 +55,7 @@ function App() {
         alert(data);
         getRestaurant();
       });
-  }*/
-
-  // complicated things end here
+  }
 
   return (
     <BrowserRouter>
@@ -75,6 +73,11 @@ function App() {
             <Route path=":restaurantId" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           </Route>
         </Routes>
+        <br />
+        <div>
+      <button onClick={deleteRestaurant}>Delete merchant</button>
+      <button onClick={createRestaurant}>Add restaurant</button>
+      </div>
       </div>
     </BrowserRouter>
   );

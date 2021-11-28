@@ -7,7 +7,7 @@ export default function RestaurantList(props) {
       <div className="restaurantList">
       { props.restaurants.map(restaurant =>
         <Link to={ "/restaurants/"+restaurant.id }>
-          <div className="restaurantListElement">{restaurant.id}</div>
+          <div className="restaurantListElement">{restaurant.name}</div>
         </Link>
       )}
       </div>
