@@ -7,7 +7,7 @@ export default function Home() {
       <h1>LOGIN</h1>
       <p>KIRJAUDU SISÄÄN
       </p>
-      <Link to="loginconsumer"><button>HEROKU TOIMII</button></Link>
+      <Link to="loginconsumer"><button>ASIAKKAANA</button></Link>
       <Link to="loginrestaurant"><button>RAVINTOLOITSIJANA</button></Link>
       <Link to="protected"><button>Protected</button></Link>
     </div>
