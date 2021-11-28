@@ -5,7 +5,6 @@ import LoginConsumer from './LoginConsumer';
 import RestaurantList from './RestaurantList'
 import RestaurantDetailView from './RestaurantDetailView'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import React, {useState, useEffect} from 'react'
 
 function App() {
@@ -73,7 +72,7 @@ function App() {
           <Route path="/loginrestaurant" element={ <LoginRestaurant /> } />
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } >
-            <Route path="id" element={ <RestaurantDetailView restaurants={ restaurant } /> } />
+            <Route path=":restaurantId" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           </Route>
         </Routes>
       </div>
