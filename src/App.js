@@ -9,8 +9,6 @@ import RestaurantData from './data.json';
 import { v4 as uuidv4 } from 'uuid';
 import React, {useState, useEffect} from 'react';
 
-//hello
-
 function App() {
   const [restauranties, setRestaurants] = useState(false);
   useEffect(() => {
@@ -56,6 +54,29 @@ function App() {
         getRestaurant();
       });
   }
+
+  //////////////////////////////////
+
+  const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
+
+/////////////////////////////////
 
   const restaurants = RestaurantData.map(restaurant => {
     return { ...restaurant, id: uuidv4() }
