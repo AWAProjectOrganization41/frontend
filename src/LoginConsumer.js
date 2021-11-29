@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Link } from 'react';
 import LoginForm from './components/LoginForm';
 export default function LoginConsumer() {
   const adminUser = {
@@ -43,5 +43,3 @@ export default function LoginConsumer() {
     </div>
   );
   }
-
-export default App;
