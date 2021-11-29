@@ -1,4 +1,5 @@
-import React, { useState, Link } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 export default function LoginConsumer() {
   const adminUser = {
@@ -31,11 +32,11 @@ export default function LoginConsumer() {
 
 
   return (
-    <div className="App">
-      {(user.email != "") ? (
+    <div className="LoginConsumer">
+      {(user.email !== "") ? (
         <div className="welcome">
-          <h2>Tervetuloa <span>{user.name}</span> </h2>
-          <Link to="/restaurants"><div>Kirjaudu sisään</div></Link>
+          <h2>Tervettuloa <span>{user.name}</span> </h2>
+          <Link to="/restaurants"><div>Selaa ravintoloita</div></Link>
           <button onClick={Logout}>Kirjaudu ulos</button>
         </div> ) : (
       <LoginForm Login={Login} error={error}/>
