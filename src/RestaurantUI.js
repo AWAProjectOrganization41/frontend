@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
+import DBfunctions from './DBfunctions';
 
-export default function RestaurantUI(){
+export default function RestaurantUI(props){
 
     const [restaurant, setRestaurant] = useState({name:"", address:"", hours:"", imagepath:"", type:"", pricelevel:""});
 
@@ -14,6 +15,7 @@ export default function RestaurantUI(){
 
     
     return(
+
 
        <div>
            <h2> Add a restaurant </h2>
@@ -56,20 +58,23 @@ export default function RestaurantUI(){
 
                <span> Enter the price level</span>
                <br/>
-               <input type="radio" name="price" id="price1" value="€" onChange= { e => setRestaurant({ type: e.target.value})}/>
+               <input type="radio" name="price" id="price1" value="€" onChange= { e => setRestaurant({ price: e.target.value})}/>
                <label for="price1"> € </label>
 
-               <input type="radio" name="price" id="price2" value="€€" onChange= { e => setRestaurant({ type: e.target.value})}/>
+               <input type="radio" name="price" id="price2" value="€€" onChange= { e => setRestaurant({ price: e.target.value})}/>
                <label for="price2"> €€ </label>
 
-               <input type="radio" name="price" id="price3" value="€€€" onChange= { e => setRestaurant({ type: e.target.value})}/>
+               <input type="radio" name="price" id="price3" value="€€€" onChange= { e => setRestaurant({ price: e.target.value})}/>
                <label for="price3"> €€€ </label>
 
-               <input type="radio" name="price" id="price4" value="€€€€" onChange= { e => setRestaurant({ type: e.target.value})}/>
+               <input type="radio" name="price" id="price4" value="€€€€" onChange= { e => setRestaurant({ price: e.target.value})}/>
                <label for="price4"> €€€€ </label>
 
                
+
            </section>
+
+
 
            
        </div> 
