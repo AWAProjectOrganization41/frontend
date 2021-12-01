@@ -73,6 +73,17 @@ function deleteRestaurant() {
         <div className="topBar">
           <Link to="/"><div>Home____</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
+<<<<<<< HEAD
+=======
+
+          <br/>
+          <br/>
+
+          <button onClick={deleteRestaurant}>Delete merchant</button>
+          <button onClick={createRestaurant}> add restaurant</button>
+        
+
+>>>>>>> 55aff74ffec61eb2d51c2ac58659dbda4d2799cd
         </div>
 
         <Routes>
@@ -85,8 +96,12 @@ function deleteRestaurant() {
 
         </Routes>
 
+<<<<<<< HEAD
         <button onClick={deleteRestaurant}>Delete restaurant</button>
         <button onClick={createRestaurant}> add restaurant</button>
+=======
+ 
+>>>>>>> 55aff74ffec61eb2d51c2ac58659dbda4d2799cd
         
       
     </BrowserRouter>
