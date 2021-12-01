@@ -19,7 +19,7 @@ export default function RestaurantDetailView(props) {
           <div>Company Name{restaurant.name}</div>
           <div>Address{restaurant.address}</div>
           <div>operating hours{restaurant.operating_hours}</div>
-          <div>Image{restaurant.imagepath}</div>
+          <div>Image<img src={`./images/${restaurant.imagepath}`} /></div>
           <div>Type{restaurant.restaurant_type}</div>
           <div>Price level{restaurant.price_level}</div>
       </div>
