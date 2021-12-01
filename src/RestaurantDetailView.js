@@ -9,7 +9,7 @@ export default function RestaurantDetailView(props) {
 
   if(restaurant == null) {
     console.log(result.rant_id);
-    return <div>No matchiestaurng restaurant</div>
+    return <div>No matching restaurant</div>
   }
 
   return (

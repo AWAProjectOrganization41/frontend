@@ -76,7 +76,9 @@ function deleteRestaurant() {
 
           <br/>
           <br/>
+
           <button onClick={deleteRestaurant}>Delete merchant</button>
+          <button onClick={createRestaurant}> add restaurant</button>
         
 
         </div>
@@ -91,8 +93,7 @@ function deleteRestaurant() {
 
         </Routes>
 
-        <button onClick={deleteRestaurant}>Delete merchant</button>
-        <button onClick={createRestaurant}> add restaurant</button>
+ 
         
       
     </BrowserRouter>
