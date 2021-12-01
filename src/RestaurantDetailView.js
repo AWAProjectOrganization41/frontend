@@ -8,34 +8,25 @@ export default function RestaurantDetailView(props) {
   const restaurant = props.restaurant.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
 
   if(restaurant == null) {
-    console.log(result.rant_id);
+<<<<<<< HEAD
+    console.log(result.restaurant_id);
     return <div>No matchiestaurng restaurant</div>
+=======
+    console.log(result.rant_id);
+    return <div>No matching restaurant</div>
+>>>>>>> 55aff74ffec61eb2d51c2ac58659dbda4d2799cd
   }
 
   return (
 
     <div>
-      <tr>
-          <td>ID</td><td>{props.restaurant.restaurant_id}</td>
-        </tr>
-        <tr>
-          <td>Company Name</td><td>{restaurant.name}</td>
-        </tr>
-        <tr>
-          <td>Address</td><td>{restaurant.address}</td>
-        </tr>
-        <tr>
-          <td>operating hours</td><td>{restaurant.operating_hours}</td>
-        </tr>
-        <tr>
-          <td>Image</td><td>{restaurant.imagepath}</td>
-        </tr>
-        <tr>
-          <td>Type</td><td>{restaurant.restaurant_type}</td>
-        </tr>
-        <tr>
-          <td>Price level</td><td>{restaurant.price_level}</td>
-        </tr>
+          <div>ID{restaurant.restaurant_id}</div>
+          <div>Company Name{restaurant.name}</div>
+          <div>Address{restaurant.address}</div>
+          <div>operating hours{restaurant.operating_hours}</div>
+          <div>Image{restaurant.imagepath}</div>
+          <div>Type{restaurant.restaurant_type}</div>
+          <div>Price level{restaurant.price_level}</div>
       </div>
 
   
