@@ -1,6 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import React, {useState, useEffect} from 'react'
-import DBfunctions from './DBfunctions';
+
+import React, {useState} from 'react'
 
 export default function RestaurantUI(props){
 

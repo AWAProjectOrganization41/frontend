@@ -71,14 +71,8 @@ function deleteRestaurant() {
     <BrowserRouter>
         
         <div className="topBar">
-          <Link to="/"><div>Home   </div></Link>
+          <Link to="/"><div>Home____</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
-
-          <br/>
-          <br/>
-          <button onClick={deleteRestaurant}>Delete merchant</button>
-        
-
         </div>
 
         <Routes>
@@ -91,7 +85,7 @@ function deleteRestaurant() {
 
         </Routes>
 
-        <button onClick={deleteRestaurant}>Delete merchant</button>
+        <button onClick={deleteRestaurant}>Delete restaurant</button>
         <button onClick={createRestaurant}> add restaurant</button>
         
       
