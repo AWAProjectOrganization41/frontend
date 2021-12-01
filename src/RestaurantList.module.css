@@ -1,6 +1,3 @@
-.restaurantView
-{
-}
 
 .product
 {
@@ -11,4 +8,13 @@
     padding-left: 20px;
     padding-right: 20px;
     
+}
+
+.header{
+    font-size: 32px;
+}
+
+.image
+{
+    width: 100%;
 }
