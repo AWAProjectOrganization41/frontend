@@ -9,15 +9,11 @@
     
 }
 
-.image
-{
-    inline-size: 100%;
+.header{
+    font-size: 32px;
 }
 
-.header
+.image
 {
-    font-size: 30px;
-    display: flex;
-    flex-direction: row;
-    
+    width: 100%;
 }

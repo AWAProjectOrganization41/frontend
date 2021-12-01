@@ -5,6 +5,8 @@ import LoginConsumer from './LoginConsumer';
 import RestaurantList from './RestaurantList'
 import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
+import CreateRestaurant from './CreateRestaurant';
+import CreateMenu from './CreateMenu';
 
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -82,10 +84,14 @@ function deleteRestaurant() {
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } />
           <Route path="/restaurants/:restaurant_id" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
+          <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
+          <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
 
         </Routes>
 
-        <button onClick={deleteRestaurant}>Delete restaurant</button>
+
+        <br/><br/><br/><br/><br/><br/>
+        <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
         <button onClick={createRestaurant}> add restaurant</button>
         
       
