@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
+
 export default function LoginConsumer() {
   const adminUser = {
     email:"admin@123.com",
     password: "123"
   }
-
-  //moro
 
   const [user, setUser] = useState({name: "", email:""});
   const [error, setError] = useState("");

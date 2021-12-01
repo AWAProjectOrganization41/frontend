@@ -5,17 +5,18 @@ export default function RestaurantDetailView(props) {
 
   const result = useParams();
 
-  const restaurant = props.restaurant.find(restaurants => restaurants.id === parseInt(result.restaurantId));
+  const restaurant = props.restaurant.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
+
   if(restaurant == null) {
-    console.log(result.restaurantId);
-    return <div>No matching restaurant</div>
+    console.log(result.rant_id);
+    return <div>No matchiestaurng restaurant</div>
   }
 
   return (
+
     <div>
-      <table>
       <tr>
-          <td>ID</td><td>{restaurant.id}</td>
+          <td>ID</td><td>{props.restaurant.restaurant_id}</td>
         </tr>
         <tr>
           <td>Company Name</td><td>{restaurant.name}</td>
@@ -23,8 +24,20 @@ export default function RestaurantDetailView(props) {
         <tr>
           <td>Address</td><td>{restaurant.address}</td>
         </tr>
-      </table>
+        <tr>
+          <td>operating hours</td><td>{restaurant.operating_hours}</td>
+        </tr>
+        <tr>
+          <td>Image</td><td>{restaurant.imagepath}</td>
+        </tr>
+        <tr>
+          <td>Type</td><td>{restaurant.restaurant_type}</td>
+        </tr>
+        <tr>
+          <td>Price level</td><td>{restaurant.price_level}</td>
+        </tr>
+      </div>
 
-    </div>
+  
   )
 }
