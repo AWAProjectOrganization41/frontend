@@ -81,7 +81,7 @@ function App() {
 
 
 
-  function createRestaurant() {
+  /*function createRestaurant() {
       let name = prompt('Enter restaurant name');
       let address = prompt('Enter restaurant address');
       let operating_hours = prompt('Enter the operating hours');
@@ -104,6 +104,7 @@ function App() {
           getRestaurant();
         });
     }
+    */
 
     
 function deleteRestaurant() {
@@ -147,13 +148,15 @@ function deleteRestaurant() {
 
         <br/><br/><br/><br/><br/><br/>
         <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
-        <button onClick={createRestaurant}> add restaurant</button>
+        
         
       
     </BrowserRouter>
   );
-
+/*<button onClick={createRestaurant}> add restaurant</button>*/
 
 }
 
+
 export default App;
+
