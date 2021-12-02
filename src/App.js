@@ -8,14 +8,21 @@ import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
 
+import Testmenu from './Testmenu';
+import Testuserlogin from './Testuserlogin';
+import Testrestaurantlogin from './Testrestaurantlogin';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
 
 
+
 function App() {
 
   const [restaurant, setRestaurants] = useState([]);
+  const [menu, setMenu] = useState([]);
+  const [user, setUser] = useState([]);
+  const [restt, setReslogin] = useState([]);
 
   useEffect(() => {
     getRestaurant();
@@ -29,6 +36,50 @@ function App() {
         setRestaurants(JSON.parse(data));
       });
   }
+
+  useEffect(() => {
+    getMenu();
+  }, []);
+  function getMenu() {
+    fetch('http://localhost:3001/restaurant_menu')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data));
+      setMenu(JSON.parse(data))
+    });
+  }
+
+  useEffect(() => {
+    getUserLogin();
+  }, []);
+  function getUserLogin() {
+    fetch('http://localhost:3001/user_login')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data));
+      setUser(JSON.parse(data))
+    });
+  }
+
+  useEffect(() => {
+    getRestaurantLogin();
+  }, []);
+  function getRestaurantLogin() {
+    fetch('http://localhost:3001/restaurant_login')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data));
+      setReslogin(JSON.parse(data))
+    });
+  }
+
+
 
   function createRestaurant() {
       let name = prompt('Enter restaurant name');
@@ -86,6 +137,10 @@ function deleteRestaurant() {
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
+
+          <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
+          <Route path="/testuserlogin" element = { <Testuserlogin usertest = {user} /> } />
+          <Route path="/testrestaurantlogin" element = { <Testrestaurantlogin restest = {restt} /> } />
 
         </Routes>
 
