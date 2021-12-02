@@ -15,13 +15,13 @@ export default function RestaurantDetailView(props) {
   return (
 
     <div>
-          <div>ID{restaurant.restaurant_id}</div>
-          <div>Company Name{restaurant.name}</div>
-          <div>Address{restaurant.address}</div>
-          <div>operating hours{restaurant.operating_hours}</div>
-          <div>Image<img src={`./images/${restaurant.imagepath}`} /></div>
-          <div>Type{restaurant.restaurant_type}</div>
-          <div>Price level{restaurant.price_level}</div>
+          <div>
+            ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
+          {restaurant.operating_hours} <img src={`./images/${restaurant.imagepath}`} /> {restaurant.restaurant_type} {restaurant.price_level}
+          </div>
+
+          <div>FOOD 1</div><div>FOOD 2</div><div>FOOD 3</div><div>FOOD 4</div><div>FOOD 5</div><div>FOOD 1</div><div>FOOD 1</div><div>FOOD 1</div>
+
       </div>
 
   
