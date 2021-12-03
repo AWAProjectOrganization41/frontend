@@ -23,7 +23,7 @@ function App() {
   const [user, setUser] = useState([]);
   const [restt, setReslogin] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     getRestaurant();
   }, []);
   function getRestaurant() {
@@ -104,7 +104,7 @@ function App() {
           getRestaurant();
         });
     }
-    */
+    
 
     
 function deleteRestaurant() {
@@ -120,6 +120,7 @@ function deleteRestaurant() {
       getRestaurant();
     });
 }
+*/
 
   return (
     <BrowserRouter>
@@ -146,13 +147,15 @@ function deleteRestaurant() {
 
 
         <br/><br/><br/><br/><br/><br/>
-        <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
+        
         
         
       
     </BrowserRouter>
   );
-/*<button onClick={createRestaurant}> add restaurant</button>*/
+/*<button onClick={createRestaurant}> add restaurant</button>
+<button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
+*/
 
 }
 
