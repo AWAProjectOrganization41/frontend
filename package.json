@@ -1,11 +1,18 @@
 {
   "name": "awaproject",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.15.5",
+    "npm": "6.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-postbuild": "echo This runs after Heroku installs dependencies, but before Heroku prunes and caches dependencies.",
+    "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
   },
   "eslintConfig": {
     "extends": [
@@ -26,7 +33,11 @@
     ]
   },
   "dependencies": {
-    "node-modules": "^0.0.1",
+    "amplify": "^0.0.11",
+    "heroku": "^7.59.2",
+    "pg": "^8.7.1",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "^4.0.3",
     "web-vitals": "^2.1.2"
   }
