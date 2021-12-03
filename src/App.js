@@ -28,6 +28,7 @@ function App() {
         return response.text();
       })
       .then(data => {
+        console.log(JSON.parse(data))
         setRestaurants(JSON.parse(data));
       });
   }
@@ -84,7 +85,7 @@ function deleteRestaurant() {
           <Route path="/loginrestaurant" element={ <LoginRestaurant /> } />
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } />
-          <Route path="/restaurants/:restaurant_id" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
+          <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
