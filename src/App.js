@@ -23,7 +23,7 @@ function App() {
   const [user, setUser] = useState([]);
   const [restt, setReslogin] = useState([]);
 
-  /*useEffect(() => {
+  useEffect(() => {
     getRestaurant();
   }, []);
   function getRestaurant() {
@@ -104,6 +104,7 @@ function App() {
           getRestaurant();
         });
     }
+    */
     
 
     
@@ -120,7 +121,7 @@ function deleteRestaurant() {
       getRestaurant();
     });
 }
-*/
+
 
   return (
     <BrowserRouter>
