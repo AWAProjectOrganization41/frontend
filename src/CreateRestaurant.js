@@ -3,9 +3,23 @@ import React, {useState, setState, state} from 'react'
 
 export default function CreateRestaurant(props){
 
-    const [restaurant, setRestaurant] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:""});
-    let name, address, operating_hours, imagepath, restaurant_type, price_level;
+  const [restaurant, setRestaurant] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:""});
 
+  let name 
+  let address 
+  let operating_hours 
+  let imagepath 
+  let restaurant_type 
+  let price_level 
+
+  const handleSubmit = (e) => {
+    alert('restaurant was submitted');
+    name = restaurant.name
+    console.log('1' + name);
+    console.log('2' + restaurant.name);
+    console.log('3' + {name: e.target.value})
+    createRestaurant();
+  }
 
 
     return(
@@ -13,9 +27,11 @@ export default function CreateRestaurant(props){
        <div>
            <h2> Add a restaurant </h2>
            <br/>
+
+           <form onSubmit={handleSubmit}>
            <section>
                <label for="name"/> Enter a name <label/>
-               <input type ="text" name="name" id="name" onChange = {update, e => setRestaurant({ address: e.target.value})} value = {restaurant.name} ></input>
+               <input type ="text" name="name" id="name" onChange = {e => setRestaurant({ name: e.target.value})} value = {restaurant.name} ></input>
                <br/><br/>
 
                <label for="address"/> Enter an address <label/>
@@ -71,23 +87,20 @@ export default function CreateRestaurant(props){
 
                <input type="radio" name="price" id="price4" value="€€€€" onChange= { e => setRestaurant({ price: e.target.value})}/>
                <label for="price4"> €€€€ </label>
+               <button type="submit"> Submit </button>
 
            </section>
+           </form>
 
            <Link to="createmenu"><button onClick= {createRestaurant}> Done </button></Link>
            
-           
        </div> 
        
-
+       
     );
 
-    function update(props){
-        name = props.name;
 
-    }
-
-    function createRestaurant(e) {
+    function createRestaurant(props) {
 
         console.log(JSON.stringify({name, address, operating_hours, imagepath, restaurant_type, price_level}))
         console.log(name);

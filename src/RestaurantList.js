@@ -18,7 +18,7 @@ export default function RestaurantList(props) {
 
       <div className="restaurantInfo">
         INFO
-        <Outlet />
+        <Outlet />  
         
 
       </div>

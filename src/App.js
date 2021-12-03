@@ -7,12 +7,9 @@ import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
-import ShoppingCart from './ShoppingCart';
-
 
 import Testmenu from './Testmenu';
 import Testuserlogin from './Testuserlogin';
-import Testrestaurantlogin from './Testrestaurantlogin';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
@@ -134,18 +131,16 @@ function deleteRestaurant() {
 
         <Routes>
           <Route path="/" element={ <Home /> } />
-          <Route path="/loginrestaurant" element={ <LoginRestaurant /> } />
+          <Route path="/loginrestaurant" element={ <LoginRestaurant restest = {restt} /> } />
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } />
           <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
-          <Route path="/shoppingcart" element = { <ShoppingCart /> } />
 
           <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
           <Route path="/testuserlogin" element = { <Testuserlogin usertest = {user} /> } />
-          <Route path="/testrestaurantlogin" element = { <Testrestaurantlogin restest = {restt} /> } />
 
         </Routes>
 
