@@ -16,6 +16,13 @@ export default function Home() {
       <Link to="loginconsumer"><button>ASIAKKAANA</button></Link>
       <Link to="loginrestaurant"><button>RAVINTOLOITSIJANA</button></Link>
       <br/><br/>
+
+      <Link to="/testmenu"><div>menutestaus </div></Link>
+      <Link to="/testuserlogin"><div>userlogin get testaus</div></Link>
+      <Link to="/testrestaurantlogin"><div>restaurant login get testaus</div></Link>
+
+
+
     </div>
   
   )

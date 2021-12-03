@@ -10,14 +10,21 @@ import CreateMenu from './CreateMenu';
 import ShoppingCart from './ShoppingCart';
 
 
+import Testmenu from './Testmenu';
+import Testuserlogin from './Testuserlogin';
+import Testrestaurantlogin from './Testrestaurantlogin';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
 
 
+
 function App() {
 
   const [restaurant, setRestaurants] = useState([]);
+  const [menu, setMenu] = useState([]);
+  const [user, setUser] = useState([]);
+  const [restt, setReslogin] = useState([]);
 
   useEffect(() => {
     getRestaurant();
@@ -33,7 +40,51 @@ function App() {
       });
   }
 
-  function createRestaurant() {
+  useEffect(() => {
+    getMenu();
+  }, []);
+  function getMenu() {
+    fetch('http://localhost:3001/restaurant_menu')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data));
+      setMenu(JSON.parse(data))
+    });
+  }
+
+  useEffect(() => {
+    getUserLogin();
+  }, []);
+  function getUserLogin() {
+    fetch('http://localhost:3001/user_login')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data));
+      setUser(JSON.parse(data))
+    });
+  }
+
+  useEffect(() => {
+    getRestaurantLogin();
+  }, []);
+  function getRestaurantLogin() {
+    fetch('http://localhost:3001/restaurant_login')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data));
+      setReslogin(JSON.parse(data))
+    });
+  }
+
+
+
+  /*function createRestaurant() {
       let name = prompt('Enter restaurant name');
       let address = prompt('Enter restaurant address');
       let operating_hours = prompt('Enter the operating hours');
@@ -56,6 +107,7 @@ function App() {
           getRestaurant();
         });
     }
+    */
 
     
 function deleteRestaurant() {
@@ -91,18 +143,24 @@ function deleteRestaurant() {
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
           <Route path="/shoppingcart" element = { <ShoppingCart /> } />
 
+          <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
+          <Route path="/testuserlogin" element = { <Testuserlogin usertest = {user} /> } />
+          <Route path="/testrestaurantlogin" element = { <Testrestaurantlogin restest = {restt} /> } />
+
         </Routes>
 
 
         <br/><br/><br/><br/><br/><br/>
         <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
-        <button onClick={createRestaurant}> add restaurant</button>
+        
         
       
     </BrowserRouter>
   );
-
+/*<button onClick={createRestaurant}> add restaurant</button>*/
 
 }
 
+
 export default App;
+
