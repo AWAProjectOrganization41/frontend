@@ -7,6 +7,8 @@ import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
+import ShoppingCart from './ShoppingCart';
+
 
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -74,7 +76,7 @@ function deleteRestaurant() {
     <BrowserRouter>
         
         <div className="topBar">
-          <Link to="/"><div>Home____</div></Link>
+          <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
         </div>
 
@@ -87,6 +89,7 @@ function deleteRestaurant() {
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
+          <Route path="/shoppingcart" element = { <ShoppingCart /> } />
 
         </Routes>
 

@@ -9,6 +9,8 @@ export default function Home() {
   return (
     <div>
       <h1>LOGIN</h1>
+      <Link to="shoppingcart"><button>Shopping cart</button></Link>
+        
       <h3>KIRJAUDU SISÄÄN</h3>
 
       <Link to="loginconsumer"><button>ASIAKKAANA</button></Link>
