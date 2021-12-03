@@ -29,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "@heroku-cli/plugin-buildpacks": "^7.54.0",
     "amplify": "^0.0.11",
     "heroku": "^7.59.2",
     "pg": "^8.7.1",
