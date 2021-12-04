@@ -23,39 +23,18 @@ function App() {
   const [user, setUser] = useState([]);
   const [restt, setReslogin] = useState([]);
 
-  const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-client.connect();
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
-
-  /*useEffect(() => {
+  useEffect(() => {
     getRestaurant();
   }, []);
   function getRestaurant() {
-    fetch('http://localhost:3001')
-      .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        console.log(JSON.parse(data))
-        setRestaurants(JSON.parse(data));
+    fetch('/')
+      .then((res) => res.json())
+      .then((data) => {
+        setRestaurants(data);
       });
   }
-
+/*
   useEffect(() => {
     getMenu();
   }, []);
