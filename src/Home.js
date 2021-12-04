@@ -19,10 +19,6 @@ export default function Home() {
 
       <Link to="/testmenu"><div>menutestaus </div></Link>
       <Link to="/testuserlogin"><div>userlogin get testaus</div></Link>
-      <Link to="/testrestaurantlogin"><div>restaurant login get testaus</div></Link>
-
-
-
     </div>
   
   )
