@@ -7,12 +7,9 @@ import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
-import ShoppingCart from './ShoppingCart';
-
 
 import Testmenu from './Testmenu';
 import Testuserlogin from './Testuserlogin';
-import Testrestaurantlogin from './Testrestaurantlogin';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
@@ -30,26 +27,26 @@ function App() {
     getRestaurant();
   }, []);
   function getRestaurant() {
-    fetch('http://localhost:3001')
-      .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        console.log(JSON.parse(data))
-        setRestaurants(JSON.parse(data));
-      });
-  }
+    fetch('http://localhost:3001/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log("mooi" + JSON.stringify(data))
+      setRestaurants(JSON.parse(data));
+    });
+}
 
   useEffect(() => {
     getMenu();
   }, []);
   function getMenu() {
-    fetch('http://localhost:3001/restaurant_menu')
+    fetch('/restaurant_menu')
     .then(response => {
       return response.text();
     })
     .then(data => {
-      console.log(JSON.parse(data));
+      console.log(JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
   }
@@ -58,33 +55,33 @@ function App() {
     getUserLogin();
   }, []);
   function getUserLogin() {
-    fetch('http://localhost:3001/user_login')
+    fetch('/user_login')
     .then(response => {
       return response.text();
     })
     .then(data => {
-      console.log(JSON.parse(data));
+      console.log(JSON.stringify(data));
       setUser(JSON.parse(data))
     });
   }
-
+/*
   useEffect(() => {
     getRestaurantLogin();
   }, []);
   function getRestaurantLogin() {
-    fetch('http://localhost:3001/restaurant_login')
+    fetch('/restaurant_login')
     .then(response => {
       return response.text();
     })
     .then(data => {
-      console.log(JSON.parse(data));
+      console.log(JSON.stringify(data));
       setReslogin(JSON.parse(data))
     });
   }
 
+*/
 
-
-  /*function createRestaurant() {
+  function createRestaurant() {
       let name = prompt('Enter restaurant name');
       let address = prompt('Enter restaurant address');
       let operating_hours = prompt('Enter the operating hours');
@@ -92,7 +89,7 @@ function App() {
       let restaurantType = prompt('Enter the restaurants type. Buffet, fast food, fast casual, casual dining or fine dining. ');
       let priceLevel = prompt('Enter the price level: €, €€, €€€, €€€€');
 
-      fetch('http://localhost:3001/restaurant', {
+      fetch('http://localhost:3001/restaurant', { // if developing locally: 'http://localhost:3001/restaurant'. If to heroku: '/restaurant'
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,12 +104,13 @@ function App() {
           getRestaurant();
         });
     }
-    */
+    
+    
 
     
 function deleteRestaurant() {
   let id = prompt('Enter restaurant id');
-  fetch(`http://localhost:3001/restaurant/${id}`, {
+  fetch(`http://localhost:3001/restaurant/${id}`, { // if developing locally: 'http://localhost:3001/restaurant/${id}'. If to heroku: '/restaurant/{$id}'
     method: 'DELETE',
   })
     .then(response => {
@@ -124,6 +122,7 @@ function deleteRestaurant() {
     });
 }
 
+
   return (
     <BrowserRouter>
         
@@ -134,30 +133,30 @@ function deleteRestaurant() {
 
         <Routes>
           <Route path="/" element={ <Home /> } />
-          <Route path="/loginrestaurant" element={ <LoginRestaurant /> } />
+          <Route path="/loginrestaurant" element={ <LoginRestaurant restest = {restt} /> } />
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } />
           <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
-          <Route path="/shoppingcart" element = { <ShoppingCart /> } />
 
           <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
           <Route path="/testuserlogin" element = { <Testuserlogin usertest = {user} /> } />
-          <Route path="/testrestaurantlogin" element = { <Testrestaurantlogin restest = {restt} /> } />
 
         </Routes>
 
 
         <br/><br/><br/><br/><br/><br/>
-        <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
+        
         
         
       
     </BrowserRouter>
   );
-/*<button onClick={createRestaurant}> add restaurant</button>*/
+/*<button onClick={createRestaurant}> add restaurant</button>
+<button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
+*/
 
 }
 
