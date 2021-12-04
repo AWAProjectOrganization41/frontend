@@ -29,11 +29,15 @@ function App() {
   }, []);
   function getRestaurant() {
     fetch('/')
-      .then((res) => res.json())
-      .then((data) => {
-        setRestaurants(data);
-      });
-  }
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.parse(data))
+      setRestaurants(JSON.parse(data));
+    });
+}
+
 /*
   useEffect(() => {
     getMenu();
