@@ -125,7 +125,6 @@ function deleteRestaurant() {
 
   return (
     <BrowserRouter>
-        
         <div className="topBar">
           <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
@@ -150,8 +149,6 @@ function deleteRestaurant() {
         <br/><br/><br/><br/><br/><br/>
         
         
-        
-      
     </BrowserRouter>
   );
 /*<button onClick={createRestaurant}> add restaurant</button>

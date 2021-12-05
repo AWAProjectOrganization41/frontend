@@ -1,3 +1,9 @@
+.appView {
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+}
+
 .App {
   text-align: center;
 }
@@ -39,6 +45,7 @@
 
 .topBar {
   display: flex;
+  flex-direction: row;
   width: 100%;
   padding: 1%;
   align-items: center;

@@ -59,11 +59,11 @@ export default function RestaurantDetailView(props) {
 
     if (ViewStatus !== 'shoppingcart'){
       return(
-        <div>
-          <h1>Add food to shoppincart</h1>
-            <div>{ menu.map(menu => <div><button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img src={`/images/${menu.imagepath}`} /> {menu.item_name} </button></div>)}</div>
-              <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
-            </div>
+        <div className={styles.commonView}>
+            <div className={styles.menuView}><h1>Add food to shoppincart</h1>{ menu.map(menu => <div> <button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img className={styles.image} src={`/images/${menu.imagepath}`}/> {menu.item_name} </button></div>)}
+            <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
+            </div> 
+              </div>
             )
           }
     else{
@@ -99,11 +99,9 @@ export default function RestaurantDetailView(props) {
     )}
   
   return (
-    <div>
-        <div>
+    <div><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
-          {restaurant.operating_hours} <img src={`./images/${restaurant.imagepath}`} /> {restaurant.restaurant_type} {restaurant.price_level}
-        </div>
+          {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
         <div>
           <RestaurantView ViewStatus={ViewStatus}/>
         </div>
