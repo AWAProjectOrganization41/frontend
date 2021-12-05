@@ -46,7 +46,7 @@ function App() {
       return response.text();
     })
     .then(data => {
-      console.log(JSON.stringify(data));
+      console.log("menu data: "+JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
   }

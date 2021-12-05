@@ -13,7 +13,7 @@ export default function RestaurantDetailView(props) {
     getMenu();
   }, []);
   function getMenu() {
-    fetch('http://localhost:3001/restaurant_menu')
+    fetch('http://localhost:3001/restaurant_menu') // http://localhost:3001/restaurant_menu jos lokaalisti, /restaurant_menu jos heroku
     .then(response => {
       return response.text();
     })
