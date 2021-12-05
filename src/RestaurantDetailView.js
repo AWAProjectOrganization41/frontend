@@ -1,7 +1,23 @@
-import React, { useState, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
 export default function RestaurantDetailView(props) {
+
+  const [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+    getMenu();
+  }, []);
+  function getMenu() {
+    fetch('http://localhost:3001/restaurant_menu')
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.stringify(data));
+      setMenu(JSON.parse(data))
+    });
+  }
 
   const Button = ({handleClick, text}) => (    
     <button onClick = {handleClick}> 
@@ -51,7 +67,7 @@ export default function RestaurantDetailView(props) {
       return(
         <div>
           <h1>Add food to restaurant</h1>
-       <div><Button handleClick = {handleFoodClick1} text = 'food' > </Button></div>
+       <div>{ menu.map(menu => <Button handleClick = {handleFoodClick1}  text = {menu.item_name}> </Button>)}</div>
        <div><Button handleClick = {handleFoodClick2} text = 'food2' > </Button></div>
        <div><Button handleClick = {handleFoodClick3} text = 'food3' > </Button></div>
        <div><Button handleClick = {handleFoodClick4} text = 'food4' > </Button></div>
@@ -103,7 +119,6 @@ export default function RestaurantDetailView(props) {
         <td> {value}</td>
         </tr>
     )
-
     }
   
   return (
@@ -112,22 +127,9 @@ export default function RestaurantDetailView(props) {
             ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
           {restaurant.operating_hours} <img src={`./images/${restaurant.imagepath}`} /> {restaurant.restaurant_type} {restaurant.price_level}
           </div>
-
-          
-
         <div>
-       
-      
-      
       <ShoppingCart cart={cart}/>
-      
-      
-      
-        
     </div>
-
-
-      
           </div>
   )
 
