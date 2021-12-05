@@ -61,7 +61,7 @@ export default function RestaurantDetailView(props) {
       return(
         <div>
           <h1>Add food to shoppincart</h1>
-            <div>{ menu.map(menu => <div><button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img src={`./images/${menu.imagepath}`} /> {menu.item_name} </button></div>)}</div>
+            <div>{ menu.map(menu => <div><button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img src={`/images/${menu.imagepath}`} /> {menu.item_name} </button></div>)}</div>
               <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
             </div>
             )
