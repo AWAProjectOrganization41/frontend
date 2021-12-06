@@ -23,6 +23,7 @@ export default function LoginConsumer() {
   
       else {
         console.log("Kirjautuminen epäonnistui");
+        setError("Kirjautuminen epäonnistui");
     }
     
   
