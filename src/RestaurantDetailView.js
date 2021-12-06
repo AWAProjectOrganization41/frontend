@@ -7,7 +7,11 @@ let cart_items = [];
 
 export default function RestaurantDetailView(props) {
 
+  // ravintolan menu tallentuu muuttujaarrayhyn 'menu'. Esim. 'menu.item_name' = tuotteen nimi
+
   const [menu, setMenu] = useState([]);
+
+// funktio hakkee menut. Tähän pitää lisätä id minkä mukaan hakee:
 
   useEffect(() => {
     getMenu();
@@ -23,33 +27,36 @@ export default function RestaurantDetailView(props) {
     });
   }
 
+// status joka määrittelee, näytetäänkö menu vai ostoskori. (myöhemmin shoppingcart omalle sivulle?)
+
     const [ViewStatus, setStatus] = useState('menu_view')
     
-  
+  // Händlää tuotteen lisäämisen listalle cart_items:
+
     const handleFoodClick = (foodid) => {
       cart_items[i] = foodid;
       i++;
       console.log(i+cart_items+foodid)
     };
 
-    const handleOpenCart = () => {
+    const handleOpenCart = () => {    // Status: näytetään ostoskori
       setStatus('shoppingcart');
     }
 
-    const handleCloseCart = () => {
+    const handleCloseCart = () => {   // status: näytetään menu
       setStatus('menu_view');
     };
 
     
-    const Button = ({handleClick, text}) => (    
+    const Button = ({handleClick, text}) => (     // händlää ja ohjaa handleopencartiin tai handleclosecartiin. Pystyy händläämään Button-buttoneja 
       <button onClick = {handleClick}> 
        {text}
       </button>
     )
 
+    // Hakee id:n perusteella oikean ravintolan tiedot:
   const result = useParams();
   const restaurant = props.restaurant.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
-
   if(restaurant == null) {
     console.log(result.restaurant_id);
     return <div>No matchiestaurng restaurant</div>
@@ -76,6 +83,7 @@ export default function RestaurantDetailView(props) {
     }
   }
 
+  // Jos korissa on tavaraa, näyttää ne, muuten palauttaa tekstin kori on tyhjä:
   const Statistics = ({food}) => {
 
     if(food < 1){
@@ -93,11 +101,15 @@ export default function RestaurantDetailView(props) {
     }
   }
   
+// Näyttää ostokset korissa:
+
   const CartView = () => {
     return(
         <div> {cart_items.map(cart_items => <div> {cart_items} </div> )} </div>
     )}
   
+// Näyttää ravintolan tiedot sivulla:
+
   return (
     <div><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
