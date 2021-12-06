@@ -2,7 +2,11 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import styles from './RestaurantList.module.css'
 
+// Listaa ravintolat sivulle
+
 export default function RestaurantList(props) {
+
+  // props.restaurants = ravintolat tallennettuina. Esim. 'props.restaurants.name' = ravintolan nimi
 
   return (
     <div className={ styles.restaurantList }>
