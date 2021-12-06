@@ -50,7 +50,7 @@ function App() {
       return response.text();
     })
     .then(data => {
-      console.log(JSON.stringify(data));
+      console.log("menu data: "+JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
   }
@@ -136,7 +136,6 @@ function deleteRestaurant() {
 
   return (
     <BrowserRouter>
-        
         <div className="topBar">
           <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
@@ -161,8 +160,6 @@ function deleteRestaurant() {
         <br/><br/><br/><br/><br/><br/>
         
         
-        
-      
     </BrowserRouter>
   );
 /*<button onClick={createRestaurant}> add restaurant</button>

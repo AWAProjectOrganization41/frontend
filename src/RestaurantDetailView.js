@@ -17,7 +17,7 @@ export default function RestaurantDetailView(props) {
     getMenu();
   }, []);
   function getMenu() {
-    fetch('http://localhost:3001/restaurant_menu')
+    fetch('http://localhost:3001/restaurant_menu') // http://localhost:3001/restaurant_menu jos lokaalisti, /restaurant_menu jos heroku
     .then(response => {
       return response.text();
     })
@@ -66,11 +66,11 @@ export default function RestaurantDetailView(props) {
 
     if (ViewStatus !== 'shoppingcart'){
       return(
-        <div>
-          <h1>Add food to shoppincart</h1>
-            <div>{ menu.map(menu => <div><button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img src={`/images/${menu.imagepath}`} /> {menu.item_name} </button></div>)}</div>
-              <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
-            </div>
+        <div className={styles.commonView}>
+            <div className={styles.menuView}><h1>Add food to shoppincart</h1>{ menu.map(menu => <div> <button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img className={styles.image} src={`/images/${menu.imagepath}`}/> {menu.item_name} </button></div>)}
+            <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
+            </div> 
+              </div>
             )
           }
     else{
@@ -111,11 +111,9 @@ export default function RestaurantDetailView(props) {
 // Näyttää ravintolan tiedot sivulla:
 
   return (
-    <div>
-        <div>
+    <div><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
-          {restaurant.operating_hours} <img src={`./images/${restaurant.imagepath}`} /> {restaurant.restaurant_type} {restaurant.price_level}
-        </div>
+          {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
         <div>
           <RestaurantView ViewStatus={ViewStatus}/>
         </div>
