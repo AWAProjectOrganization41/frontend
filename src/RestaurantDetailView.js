@@ -1,134 +1,122 @@
-import React, { useState, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import styles from './RestaurantDetailView.module.css'
+
+let i = 0;
+let cart_items = [];
 
 export default function RestaurantDetailView(props) {
 
-  const Button = ({handleClick, text}) => (    
-    <button onClick = {handleClick}> 
-     {text}
-    </button>
-  )
-  
-    const [food, setFood] = useState("")
-    const [cart, setCart] = useState(1)
+  // ravintolan menu tallentuu muuttujaarrayhyn 'menu'. Esim. 'menu.item_name' = tuotteen nimi
+
+  const [menu, setMenu] = useState([]);
+
+// funktio hakkee menut. Tähän pitää lisätä id minkä mukaan hakee:
+
+  useEffect(() => {
+    getMenu();
+  }, []);
+  function getMenu() {
+    fetch('http://localhost:3001/restaurant_menu') // http://localhost:3001/restaurant_menu jos lokaalisti, /restaurant_menu jos heroku
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(JSON.stringify(data));
+      setMenu(JSON.parse(data))
+    });
+  }
+
+// status joka määrittelee, näytetäänkö menu vai ostoskori. (myöhemmin shoppingcart omalle sivulle?)
+
+    const [ViewStatus, setStatus] = useState('menu_view')
     
-  
-    const handleFoodClick1 = () => {
-      setFood(food + "food1");
-    };
-    const handleFoodClick2 = () => {
-      setFood(food + "food2");
-    };
-    const handleFoodClick3 = () => {
-      setFood(food + "food3");
-    };
-    const handleFoodClick4 = () => {
-      setFood(food + "food4");
-    };
-    const handleFoodClick5 = () => {
-      setFood(food + "food5");
+  // Händlää tuotteen lisäämisen listalle cart_items:
+
+    const handleFoodClick = (foodid) => {
+      cart_items[i] = foodid;
+      i++;
+      console.log(i+cart_items+foodid)
     };
 
-    const handleShoppingView = () => {
-      setCart(2);
+    const handleOpenCart = () => {    // Status: näytetään ostoskori
+      setStatus('shoppingcart');
     }
 
-    const handleCloseCart = () => {
-      setCart(1);
+    const handleCloseCart = () => {   // status: näytetään menu
+      setStatus('menu_view');
     };
 
+    
+    const Button = ({handleClick, text}) => (     // händlää ja ohjaa handleopencartiin tai handleclosecartiin. Pystyy händläämään Button-buttoneja 
+      <button onClick = {handleClick}> 
+       {text}
+      </button>
+    )
+
+    // Hakee id:n perusteella oikean ravintolan tiedot:
   const result = useParams();
-
   const restaurant = props.restaurant.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
-
   if(restaurant == null) {
     console.log(result.restaurant_id);
     return <div>No matchiestaurng restaurant</div>
   }
-  const ShoppingCart = ({cart}) => {
 
-    if(cart < 2){
+  const RestaurantView = ({ViewStatus}) => {
+
+    if (ViewStatus !== 'shoppingcart'){
+      return(
+        <div className={styles.commonView}>
+            <div className={styles.menuView}><h1>Add food to shoppincart</h1>{ menu.map(menu => <div> <button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img className={styles.image} src={`/images/${menu.imagepath}`}/> {menu.item_name} </button></div>)}
+            <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
+            </div> 
+              </div>
+            )
+          }
+    else{
       return(
         <div>
-          <h1>Add food to restaurant</h1>
-       <div><Button handleClick = {handleFoodClick1} text = 'food' > </Button></div>
-       <div><Button handleClick = {handleFoodClick2} text = 'food2' > </Button></div>
-       <div><Button handleClick = {handleFoodClick3} text = 'food3' > </Button></div>
-       <div><Button handleClick = {handleFoodClick4} text = 'food4' > </Button></div>
-       <div><Button handleClick = {handleFoodClick5} text = 'food5' > </Button></div>
-       <Button handleClick = {handleShoppingView} text='shoppincart'> </Button>
-        </div>
-      )
-    } else{
-      return(
-        <div>
-          <table>
-            <tbody>
-        <Statistics food={food}/>
-       <Button handleClick = {handleCloseCart} text='Close Cart'> </Button>
-            </tbody>   
-         </table>  
+          <Statistics food={cart_items}/>
+          <Button handleClick = {handleCloseCart} text='Close Cart'> </Button>
         </div>
       )
     }
   }
 
-  
-
+  // Jos korissa on tavaraa, näyttää ne, muuten palauttaa tekstin kori on tyhjä:
   const Statistics = ({food}) => {
 
     if(food < 1){
       return(
         <div>
-          <p> No food selected </p>
+          <p> Cart is empty </p>
         </div>
       )
     } else{
       return(
         <div>
-          <table>
-            <tbody>
-        <StatisticLine text='food' value = {food} />
-            </tbody>   
-         </table>  
+        <CartView />
         </div>
       )
     }
   }
   
-  const StatisticLine = ({text, value}) => {
+// Näyttää ostokset korissa:
+
+  const CartView = () => {
     return(
-      <tr>
-        <td> {text} </td>
-        <td> {value}</td>
-        </tr>
-    )
-
-    }
+        <div> {cart_items.map(cart_items => <div> {cart_items} </div> )} </div>
+    )}
   
+// Näyttää ravintolan tiedot sivulla:
+
   return (
-    <div>
-          <div>
-            ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
-          {restaurant.operating_hours} <img src={`./images/${restaurant.imagepath}`} /> {restaurant.restaurant_type} {restaurant.price_level}
-          </div>
-
-          
-
+    <div><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
+          ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
+          {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
         <div>
-       
-      
-      
-      <ShoppingCart cart={cart}/>
-      
-      
-      
-        
+          <RestaurantView ViewStatus={ViewStatus}/>
+        </div>
     </div>
-
-
-      
-          </div>
   )
-
 }

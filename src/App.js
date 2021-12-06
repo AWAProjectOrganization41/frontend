@@ -23,6 +23,8 @@ function App() {
   const [user, setUser] = useState([]);
   const [restt, setReslogin] = useState([]);
 
+// Hakee ravintolat tietokannasta. Ravintolat tallentuu 'restaurant' objektiin. Siirretään tämä restaurantlistiin:
+
   useEffect(() => {
     getRestaurant();
   }, []);
@@ -37,6 +39,8 @@ function App() {
     });
 }
 
+// Myöhemmin turha funktio, on jo restaurantdetailviewissä missä kuuluukin:
+
   useEffect(() => {
     getMenu();
   }, []);
@@ -46,10 +50,12 @@ function App() {
       return response.text();
     })
     .then(data => {
-      console.log(JSON.stringify(data));
+      console.log("menu data: "+JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
   }
+
+// kirjautumistiedot asiakkaalle:
 
   useEffect(() => {
     getUserLogin();
@@ -64,6 +70,9 @@ function App() {
       setUser(JSON.parse(data))
     });
   }
+
+  // kirjautumistiedot ravintolanomistajalle:
+
 /*
   useEffect(() => {
     getRestaurantLogin();
@@ -80,6 +89,8 @@ function App() {
   }
 
 */
+
+  // vanha createrestaurant, poistuu:
 
   function createRestaurant() {
       let name = prompt('Enter restaurant name');
@@ -106,7 +117,7 @@ function App() {
     }
     
     
-
+// vanha deleterestaurant, poistuu:
     
 function deleteRestaurant() {
   let id = prompt('Enter restaurant id');
@@ -125,7 +136,6 @@ function deleteRestaurant() {
 
   return (
     <BrowserRouter>
-        
         <div className="topBar">
           <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
@@ -150,8 +160,6 @@ function deleteRestaurant() {
         <br/><br/><br/><br/><br/><br/>
         
         
-        
-      
     </BrowserRouter>
   );
 /*<button onClick={createRestaurant}> add restaurant</button>

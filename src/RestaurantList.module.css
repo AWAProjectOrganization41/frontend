@@ -6,11 +6,12 @@
     padding: 30px;
     padding-left: 20px;
     padding-right: 20px;
+    font-weight: 700;
     
 }
 
 .header{
-    font-size: 32px;
+    font-size: medium;
 }
 
 .image
