@@ -1,14 +1,39 @@
 .menuView {
   display:inline-flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.shoppingcart {
+    box-sizing: border-box;
+    font-weight: 700;
+    float:right;
+    align-items: center;
+    padding-right: 200px;
+}
+
+.product {
+    display:inline-block;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 700;
+}
+
+.header{
+  font-size: medium;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
 }
 
 .commonView {
   display:flex;
   align-items: center;
-  flex-direction: column;
-  margin-right: 30%;
+  flex-direction: row;
+  float:left;
 }
 
 .button{

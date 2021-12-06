@@ -10,7 +10,7 @@ export default function RestaurantList(props) {
 
   return (
     <div className={ styles.restaurantList }>
-      <img style={{width:'100%'}} src={'./images/arrival.png'} />
+      <img style={{width:'100%'}} src={'/images/arrival.png'} />
       <div>
       { props.restaurants.map(restaurant =>
         <Link to={ "/restaurants/" + restaurant.restaurant_id}>

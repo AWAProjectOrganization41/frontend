@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import styles from './RestaurantDetailView.module.css'
 
 let i = 0;
-let cart_items = [];
+var SortedCart = {}
+SortedCart.products = []
+var cart_items = [''];
 
 export default function RestaurantDetailView(props) {
 
@@ -33,19 +35,32 @@ export default function RestaurantDetailView(props) {
     
   // Händlää tuotteen lisäämisen listalle cart_items:
 
-    const handleFoodClick = (foodid) => {
-      cart_items[i] = foodid;
-      i++;
-      console.log(i+cart_items+foodid)
-    };
+    const handleFoodClick = (item_name, description, price, imagepath) => {
+      console.log("item name: "+item_name)
+      
 
+      if(cart_items.includes(item_name+"..."+description+"..."+price+"..."+imagepath)){
+        console.log("Handling "+cart_items)
+        // PROTOTYPE DEMO ////////////////////
+        //SortedCart.products.splice(SortedCart.products.indexOf(0),1)
+        //cart_items.splice(SortedCart.products.indexOf(0),1)
+          /////////////////////////////
+        setStatus('shoppingcart');
+      }
+        else{
+          cart_items[i] = item_name+"..."+description+"..."+price+"..."+imagepath;
+          i++
+      setStatus('shoppingcart');
+    }
+    };
+/*
     const handleOpenCart = () => {    // Status: näytetään ostoskori
       setStatus('shoppingcart');
     }
 
     const handleCloseCart = () => {   // status: näytetään menu
       setStatus('menu_view');
-    };
+    };*/
 
     
     const Button = ({handleClick, text}) => (     // händlää ja ohjaa handleopencartiin tai handleclosecartiin. Pystyy händläämään Button-buttoneja 
@@ -64,28 +79,29 @@ export default function RestaurantDetailView(props) {
 
   const RestaurantView = ({ViewStatus}) => {
 
-    if (ViewStatus !== 'shoppingcart'){
-      return(
-        <div className={styles.commonView}>
-            <div className={styles.menuView}><h1>Add food to shoppincart</h1>{ menu.map(menu => <div> <button className={styles.button} onClick={() => handleFoodClick(menu.item_name)}> <img className={styles.image} src={`/images/${menu.imagepath}`}/> {menu.item_name} </button></div>)}
-            <Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
-            </div> 
-              </div>
-            )
-          }
-    else{
       return(
         <div>
+        <div className={styles.header}><h1>Add food to shoppincart</h1></div>
+        <div className={styles.commonView}>
+            <div className={styles.menuView}>{ menu.map(menu => <div> 
+            <div className={styles.product}><button className={styles.button} onClick={() => handleFoodClick(menu.item_name, menu.description, menu.price, menu.imagepath)}>
+               <img className={styles.image} 
+            src={`/images/${menu.imagepath}`}/> {menu.item_name} </button></div></div>)}</div> </div>
+            
+            
+        <div className={styles.shoppingcart}><div>
+        
           <Statistics food={cart_items}/>
-          <Button handleClick = {handleCloseCart} text='Close Cart'> </Button>
-        </div>
+          
+        </div></div></div>
       )
     }
-  }
+    /*<Button handleClick = {handleOpenCart} text='shoppincart'> </Button>
+    <Button handleClick = {handleCloseCart} text='Close Cart'> </Button>*/
 
   // Jos korissa on tavaraa, näyttää ne, muuten palauttaa tekstin kori on tyhjä:
   const Statistics = ({food}) => {
-
+    setStatus('menu_view');
     if(food < 1){
       return(
         <div>
@@ -104,8 +120,21 @@ export default function RestaurantDetailView(props) {
 // Näyttää ostokset korissa:
 
   const CartView = () => {
+    let prod = cart_items[i-1].split("...")
+    console.log("cartissa items "+prod[0]+prod[1]+prod[2]+prod[3])
+      SortedCart.products[i] = ({item_name: prod[0], description: prod[1], price: prod[2], imagepath: prod[3]})
+      //SortedCart.products[i] = ({item_name: 'poo',description: SortedCart.products[i].description})
+
+      console.log(SortedCart.products)
+  
+
+
+    
     return(
-        <div> {cart_items.map(cart_items => <div> {cart_items} </div> )} </div>
+        <div className={styles.shoppingcart}> {SortedCart.products.map(prodes =>
+        <div><img className={styles.image} 
+        src={`/images/${prodes.imagepath}`}/><div> { prodes.item_name }<div>{ prodes.description }</div><div>{ prodes.price }</div></div> </div>)}
+           </div>
     )}
   
 // Näyttää ravintolan tiedot sivulla:
