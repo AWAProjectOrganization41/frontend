@@ -5,6 +5,35 @@ export default function TestUserOrderhistory(props){
     const [history, setHistory] = useState([]);
     const [restaurantHistory, setRestaurantHistory] = useState([]);
 
+    const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:""};
+    //const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:""};
+   
+
+    function createUserOrder(){
+        
+            userOrder.restaurant_name = "Sakarin pullat"
+            userOrder.products = "sahramipulla, kanelipulla, kookospulla"
+            userOrder.total_price = 100.50
+            userOrder.restaurant_id = 3
+
+            console.log(JSON.stringify(userOrder))
+        
+
+        fetch('http://localhost:3001/user_orderhistory', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userOrder),
+      })
+        .then(response => {
+          return response.text();
+        })
+        .then(data => {
+          alert(data);
+        });
+      }
+
     useEffect(() => {
         getUserOrderhistory();
       }, []);
@@ -38,6 +67,7 @@ export default function TestUserOrderhistory(props){
             <div className="orderHistoryUser"> 
             { history.map(history =>
                <>
+               <br/>
                <div> {history.restaurant_name} </div>
                <div> {history.products} </div>
                <div> {history.total_price} </div>
@@ -56,6 +86,9 @@ export default function TestUserOrderhistory(props){
                </>
             )}
             </div>
+
+            <button onClick = {createUserOrder}> tee tilaus ravintolalle </button>
+
         </div>
     )
 }
