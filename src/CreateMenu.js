@@ -35,6 +35,7 @@ export default function CreateMenu(){
         <br />
 
         <section>
+            <form onSubmit = {submitHandler}>
                <label for="item_name"/> Enter a name <label/>
                <input type="text" name="item_name" id="item_name" onChange= { e => setDetails({...details, item_name: e.target.value})} value={details.item_name}></input>
                <br/><br/>
@@ -51,9 +52,11 @@ export default function CreateMenu(){
                <input type="text" name="imagepath" id="imagepath" onChange= { e => setDetails({...details, imagepath: e.target.value})} value={details.imagepath}></input>
                <br/><br/>
 
+               </form>
+
         </section>
 
-        <Link to="/"><button onClick = {submitHandler}> Submit </button></Link>
+        <Link to="/restaurantui"><button onClick = {submitHandler}> Submit </button></Link>
         </div>
     )
 }

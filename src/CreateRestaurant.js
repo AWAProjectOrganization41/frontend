@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import React, {useState, setState, state} from 'react'
+import React, {useState} from 'react'
 
-export default function CreateRestaurant(props){
+export default function CreateRestaurant(){
 
   const [details, setDetails] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:"", owner_id:""});
 
