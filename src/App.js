@@ -45,7 +45,7 @@ function App() {
     getMenu();
   }, []);
   function getMenu() {
-    fetch('/restaurant_menu')
+    fetch('http://localhost:3001/restaurant_menu')
     .then(response => {
       return response.text();
     })
@@ -57,19 +57,19 @@ function App() {
 
 // kirjautumistiedot asiakkaalle:
 
-  useEffect(() => {
-    getUserLogin();
-  }, []);
-  function getUserLogin() {
-    fetch('/user_login')
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      console.log(JSON.stringify(data));
-      setUser(JSON.parse(data))
-    });
-  }
+useEffect(() => {
+  getUserLogin();
+}, []);
+function getUserLogin() {
+  fetch('http://localhost:3001/user_login')
+  .then(response => {
+    return response.text();
+  })
+  .then(data => {
+    console.log(JSON.stringify(data));
+    setUser(JSON.parse(data))
+  });
+}
 
   // kirjautumistiedot ravintolanomistajalle:
 
@@ -144,7 +144,7 @@ function deleteRestaurant() {
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/loginrestaurant" element={ <LoginRestaurant restest = {restt} /> } />
-          <Route path="/loginconsumer" element={ <LoginConsumer /> } />
+          <Route path="/loginconsumer" element={ <LoginConsumer usertest = {user}/> } />
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } />
           <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
@@ -152,7 +152,7 @@ function deleteRestaurant() {
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
 
           <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
-          <Route path="/testuserlogin" element = { <Testuserlogin usertest = {user} /> } />
+          
 
         </Routes>
 
@@ -164,6 +164,7 @@ function deleteRestaurant() {
   );
 /*<button onClick={createRestaurant}> add restaurant</button>
 <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
+<Route path="/loginconsumer" element = { <LoginConsumer usertest = {user} /> } />
 */
 
 }
