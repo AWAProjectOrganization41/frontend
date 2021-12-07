@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import CreateRestaurant from './CreateRestaurant';
 
 export default function TestUserOrderhistory(props){
 
@@ -6,18 +7,14 @@ export default function TestUserOrderhistory(props){
     const [restaurantHistory, setRestaurantHistory] = useState([]);
 
     const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:""};
-    //const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:""};
+    const restaurantOrder = {orderer_username: "", products:"", total_price:"", restaurant_id:""};
    
 
     function createUserOrder(){
-        
             userOrder.restaurant_name = "Sakarin pullat"
             userOrder.products = "sahramipulla, kanelipulla, kookospulla"
             userOrder.total_price = 100.50
             userOrder.restaurant_id = 3
-
-            console.log(JSON.stringify(userOrder))
-        
 
         fetch('http://localhost:3001/user_orderhistory', { 
         method: 'POST',
@@ -33,6 +30,30 @@ export default function TestUserOrderhistory(props){
           alert(data);
         });
       }
+
+      
+    function CreateRestaurantOrder(){
+        restaurantOrder.orderer_username = "Sakari@kalsila.fi"
+        restaurantOrder.products = "karkkipussi, battery, kissanruoka, leipä"
+        restaurantOrder.total_price = 89.90
+        restaurantOrder.restaurant_id = 5
+    
+    fetch('http://localhost:3001/restaurant_orderhistory', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(restaurantOrder),
+  })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      alert(data);
+    });
+  }
+
+
 
     useEffect(() => {
         getUserOrderhistory();
@@ -63,7 +84,7 @@ export default function TestUserOrderhistory(props){
 
     return(
         <div>
-
+            <h3> käyttäjän tekemät tilaukset </h3>
             <div className="orderHistoryUser"> 
             { history.map(history =>
                <>
@@ -76,6 +97,7 @@ export default function TestUserOrderhistory(props){
             </div>
 
 
+            <h3> ravintolalle tallennetut tilaukset </h3>
             <div className="orderHistoryRestaurant"> 
             { restaurantHistory.map(restaurantHistory =>
                <>
@@ -87,7 +109,9 @@ export default function TestUserOrderhistory(props){
             )}
             </div>
 
-            <button onClick = {createUserOrder}> tee tilaus ravintolalle </button>
+            <button onClick = {createUserOrder}> tee tilaus ravintolalle tilaajana</button>
+            <br/><br/><br/>
+            <button onClick = {CreateRestaurantOrder}> tallenna tilaus ravintolalle </button>
 
         </div>
     )
