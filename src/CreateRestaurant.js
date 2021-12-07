@@ -12,7 +12,6 @@ export default function CreateRestaurant(props){
     setDetails(details.owner_id = 1)
     createRestaurant(details);
     
-    
   }
 
  

@@ -24,7 +24,6 @@ function App() {
   const [restt, setReslogin] = useState([]);
 
 // Hakee ravintolat tietokannasta. Ravintolat tallentuu 'restaurant' objektiin. Siirretään tämä restaurantlistiin:
-
   useEffect(() => {
     getRestaurant();
   }, []);
@@ -40,7 +39,6 @@ function App() {
 }
 
 // Myöhemmin turha funktio, on jo restaurantdetailviewissä missä kuuluukin:
-
   useEffect(() => {
     getMenu();
   }, []);
@@ -56,7 +54,6 @@ function App() {
   }
 
 // kirjautumistiedot asiakkaalle:
-
 useEffect(() => {
   getUserLogin();
 }, []);
@@ -72,13 +69,11 @@ function getUserLogin() {
 }
 
   // kirjautumistiedot ravintolanomistajalle:
-
-/*
   useEffect(() => {
     getRestaurantLogin();
   }, []);
   function getRestaurantLogin() {
-    fetch('/restaurant_login')
+    fetch('http://localhost:3001/restaurant_login')
     .then(response => {
       return response.text();
     })
@@ -88,7 +83,6 @@ function getUserLogin() {
     });
   }
 
-*/
 
     
 // vanha deleterestaurant, poistuu:

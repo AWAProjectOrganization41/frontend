@@ -1,30 +1,29 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
-export default function LoginRestaurant(props, Login, error) {
+export default function LoginRestaurant(props) {
 
-  const [details,setDetails] = useState({name: "", email: "", password: ""});
+  const [details,setDetails] = useState({restaurant_username: "", restaurant_password: "", owner_id:""});
 
-  const submitHandler = e => {
+  const submitHandler = (e) => {
 
   }
+
   return (
     
-
       <form onSubmit={submitHandler}>
       <div className="form-inner">
        <h2>Login as a restaurant owner </h2> 
-       {/*error*/}
 
        <div classname="form-group">
-           <label htmlFor="email">Sähköposti: </label>
-           <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
+           <label htmlFor="restaurant_username">Sähköposti: </label>
+           <input type="restaurant_username" name="restaurant_username" id="restaurant_username" onChange={e => setDetails({...details, restaurant_username: e.target.value})} value={details.restaurant_username}/>
            </div>
            <br/>
 
            <div className="form-group">
-               <label htmlFor="password">Salasana: </label>
-               <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
+               <label htmlFor="restaurant_password">Salasana: </label>
+               <input type="restaurant_password" name="restaurant_password" id="restaurant_password" onChange={e => setDetails({...details, restaurant_password: e.target.value})} value={details.restaurant_password}/>
 
            </div>
            <br/>

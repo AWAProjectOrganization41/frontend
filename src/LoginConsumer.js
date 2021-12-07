@@ -12,6 +12,7 @@ export default function LoginConsumer(props) {
 
   const [user, setUser] = useState({name: "", email:""});
   const [error, setError] = useState("");
+  const [newUser, setNewUser] = useState({username: "", password: ""});
 
   const Login = details => {
     console.log(details);
@@ -26,8 +27,33 @@ export default function LoginConsumer(props) {
       else {
         console.log("Kirjautuminen epäonnistui");
     }
+  }
+
+  const submitHandler = (e) => {
+    alert('a new user was submitted');
+    //console.log(details)
+    createUserLogin(newUser);
     
-  
+  }
+
+  function createUserLogin(newUser) {
+
+    console.log("dt:"+newUser)
+
+    fetch('http://localhost:3001/user_login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUser)
+
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+      });
   }
 
   const Logout = () => {
@@ -49,9 +75,25 @@ export default function LoginConsumer(props) {
 
 { props.usertest.map(user =>
 <>
-<div> {user.username} </div> <div> {user.password} </div>
+<div> {user.password} </div>
 </>
  )}
+ </div>
+
+ <div>
+   <h2> Create an account </h2>
+   <section>
+               <label for="item_name"/> Enter your username <label/>
+               <input type="text" name="username" id="username" onChange= { e => setNewUser({...newUser, username: e.target.value})} value={newUser.username}></input>
+               <br/><br/>
+
+               <label for="description"/> Enter a password <label/>
+               <input type="text" name="password" id="password" onChange= { e => setNewUser({...newUser, password: e.target.value})} value={newUser.password}></input>
+               <br/><br/>
+
+        </section>
+
+        <Link to="/restaurants"><button onClick = {submitHandler}> tee uusi käyttäjä </button></Link>
  </div>
     </div>
   );
