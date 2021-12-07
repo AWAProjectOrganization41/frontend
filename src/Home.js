@@ -17,8 +17,6 @@ export default function Home() {
       <Link to="loginrestaurant"><button>RAVINTOLOITSIJANA</button></Link>
       <br/><br/>
 
-      <Link to="/testmenu"><div>menutestaus </div></Link>
-      <Link to="/testuserlogin"><div>userlogin get testaus</div></Link>
     </div>
   
   )
