@@ -34,7 +34,7 @@ function App() {
       return response.text();
     })
     .then(data => {
-      console.log("mooi" + JSON.stringify(data))
+      //console.log("mooi" + JSON.stringify(data))
       setRestaurants(JSON.parse(data));
     });
 }
@@ -50,7 +50,7 @@ function App() {
       return response.text();
     })
     .then(data => {
-      console.log("menu data: "+JSON.stringify(data));
+      //console.log("menu data: "+JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
   }
@@ -66,7 +66,7 @@ function getUserLogin() {
     return response.text();
   })
   .then(data => {
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
     setUser(JSON.parse(data))
   });
 }
@@ -152,7 +152,6 @@ function deleteRestaurant() {
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
 
           <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
-          
 
         </Routes>
 
