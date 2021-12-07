@@ -25,8 +25,10 @@ function RestaurantLoginForm({Login}) {
                      <input type="password" name="password" id="password" onChange={e => setDetails({...details, restaurant_password: e.target.value})} value={details.restaurant_password}/>
                 </div>
 
-    <input type="submit" value="LOGIN"/>
-    <Link to="/restaurantui"><div>Kirjaudu sisään</div></Link>
+    
+    <Link to="/restaurantui"><button> LOGIN </button></Link>
+
+
 
     </div>
     </form>
@@ -34,6 +36,9 @@ function RestaurantLoginForm({Login}) {
 }
 
 export default RestaurantLoginForm;
+
+//<input type="submit" value="LOGIN"/>
+//<Link to="/restaurantui"><div>Kirjaudu sisään</div></Link>
 
 
 

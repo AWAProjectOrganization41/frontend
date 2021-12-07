@@ -16,6 +16,7 @@ export default function LoginConsumer(props) {
   const Login = details => {
     console.log(details);
 
+
     if(details.email === adminUser.email && details.password === adminUser.password){
       console.log("Kirjauduttu sisään");
       setUser({
@@ -68,7 +69,6 @@ export default function LoginConsumer(props) {
      )}
 
 <div className="menu"> 
-
 { props.usertest.map(user =>
 <>
 <div> {user.password} </div>
@@ -95,5 +95,3 @@ export default function LoginConsumer(props) {
   );
 
   }
-
-

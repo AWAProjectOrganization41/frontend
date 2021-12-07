@@ -7,6 +7,7 @@ import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
+import TestUserOrderhistory from './TestUserOrderhistory';
 
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -20,6 +21,7 @@ function App() {
   const [menu, setMenu] = useState([]);
   const [user, setUser] = useState([]);
   const [restt, setReslogin] = useState([]);
+
 
 // Hakee ravintolat tietokannasta. Ravintolat tallentuu 'restaurant' objektiin. Siirretään tämä restaurantlistiin:
   useEffect(() => {
@@ -61,7 +63,6 @@ function getUserLogin() {
     return response.text();
   })
   .then(data => {
-    //console.log(JSON.stringify(data));
     setUser(JSON.parse(data))
   });
 }
@@ -106,6 +107,8 @@ function deleteRestaurant() {
           <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
           <Link to="/restaurantui/createrestaurant/createmenu"><div>create menu</div></Link>
+          <Link to="/testuserorderhistory"><div>______test user order history</div></Link>
+
         </div>
 
         <Routes>
@@ -117,6 +120,7 @@ function deleteRestaurant() {
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
+          <Route path="/testuserorderhistory" element = { <TestUserOrderhistory /> } />
 
         </Routes>
 
