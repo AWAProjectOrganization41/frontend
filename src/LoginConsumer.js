@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 
 export default function LoginConsumer(props) {
+
   const adminUser = {
     email:"admin@123.com",
     password: "123"
@@ -33,11 +34,9 @@ export default function LoginConsumer(props) {
     alert('a new user was submitted');
     //console.log(details)
     createUserLogin(newUser);
-    
   }
 
   function createUserLogin(newUser) {
-
     console.log("dt:"+newUser)
 
     fetch('http://localhost:3001/user_login', {
@@ -46,7 +45,6 @@ export default function LoginConsumer(props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newUser)
-
     })
       .then(response => {
         return response.text();
@@ -83,11 +81,11 @@ export default function LoginConsumer(props) {
  <div>
    <h2> Create an account </h2>
    <section>
-               <label for="item_name"/> Enter your username <label/>
+               <label for="username"/> Enter your username <label/>
                <input type="text" name="username" id="username" onChange= { e => setNewUser({...newUser, username: e.target.value})} value={newUser.username}></input>
                <br/><br/>
 
-               <label for="description"/> Enter a password <label/>
+               <label for="password"/> Enter a password <label/>
                <input type="text" name="password" id="password" onChange= { e => setNewUser({...newUser, password: e.target.value})} value={newUser.password}></input>
                <br/><br/>
 
