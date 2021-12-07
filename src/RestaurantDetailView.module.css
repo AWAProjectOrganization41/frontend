@@ -1,14 +1,49 @@
 .menuView {
   display:inline-flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.shoppingcart {
+    box-sizing: border-box;
+    font-weight: 700;
+    align-items: center;
+    padding-right: 200px;
+    flex-direction: row;
+}
+
+.shoppingcartContainer {
+  display:flex;
+  flex-direction:row;
+    box-sizing: border-box;
+    font-weight: 700;
+    float:right;
+    align-items:flex-end;
+    padding-right: 200px;
+}
+
+.product {
+    display:inline-block;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 700;
+}
+
+.header{
+  font-size: medium;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
 }
 
 .commonView {
   display:flex;
   align-items: center;
-  flex-direction: column;
-  margin-right: 30%;
+  flex-direction: row;
+  float:left;
 }
 
 .button{
@@ -27,13 +62,29 @@
 
 .restaurantInfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .restaurantImage {
-  width: 100%;
-  height: 130px;
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.menuInfo {
+  
+  padding-left: 14%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 10px;
+}
+
+.menuImage {
+  padding-right: 20px;
+  width: 100px;
+  height: 100%;
   object-fit: cover;
 }
