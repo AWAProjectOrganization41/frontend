@@ -7,9 +7,8 @@ import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
+import TestUserOrderhistory from './TestUserOrderhistory';
 
-import Testmenu from './Testmenu';
-import Testuserlogin from './Testuserlogin';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
@@ -23,8 +22,8 @@ function App() {
   const [user, setUser] = useState([]);
   const [restt, setReslogin] = useState([]);
 
-// Hakee ravintolat tietokannasta. Ravintolat tallentuu 'restaurant' objektiin. Siirretään tämä restaurantlistiin:
 
+// Hakee ravintolat tietokannasta. Ravintolat tallentuu 'restaurant' objektiin. Siirretään tämä restaurantlistiin:
   useEffect(() => {
     getRestaurant();
   }, []);
@@ -34,51 +33,46 @@ function App() {
       return response.text();
     })
     .then(data => {
-      console.log("mooi" + JSON.stringify(data))
+      //console.log("mooi" + JSON.stringify(data))
       setRestaurants(JSON.parse(data));
     });
 }
 
 // Myöhemmin turha funktio, on jo restaurantdetailviewissä missä kuuluukin:
-
   useEffect(() => {
     getMenu();
   }, []);
   function getMenu() {
-    fetch('/restaurant_menu')
+    fetch('http://localhost:3001/restaurant_menu')
     .then(response => {
       return response.text();
     })
     .then(data => {
-      console.log("menu data: "+JSON.stringify(data));
+      //console.log("menu data: "+JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
   }
 
 // kirjautumistiedot asiakkaalle:
-
-  useEffect(() => {
-    getUserLogin();
-  }, []);
-  function getUserLogin() {
-    fetch('/user_login')
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      console.log(JSON.stringify(data));
-      setUser(JSON.parse(data))
-    });
-  }
+useEffect(() => {
+  getUserLogin();
+}, []);
+function getUserLogin() {
+  fetch('http://localhost:3001/user_login')
+  .then(response => {
+    return response.text();
+  })
+  .then(data => {
+    setUser(JSON.parse(data))
+  });
+}
 
   // kirjautumistiedot ravintolanomistajalle:
-
-/*
   useEffect(() => {
     getRestaurantLogin();
   }, []);
   function getRestaurantLogin() {
-    fetch('/restaurant_login')
+    fetch('http://localhost:3001/restaurant_login')
     .then(response => {
       return response.text();
     })
@@ -88,34 +82,7 @@ function App() {
     });
   }
 
-*/
 
-  // vanha createrestaurant, poistuu:
-
-  function createRestaurant() {
-      let name = prompt('Enter restaurant name');
-      let address = prompt('Enter restaurant address');
-      let operating_hours = prompt('Enter the operating hours');
-      let imagePath = prompt('Enter the pictures imagePath');
-      let restaurantType = prompt('Enter the restaurants type. Buffet, fast food, fast casual, casual dining or fine dining. ');
-      let priceLevel = prompt('Enter the price level: €, €€, €€€, €€€€');
-
-      fetch('http://localhost:3001/restaurant', { // if developing locally: 'http://localhost:3001/restaurant'. If to heroku: '/restaurant'
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({name, address, operating_hours, imagePath, restaurantType, priceLevel}),
-      })
-        .then(response => {
-          return response.text();
-        })
-        .then(data => {
-          alert(data);
-          getRestaurant();
-        });
-    }
-    
     
 // vanha deleterestaurant, poistuu:
     
@@ -139,30 +106,31 @@ function deleteRestaurant() {
         <div className="topBar">
           <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
+          <Link to="/restaurantui/createrestaurant/createmenu"><div>create menu</div></Link>
+          <Link to="/testuserorderhistory"><div>______test user order history</div></Link>
+
         </div>
 
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/loginrestaurant" element={ <LoginRestaurant restest = {restt} /> } />
-          <Route path="/loginconsumer" element={ <LoginConsumer /> } />
+          <Route path="/loginconsumer" element={ <LoginConsumer usertest = {user}/> } />
           <Route path="/restaurants" element={ <RestaurantList restaurants={ restaurant }/> } />
           <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={ restaurant } /> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
-
-          <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
-          <Route path="/testuserlogin" element = { <Testuserlogin usertest = {user} /> } />
+          <Route path="/testuserorderhistory" element = { <TestUserOrderhistory /> } />
 
         </Routes>
-
 
         <br/><br/><br/><br/><br/><br/>
         
         
     </BrowserRouter>
   );
-/*<button onClick={createRestaurant}> add restaurant</button>
+
+/*
 <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
 */
 
