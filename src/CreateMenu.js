@@ -7,12 +7,13 @@ export default function CreateMenu(){
 
     const submitHandler = (e) => {
         alert('menu was submitted');
-        setDetails(details.owner_id = 1);
+        //setDetails(details.owner_id = 1);
         createMenu(details);
-        console.log(details);
     }
 
     function createMenu(details){
+        console.log(details);
+
         fetch('http://localhost:3001/restaurant_menu', { 
         method: 'POST',
         headers: {

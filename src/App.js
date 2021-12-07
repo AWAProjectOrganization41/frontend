@@ -8,8 +8,6 @@ import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
 
-import Testmenu from './Testmenu';
-import Testuserlogin from './Testuserlogin';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
@@ -120,8 +118,6 @@ function deleteRestaurant() {
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
 
-          <Route path="/testmenu" element = { <Testmenu menutest= {menu} /> } />
-
         </Routes>
 
         <br/><br/><br/><br/><br/><br/>
@@ -132,7 +128,6 @@ function deleteRestaurant() {
 
 /*
 <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
-<Route path="/loginconsumer" element = { <LoginConsumer usertest = {user} /> } />
 */
 
 }
