@@ -3,12 +3,13 @@ import React, {useState, setState, state} from 'react'
 
 export default function CreateRestaurant(props){
 
-  const [details, setDetails] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:""});
+  const [details, setDetails] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:"", owner_id:""});
 
 
   const submitHandler = (e) => {
     alert('restaurant was submitted');
     //console.log(details)
+    setDetails(details.owner_id = 1)
     createRestaurant(details);
     
     
@@ -87,26 +88,26 @@ export default function CreateRestaurant(props){
 
                <span> Enter the price level</span>
                <br/>
-               <input type="radio" name="price" id="price1" value="€" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
+               <input type="radio" name="price" id="price1" value="o" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
                <label for="price1"> € </label>
         
 
-               <input type="radio" name="price" id="price2" value="€€" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
+               <input type="radio" name="price" id="price2" value="oo" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
                <label for="price2"> €€ </label>
        
 
-               <input type="radio" name="price" id="price3" value="€€€" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
+               <input type="radio" name="price" id="price3" value="ooo" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
                <label for="price3"> €€€ </label>
       
 
-               <input type="radio" name="price" id="price4" value="€€€€" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
+               <input type="radio" name="price" id="price4" value="oooo" onChange= { e => setDetails({...details, price_level: e.target.value})}/>
                <label for="price4"> €€€€ </label>
-               <button type="submit"> Submit </button>
+               
 
            </section>
            </form>
 
-           <Link to="createmenu"><button onClick= {submitHandler}> Done </button></Link>
+           <Link to="createmenu"><button onClick= {submitHandler}> Submit </button></Link>
            
        </div> 
        

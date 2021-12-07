@@ -90,32 +90,6 @@ function getUserLogin() {
 
 */
 
-  // vanha createrestaurant, poistuu:
-
-  function createRestaurant() {
-      let name = prompt('Enter restaurant name');
-      let address = prompt('Enter restaurant address');
-      let operating_hours = prompt('Enter the operating hours');
-      let imagePath = prompt('Enter the pictures imagePath');
-      let restaurantType = prompt('Enter the restaurants type. Buffet, fast food, fast casual, casual dining or fine dining. ');
-      let priceLevel = prompt('Enter the price level: €, €€, €€€, €€€€');
-
-      fetch('http://localhost:3001/restaurant', { // if developing locally: 'http://localhost:3001/restaurant'. If to heroku: '/restaurant'
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({name, address, operating_hours, imagePath, restaurantType, priceLevel}),
-      })
-        .then(response => {
-          return response.text();
-        })
-        .then(data => {
-          alert(data);
-          getRestaurant();
-        });
-    }
-    
     
 // vanha deleterestaurant, poistuu:
     
@@ -139,6 +113,7 @@ function deleteRestaurant() {
         <div className="topBar">
           <Link to="/"><div style={{paddingRight:'50px'}}>Home</div></Link>
           <Link to="/restaurants"><div>RESTAURANTS</div></Link>
+          <Link to="/restaurantui/createrestaurant/createmenu"><div>create menu</div></Link>
         </div>
 
         <Routes>
@@ -155,13 +130,13 @@ function deleteRestaurant() {
 
         </Routes>
 
-
         <br/><br/><br/><br/><br/><br/>
         
         
     </BrowserRouter>
   );
-/*<button onClick={createRestaurant}> add restaurant</button>
+
+/*
 <button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
 <Route path="/loginconsumer" element = { <LoginConsumer usertest = {user} /> } />
 */

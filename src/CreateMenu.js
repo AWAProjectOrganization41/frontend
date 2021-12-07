@@ -3,8 +3,30 @@ import React, {useState} from 'react'
 
 export default function CreateMenu(){
 
+    const [details, setDetails] = useState({item_name:"", description:"", price:"", imagepath:"", owner_id:""});
 
-    const [menu, setMenu] = useState({item_name:"", description:"", price:"", imagepath:""});
+    const submitHandler = (e) => {
+        alert('menu was submitted');
+        setDetails(details.owner_id = 1);
+        createMenu(details);
+        console.log(details);
+    }
+
+    function createMenu(details){
+        fetch('http://localhost:3001/restaurant_menu', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(details),
+      })
+        .then(response => {
+          return response.text();
+        })
+        .then(data => {
+          alert(data);
+        });
+      }
 
 
     return (
@@ -14,28 +36,25 @@ export default function CreateMenu(){
 
         <section>
                <label for="item_name"/> Enter a name <label/>
-               <input type="text" name="item_name" id="item_name" onChange= { e => setMenu({ name: e.target.value})} value={menu.item_name}></input>
+               <input type="text" name="item_name" id="item_name" onChange= { e => setDetails({...details, item_name: e.target.value})} value={details.item_name}></input>
                <br/><br/>
 
                <label for="description"/> Enter a description <label/>
-               <input type="text" name="description" id="description" onChange= { e => setMenu({ name: e.target.value})} value={menu.description}></input>
+               <input type="text" name="description" id="description" onChange= { e => setDetails({...details, description: e.target.value})} value={details.description}></input>
                <br/><br/>
 
                <label for="price"/> Enter a price <label/>
-               <input type="text" name="price" id="price" onChange= { e => setMenu({ name: e.target.value})} value={menu.price}></input>
+               <input type="text" name="price" id="price" onChange= { e => setDetails({...details, price: e.target.value})} value={details.price}></input>
                <br/><br/>
 
                <label for="imagepath"/> Enter an imagepath for your image <label/>
-               <input type="text" name="imagepath" id="imagepath" onChange= { e => setMenu({ name: e.target.value})} value={menu.imagepath}></input>
+               <input type="text" name="imagepath" id="imagepath" onChange= { e => setDetails({...details, imagepath: e.target.value})} value={details.imagepath}></input>
                <br/><br/>
 
         </section>
 
-        <Link to="/"><button> Done </button></Link>
-
+        <Link to="/"><button onClick = {submitHandler}> Submit </button></Link>
         </div>
     )
-
-    
 }
 
