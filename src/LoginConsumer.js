@@ -9,8 +9,6 @@ export default function LoginConsumer(props) {
     password: "123"
   }
 
-  const email = "";
-
   const [user, setUser] = useState({name: "", email:""});
   const [error, setError] = useState("");
   const [newUser, setNewUser] = useState({username: "", password: ""});
@@ -91,7 +89,7 @@ export default function LoginConsumer(props) {
 
         </section>
 
-        <Link to="/restaurants"><button onClick = {submitHandler}> tee uusi käyttäjä </button></Link>
+        <Link to="/restaurants"><button onClick = {submitHandler}> create </button></Link>
  </div>
     </div>
   );

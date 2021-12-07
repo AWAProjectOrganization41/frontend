@@ -21,7 +21,7 @@ export default function LoginRestaurant(props) {
   function createRestaurantLogin(newUser) {
     console.log("dt:"+newUser)
 
-    fetch('http://localhost:3001/user_login', {
+    fetch('http://localhost:3001/restaurant_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function LoginRestaurant(props) {
            <div>
            <h2> Create an account </h2>
                  <section>
-                     <form onSubmit={submitHandler}>
+                     
                      <label for="restaurant_username"/> Enter your username <label/>
                      <input type="text" name="restaurant_username" id="restaurant_username" onChange= { e => setNewUser({...newUser, restaurant_username: e.target.value})} value={newUser.restaurant_username}></input>
                      <br/><br/>
@@ -55,10 +55,10 @@ export default function LoginRestaurant(props) {
                      <input type="text" name="restaurant_password" id="restaurant_password" onChange= { e => setNewUser({...newUser, restaurant_password: e.target.value})} value={newUser.restaurant_password}></input>
                      <br/><br/>
 
-                    </form>
+                    
                  </section>
 
-            <Link to="/restaurantui"><button onClick = {submitHandler}> tee uusi käyttäjä </button></Link>
+            <Link to="/restaurantui"><button onClick = {submitHandler}> create </button></Link>
             </div>
 
             <div>
