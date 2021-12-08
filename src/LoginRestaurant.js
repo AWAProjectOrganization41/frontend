@@ -1,32 +1,53 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import RestaurantLoginForm from './components/RestaurantLoginForm';
 
-export default function LoginRestaurant(props) {
+export default function LoginConsumer() {
 
-  const [newUser, setNewUser] = useState({restaurant_username: "", restaurant_password: ""});
+  var [login, setLogin] = useState(false);
+  const [error, setError] = useState("");
+  const [newRestaurantUser, setNewRestaurantUser] = useState({username: "", password: ""});
 
-
-  const submitHandler = (e) => {
-    alert('a new user was submitted');
-    console.log(newUser)
-    createRestaurantLogin(newUser);
-  }
 
   const Login = details => {
-    console.log(details);
-  }
-
-
-  function createRestaurantLogin(newUser) {
-    console.log("dt:"+newUser)
 
     fetch('http://localhost:3001/restaurant_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify(details)
+
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        console.log("data: "+data)
+        if(data!=='[]'){
+          console.log("Kirjauduttu sisään");
+          setLogin(true)}
+      
+          else {
+            console.log("Kirjautuminen epäonnistui");
+          }});      
+        }
+
+  const submitHandler = (e) => {
+    alert('a new user was submitted');
+    //console.log(details)
+    createRestaurantLogin(newRestaurantUser);
+  }
+
+  function createRestaurantLogin(newRestaurantUser) {
+    console.log("dt:"+newRestaurantUser)
+
+    fetch('http://localhost:3001/create_restaurant_login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newRestaurantUser)
     })
       .then(response => {
         return response.text();
@@ -36,41 +57,41 @@ export default function LoginRestaurant(props) {
       });
   }
 
+  const Logout = () => {
+    setLogin(false)
+  }
 
   return (
+    <div className="LoginRestaurant">
+      {(login === true) ? (
+        <div className="welcome">
+          <h2>Tervettuloa <span>terve herra omistaja ...</span> </h2>
+          <Link to="/restaurants"><div>Selaa ravintoloita</div></Link>
+          <button onClick={Logout}>Kirjaudu ulos</button>
+        </div> ) : (
+      <RestaurantLoginForm Login={Login} error={error}/>
+     )}
 
-      <form onSubmit={submitHandler}>
-      <div>
-      <RestaurantLoginForm Login = {Login} />
+<div className="menu"> 
+<div> morjes omistaja ... </div>
+ </div>
 
-           <div>
-           <h2> Create an account </h2>
-                 <section>
-                     
-                     <label for="restaurant_username"/> Enter your username <label/>
-                     <input type="text" name="restaurant_username" id="restaurant_username" onChange= { e => setNewUser({...newUser, restaurant_username: e.target.value})} value={newUser.restaurant_username}></input>
-                     <br/><br/>
+ <div>
+   <h2> Create an account </h2>
+   <section>
+               <label for="username"/> Enter your username <label/>
+               <input type="text" name="username" id="username" onChange= { e => setNewRestaurantUser({...newRestaurantUser, username: e.target.value})} value={newRestaurantUser.username}></input>
+               <br/><br/>
 
-                     <label for="restaurant_password"/> Enter a password <label/>
-                     <input type="text" name="restaurant_password" id="restaurant_password" onChange= { e => setNewUser({...newUser, restaurant_password: e.target.value})} value={newUser.restaurant_password}></input>
-                     <br/><br/>
+               <label for="password"/> Enter a password <label/>
+               <input type="text" name="password" id="password" onChange= { e => setNewRestaurantUser({...newRestaurantUser, password: e.target.value})} value={newRestaurantUser.password}></input>
+               <br/><br/>
 
-                    
-                 </section>
+        </section>
 
-            <Link to="/restaurantui"><button onClick = {submitHandler}> create </button></Link>
-            </div>
+        <Link to="/restaurantUi"><button onClick = {submitHandler}> create </button></Link>
+ </div>
+    </div>
+  );
 
-            <div>
-                { props.restest.map(restt =>
-                <div>
-                    <p> {restt.restaurant_password} </p>
-                </div>
-                    )}
-            </div>
-
-        </div>
-    </form>
-
-  )
-}
+  }

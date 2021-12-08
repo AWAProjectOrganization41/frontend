@@ -1,33 +1,38 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
+import axios from 'axios'
 
-export default function LoginConsumer(props) {
+export default function LoginConsumer() {
 
-  const adminUser = {
-    email:"admin@123.com",
-    password: "123"
-  }
-
-  const [user, setUser] = useState({name: "", email:""});
+  var [login, setLogin] = useState(false);
   const [error, setError] = useState("");
   const [newUser, setNewUser] = useState({username: "", password: ""});
 
+
   const Login = details => {
-    console.log(details);
 
+    fetch('http://localhost:3001/user_login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(details)
 
-    if(details.email === adminUser.email && details.password === adminUser.password){
-      console.log("Kirjauduttu sisään");
-      setUser({
-        name: details.name,
-        email: details.email
-      })}
-  
-      else {
-        console.log("Kirjautuminen epäonnistui");
-    }
-  }
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        console.log("data: "+data)
+        if(data!=='[]'){
+          console.log("Kirjauduttu sisään");
+          setLogin(true)}
+      
+          else {
+            console.log("Kirjautuminen epäonnistui");
+          }});      
+        }
 
   const submitHandler = (e) => {
     alert('a new user was submitted');
@@ -38,7 +43,7 @@ export default function LoginConsumer(props) {
   function createUserLogin(newUser) {
     console.log("dt:"+newUser)
 
-    fetch('http://localhost:3001/user_login', {
+    fetch('http://localhost:3001/create_user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,14 +59,14 @@ export default function LoginConsumer(props) {
   }
 
   const Logout = () => {
-    setUser({name: "", email:""});
+    setLogin(false)
   }
 
   return (
     <div className="LoginConsumer">
-      {(user.email !== "") ? (
+      {(login === true) ? (
         <div className="welcome">
-          <h2>Tervettuloa <span>{user.name}</span> </h2>
+          <h2>Tervettuloa <span>terve herra ...</span> </h2>
           <Link to="/restaurants"><div>Selaa ravintoloita</div></Link>
           <button onClick={Logout}>Kirjaudu ulos</button>
         </div> ) : (
@@ -69,11 +74,7 @@ export default function LoginConsumer(props) {
      )}
 
 <div className="menu"> 
-{ props.usertest.map(user =>
-<>
-<div> {user.password} </div>
-</>
- )}
+<div> Terve herra ... </div>
  </div>
 
  <div>
