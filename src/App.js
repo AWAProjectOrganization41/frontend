@@ -54,19 +54,7 @@ function App() {
     });
   }
 
-// kirjautumistiedot asiakkaalle:
-useEffect(() => {
-  getUserLogin();
-}, []);
-function getUserLogin() {
-  fetch('http://localhost:3001/user_login')
-  .then(response => {
-    return response.text();
-  })
-  .then(data => {
-    setUser(JSON.parse(data))
-  });
-}
+
 
   // kirjautumistiedot ravintolanomistajalle:
   useEffect(() => {
