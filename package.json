@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "node-modules": "^1.0.1",
     "pg": "^8.7.1",
     "pg-native": "^3.0.0",
