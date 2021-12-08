@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom';
+
 import styles from './RestaurantDetailView.module.css'
+import {  Link, useParams } from 'react-router-dom'
+import PaymentView from './PaymentView';
 
 let i = 0;
 var SortedCart = {}
@@ -10,7 +12,7 @@ let adding = 0;
 let prod
 var checkWord = "";
 
-export default function RestaurantDetailView(props) {
+export default function RestaurantDetailView(props, showContent) {
 
   // ravintolan menu tallentuu muuttujaarrayhyn 'menu'. Esim. 'menu.item_name' = tuotteen nimi
 
@@ -131,14 +133,20 @@ export default function RestaurantDetailView(props) {
         src={`/images/${prodes.imagepath}`}/><div style={{}}> { prodes.item_name }<div>{ prodes.description }</div><div>{ prodes.price }</div></div> 
           <button style={{}} onClick={() => handleDeleteFromCart(prodes)}><div>DELETE</div></button></div>)}
           LOPPUSUMMA: {summa+"€"}<div>
-            <Link to={"/payment/"}><button style={{margin:'20px'}}>PAY</button></Link>
+
+            <Link to={"/payment/"}><button onClick = {ToPayment}  food = {cart_items} summa = {summa} style={{margin:'20px'}}>PAY</button></Link>
           </div>
           </div>
-          
           </div>
-          
+           
     )}}
-  
+    
+    const ToPayment = ({food, summa}) => {
+      return(
+        console.log("mo" + food + summa)
+      )
+    }
+
 // Näyttää ravintolan tiedot sivulla: <button onClick={() => handleDeleteFromCart(prodes)}>delete</button>
 
   return (
@@ -148,6 +156,6 @@ export default function RestaurantDetailView(props) {
         <div>
           <RestaurantView ViewStatus={ViewStatus}/>
         </div>
-    </div>
+        </div>
   )
 }

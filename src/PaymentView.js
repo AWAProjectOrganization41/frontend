@@ -1,9 +1,14 @@
 
-export default function PaymentView(){
+export default function PaymentView(props){
+
+    function showContent(food, summa){
+        return(
+            summa
+        )
+    }
+
     return(
-
         <div>
-
                 <h3> your order: products </h3>
                 <h3> total price: </h3>
                 
@@ -59,9 +64,6 @@ export default function PaymentView(){
 
                 <br/><br/>
                 <button > Submit order </button>
-         
-                
-            
         </div>
     )
 }
