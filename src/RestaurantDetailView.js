@@ -124,7 +124,7 @@ export default function RestaurantDetailView(props, showContent) {
 
       var summa = 0
       cart_items.map(money => summa = summa+parseFloat(money.price))
-      console.log(summa)
+      console.log("tässä näkyy" + cart_items + summa)
     
     
     return(<div className={styles.shoppingcartContainer}>
@@ -135,6 +135,7 @@ export default function RestaurantDetailView(props, showContent) {
           LOPPUSUMMA: {summa+"€"}<div>
 
             <Link to={"/payment/"}><button onClick = {ToPayment}  food = {cart_items} summa = {summa} style={{margin:'20px'}}>PAY</button></Link>
+            
           </div>
           </div>
           </div>
@@ -142,8 +143,11 @@ export default function RestaurantDetailView(props, showContent) {
     )}}
     
     const ToPayment = ({food, summa}) => {
+
+      let foods = food
+      let price = summa
       return(
-        console.log("mo" + food + summa)
+        console.log("mo" + foods + price)
       )
     }
 
