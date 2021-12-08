@@ -8,6 +8,7 @@ import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import CreateMenu from './CreateMenu';
 import TestUserOrderhistory from './TestUserOrderhistory';
+import PaymentView from './PaymentView';
 
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -121,6 +122,7 @@ function deleteRestaurant() {
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
           <Route path="/testuserorderhistory" element = { <TestUserOrderhistory /> } />
+          <Route path="/payment" element = { <PaymentView /> } />
 
         </Routes>
 
