@@ -4,8 +4,20 @@ import styles from './RestaurantUi.module.css'
 
 export default function RestaurantUI(){
 
+    function setTime(){
+        if (localStorage.getItem('status_time') !== null){
+        if (status_time >= 1){
+        localStorage.setItem('status_time', status_time-2)
+        window.location.reload()}
+        else {
+            localStorage.removeItem(status_time)
+        }}
+    }
+
 var restaurant_key = localStorage.getItem('restaurant_key')
 console.log(JSON.parse(restaurant_key))
+
+var status_time = localStorage.getItem('status_time')
 
 
   // props.restaurants = ravintolat tallennettuina. Esim. 'props.restaurants.name' = ravintolan nimi
@@ -34,10 +46,11 @@ function getRestaurant() {
 
   return (
     <div className={ styles.restaurantList }>
-      
+      <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
       {restaurant_key}
       <img style={{width:'100%'}} src={'/images/arrival.png'} />
       <div>
+          STATUS TIME: {status_time}<div><button onClick={setTime}>SET STATUS TIME -10 MIN</button></div>
       { restaurant.map(restaurant =>
         <Link to={ "/restaurantUi" }>
           <div className={ styles.product }>
