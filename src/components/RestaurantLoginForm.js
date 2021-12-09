@@ -13,11 +13,11 @@ function RestaurantLoginForm({Login, error}) {
            <div className="form-inner">
             <h2>Login </h2> 
             {(error != "") ? (<div className="error">{error}</div>) : ""}
-            <div classname="form-group">
+            <div className="form-group">
                 <label htmlFor="name:">Nimi: </label>
                 <input type="name" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
             </div>
-            <div classname="form-group">
+            <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
                 </div>
