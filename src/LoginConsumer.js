@@ -85,6 +85,7 @@ export default function LoginConsumer() {
 
  <div>
    <h2> Create an account </h2>
+  <div>Enter your username</div>
    <section>
                <label htmlFor="username"/> Enter your username <label/>
                <input type="text" name="username" id="username" onChange= { e => setNewUser({...newUser, username: e.target.value})} value={newUser.username}></input>
