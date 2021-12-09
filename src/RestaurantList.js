@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import styles from './RestaurantList.module.css'
+import OrderStatus from './OrderStatus.js';
 
 // Listaa ravintolat sivulle
 
@@ -30,12 +31,12 @@ function getRestaurant() {
 }
 
   if (user_key !== null){
-
   return (
     <div className={ styles.restaurantList }>
-      
+      <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
       {user_key}
-      <img style={{width:'100%'}} src={'/images/arrival.png'} />
+    <OrderStatus/>
+    
       <div>
       { restaurant.map(restaurant =>
         <Link to={ "/restaurants/"+restaurant.restaurant_id }>
@@ -49,9 +50,12 @@ function getRestaurant() {
 
   else {
     return(
-    <div className="restaurantInfo">
-        INFO
-      </div>
+      <div>
+        <div>
+          YOU HAVE TO LOG IN
+        </div>
+        <button><Link to="/"><div style={{paddingRight:'50px'}}>PALAA PÄÄSIVULLE</div></Link></button>
+        </div>
       )
   }
 }
