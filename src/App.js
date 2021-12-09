@@ -34,45 +34,12 @@ function App() {
       return response.text();
     })
     .then(data => {
-      //console.log("mooi" + JSON.stringify(data))
+      console.log("mooi" + data)
       setRestaurants(JSON.parse(data));
     });
 }
 
-// Myöhemmin turha funktio, on jo restaurantdetailviewissä missä kuuluukin:
-  useEffect(() => {
-    getMenu();
-  }, []);
-  function getMenu() {
-    fetch('http://localhost:3001/restaurant_menu')
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      //console.log("menu data: "+JSON.stringify(data));
-      setMenu(JSON.parse(data))
-    });
-  }
 
-
-
-  // kirjautumistiedot ravintolanomistajalle:
-  useEffect(() => {
-    getRestaurantLogin();
-  }, []);
-  function getRestaurantLogin() {
-    fetch('http://localhost:3001/restaurant_login')
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      console.log(JSON.stringify(data));
-      setReslogin(JSON.parse(data))
-    });
-  }
-
-
-    
 // vanha deleterestaurant, poistuu:
     
 function deleteRestaurant() {

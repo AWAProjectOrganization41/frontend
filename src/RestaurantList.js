@@ -8,8 +8,12 @@ export default function RestaurantList(props) {
 
   // props.restaurants = ravintolat tallennettuina. Esim. 'props.restaurants.name' = ravintolan nimi
 
+  var user_key = localStorage.getItem('user_key')
+  console.log(JSON.parse(user_key))
+
   return (
     <div className={ styles.restaurantList }>
+      {user_key}
       <img style={{width:'100%'}} src={'/images/arrival.png'} />
       <div>
       { props.restaurants.map(restaurant =>

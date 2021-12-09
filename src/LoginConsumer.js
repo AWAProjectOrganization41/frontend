@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 import axios from 'axios'
 
@@ -7,6 +7,7 @@ export default function LoginConsumer() {
 
   var [login, setLogin] = useState(false);
   const [error, setError] = useState("");
+  const [user_key, setId] = useState([])
   const [newUser, setNewUser] = useState({username: "", password: ""});
 
 
@@ -25,13 +26,19 @@ export default function LoginConsumer() {
       })
       .then(data => {
         console.log("data: "+data)
+        setId(JSON.parse(data))
         if(data!=='[]'){
+          
           console.log("Kirjauduttu sisään");
-          setLogin(true)}
-      
+          setLogin(true)
+        }
           else {
             console.log("Kirjautuminen epäonnistui");
           }});      
+        }
+
+        if (Login){
+          localStorage.setItem('user_key', JSON.stringify(user_key));
         }
 
   const submitHandler = (e) => {
@@ -66,8 +73,7 @@ export default function LoginConsumer() {
     <div className="LoginConsumer">
       {(login === true) ? (
         <div className="welcome">
-          <h2>Tervettuloa <span>terve herra ...</span> </h2>
-          <Link to="/restaurants"><div>Selaa ravintoloita</div></Link>
+          <Navigate to='/restaurants' />
           <button onClick={Logout}>Kirjaudu ulos</button>
         </div> ) : (
       <LoginForm Login={Login} error={error}/>
@@ -80,11 +86,11 @@ export default function LoginConsumer() {
  <div>
    <h2> Create an account </h2>
    <section>
-               <label for="username"/> Enter your username <label/>
+               <label htmlFor="username"/> Enter your username <label/>
                <input type="text" name="username" id="username" onChange= { e => setNewUser({...newUser, username: e.target.value})} value={newUser.username}></input>
                <br/><br/>
 
-               <label for="password"/> Enter a password <label/>
+               <label htmlFor="password"/> Enter a password <label/>
                <input type="text" name="password" id="password" onChange= { e => setNewUser({...newUser, password: e.target.value})} value={newUser.password}></input>
                <br/><br/>
 
