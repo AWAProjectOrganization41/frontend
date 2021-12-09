@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
-    const history = useNavigate();
+    const history = useHistory();
     const onSubmit = (e) => {
         history.push(`?s=${searchQuery}`);
         e.preventDefault();
@@ -16,7 +16,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
         >
             <label htmlFor="header-search">
                 <span className="visually-hidden">
-                    Search restaurants
+                    Search blog posts
                 </span>
             </label>
             <input
@@ -24,7 +24,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
                 onInput={(e) => setSearchQuery(e.target.value)}
                 type="text"
                 id="header-search"
-                placeholder="Search restaurants"
+                placeholder="Search blog posts"
                 name="s"
             />
             <button type="submit">Search</button>
