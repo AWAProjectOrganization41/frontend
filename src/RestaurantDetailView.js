@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './RestaurantDetailView.module.css'
 import {  Link, useParams } from 'react-router-dom'
 import RestaurantList from './RestaurantList';
+import OrderStatus from './OrderStatus.js'
 
 let i = 0;
 var SortedCart = {}
@@ -146,7 +147,7 @@ function getRestaurant() {
       cart_items.map(money => summa = summa+parseFloat(money.price))
       console.log("tässä näkyy" + JSON.stringify(cart_items) + summa)
     
-      localStorage.setItem('shoppincart', JSON.stringify(cart_items));
+      localStorage.setItem('shoppincart', JSON.stringify(cart_items)+'...'+restaurant.owner_id);
     return(<div className={styles.shoppingcartContainer}>
         <div className={styles.shoppingcart}> {cart_items.map(prodes =>
         <div className={styles.shoppingcartContainer}><img className={styles.menuImage} 
@@ -175,7 +176,9 @@ function getRestaurant() {
   if (user_key !== null){
 
   return (
-    <div><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
+    <div>
+      <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
+    <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
           {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
         <div>

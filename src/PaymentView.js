@@ -1,16 +1,86 @@
 
+import { Link, Navigate } from 'react-router-dom'
+import React, {useState} from 'react'
+
+var submitted = false
+
 export default function PaymentView(props){
 
-    function showContent(food, summa){
-        return(
-            summa
-        )
-    }
+
+    var shoppingcart = localStorage.getItem('shoppincart')
+    console.log("cart:"+shoppingcart)
+
+    var products = shoppingcart.split('...')
+    console.log(products[0])
+
+    var products_obj = JSON.parse(products[0])
+
+    var total = 0
+    var products_string = ''
+    var restaraunt_id = ''
+    var owner_id = products[1]
+    console.log(products[1])
+   
+    var orderer = JSON.parse(localStorage.getItem('user_key'))
+    orderer = JSON.stringify(orderer[0].username)
+
+
+    // products[0]: muut
+    //products[1]: ravintolanomistajan id
+
+    const restaurantOrder = {orderer_username: "", products:"", total_price:"", restaurant_id:"", owner_id:""};
+    var [submitted, setSubmit] = useState(false)
+
+    function CreateRestaurantOrder(){
+        restaurantOrder.orderer_username = orderer    // tilaajan nimi
+        restaurantOrder.products = products_string   // tuotteet
+        restaurantOrder.total_price = total   // hinta
+        restaurantOrder.restaurant_id = restaraunt_id   // ravintolan autom. id
+        restaurantOrder.owner_id = owner_id    // ravintolan omistaja
+
+        console.log("order: "+JSON.stringify(restaurantOrder))
+        localStorage.setItem('order', JSON.stringify(restaurantOrder))
+        console.log("order:"+localStorage.getItem('order'))
+    
+    fetch('http://localhost:3001/restaurant_orderhistory', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(restaurantOrder),
+  })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      alert(data);
+    })
+    
+    setSubmit(true)
+  }
+
+
 
     return(
         <div>
-                <h3> your order: products </h3>
-                <h3> total price: </h3>
+            <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
+        {console.log(submitted)}{(submitted === true) ? (
+            <div>
+                {console.log(submitted)}{<Navigate to='/restaurants' />}
+            </div> ) : (<div>
+         
+    
+                <h3> your order: </h3>{products_obj.map(p => <div> {p.item_name} {p.price}  
+                <script>
+                    
+                    {restaraunt_id = p.restaraunt_id}
+                    {total+=parseInt(p.price)}
+                    {products_string+=p.item_name+','}
+                
+                </script>
+                
+                </div> )}
+                <h3> total price: </h3> <div>{total} e</div>
                 
                 <label htmlFor=":"> Select a delivery location </label>
                 <input type="text" name="delivery" id="delivery" />
@@ -63,7 +133,8 @@ export default function PaymentView(props){
                 <textarea name="cardnumber" id="cardnumber" cols="3" rows="1"/>
 
                 <br/><br/>
-                <button > Submit order </button>
-        </div>
+                
+            <button onClick = {CreateRestaurantOrder}> Submit order {console.log(submitted)}</button></div>)}
+                </div>
     )
 }

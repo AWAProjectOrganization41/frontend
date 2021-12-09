@@ -1,20 +1,27 @@
 import React, {useState, useEffect} from 'react'
+
 import CreateRestaurant from './CreateRestaurant';
+import { Link, Outlet } from 'react-router-dom'
 
 export default function TestUserOrderhistory(props){
+
+    var loggedin = localStorage.getItem('user_key')
+    console.log("loggeed: "+loggedin)
+    var shoppingcart = localStorage.getItem('shoppincart')
+    console.log(shoppingcart)
 
     const [history, setHistory] = useState([]);
     const [restaurantHistory, setRestaurantHistory] = useState([]);
 
-    const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:""};
-    const restaurantOrder = {orderer_username: "", products:"", total_price:"", restaurant_id:""};
+    const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:"", owner_id:""};
    
 
     function createUserOrder(){
-            userOrder.restaurant_name = "Sakarin pullat"
-            userOrder.products = "sahramipulla, kanelipulla, kookospulla"
-            userOrder.total_price = 100.50
-            userOrder.restaurant_id = 3
+            userOrder.restaurant_name = "Sakarin pullat"    // ravintolan nimi
+            userOrder.products = "sahramipulla, kanelipulla, kookospulla"   // tuotteet
+            userOrder.total_price = 100.50    // hinta
+            userOrder.restaurant_id = 3   // ravintolan autom. id
+            userOrder.owner_id = 1    // ravintolan omistaja
 
         fetch('http://localhost:3001/user_orderhistory', { 
         method: 'POST',
@@ -31,29 +38,7 @@ export default function TestUserOrderhistory(props){
         });
       }
 
-      
-    function CreateRestaurantOrder(){
-        restaurantOrder.orderer_username = "Sakari@kalsila.fi"
-        restaurantOrder.products = "karkkipussi, battery, kissanruoka, leipä"
-        restaurantOrder.total_price = 89.90
-        restaurantOrder.restaurant_id = 5
-    
-    fetch('http://localhost:3001/restaurant_orderhistory', { 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(restaurantOrder),
-  })
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      alert(data);
-    });
-  }
-
-
+     
 
     useEffect(() => {
         getUserOrderhistory();
@@ -81,8 +66,11 @@ export default function TestUserOrderhistory(props){
         });
     }
 
-    return(
+    if (loggedin !== null){
+      console.log(loggedin)
+      return(
         <div>
+          <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
             <h3> käyttäjän tekemät tilaukset </h3>
             <div className="orderHistoryUser"> 
             { history.map(history =>
@@ -110,8 +98,17 @@ export default function TestUserOrderhistory(props){
 
             <button onClick = {createUserOrder}> tee tilaus ravintolalle tilaajana</button>
             <br/><br/><br/>
-            <button onClick = {CreateRestaurantOrder}> tallenna tilaus ravintolalle </button>
 
         </div>
     )
+    }
+    else{
+    return(
+      <div>
+        <div>
+          YOU HAVE TO LOG IN
+        </div>
+        <button><Link to="/"><div style={{paddingRight:'50px'}}>PALAA PÄÄSIVULLE</div></Link></button>
+        </div>
+    )}
 }
