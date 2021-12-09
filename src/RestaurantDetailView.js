@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import styles from './RestaurantDetailView.module.css'
 import {  Link, useParams } from 'react-router-dom'
-import PaymentView from './PaymentView';
+import RestaurantList from './RestaurantList';
 
 let i = 0;
 var SortedCart = {}
@@ -13,15 +13,23 @@ let prod
 var checkWord = "";
 
 
+
 export default function RestaurantDetailView(props, showContent) {
 
   // ravintolan menu tallentuu muuttujaarrayhyn 'menu'. Esim. 'menu.item_name' = tuotteen nimi
 
   const [menu, setMenu] = useState([]);
+  const [all_restaurants, setRestaurants] = useState([])
+  //const restaurantid = localStorage.getItem('restaurantdetailkey'+)
+
+  var user_key = localStorage.getItem('user_key')
+  console.log(JSON.parse(user_key))
 
 // funktio hakkee menut. Tähän pitää lisätä id minkä mukaan hakee:
+  
 
   useEffect(() => {
+    getRestaurant();
     getMenu();
   }, []);
   function getMenu() {
@@ -34,6 +42,17 @@ export default function RestaurantDetailView(props, showContent) {
       setMenu(JSON.parse(data))
     });
   }
+
+function getRestaurant() {
+  fetch('http://localhost:3001/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+  .then(response => {
+    return response.text();
+  })
+  .then(data => {
+    console.log("mooi" + data)
+    setRestaurants(JSON.parse(data));
+  });
+}
 
 // status joka määrittelee, näytetäänkö menu vai ostoskori. (myöhemmin shoppingcart omalle sivulle?)
 
@@ -83,7 +102,7 @@ export default function RestaurantDetailView(props, showContent) {
     }
       
   const result = useParams();
-  const restaurant = props.restaurant.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
+  const restaurant = all_restaurants.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
   if(restaurant == null) {
     console.log(result.restaurant_id);
     return <div>No matchiestaurng restaurant</div>
@@ -127,7 +146,7 @@ export default function RestaurantDetailView(props, showContent) {
       cart_items.map(money => summa = summa+parseFloat(money.price))
       console.log("tässä näkyy" + JSON.stringify(cart_items) + summa)
     
-    
+      localStorage.setItem('shoppincart', JSON.stringify(cart_items));
     return(<div className={styles.shoppingcartContainer}>
         <div className={styles.shoppingcart}> {cart_items.map(prodes =>
         <div className={styles.shoppingcartContainer}><img className={styles.menuImage} 
@@ -152,6 +171,9 @@ export default function RestaurantDetailView(props, showContent) {
 
 // Näyttää ravintolan tiedot sivulla: <button onClick={() => handleDeleteFromCart(prodes)}>delete</button>
 
+
+  if (user_key !== null){
+
   return (
     <div><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
@@ -161,4 +183,11 @@ export default function RestaurantDetailView(props, showContent) {
         </div>
         </div>
   )
+}
+else{
+  return (
+    <div>You must sign in</div>
+  )
+
+}
 }

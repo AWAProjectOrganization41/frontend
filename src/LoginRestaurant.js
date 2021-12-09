@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import RestaurantLoginForm from './components/RestaurantLoginForm';
 
 export default function LoginConsumer() {
 
   var [login, setLogin] = useState(false);
   const [error, setError] = useState("");
+  const [restaurant_key, setId] = useState([]);
   const [newRestaurantUser, setNewRestaurantUser] = useState({username: "", password: ""});
 
+  var data_id = ''
 
   const Login = details => {
 
@@ -23,14 +25,20 @@ export default function LoginConsumer() {
         return response.text();
       })
       .then(data => {
-        console.log("data: "+data)
+        console.log(data)
+        setId(JSON.parse(data))
         if(data!=='[]'){
+          
           console.log("Kirjauduttu sisään");
-          setLogin(true)}
-      
+          setLogin(true)
+        }
           else {
             console.log("Kirjautuminen epäonnistui");
           }});      
+        }
+
+        if (Login){
+          localStorage.setItem('restaurant_key', JSON.stringify(restaurant_key));
         }
 
   const submitHandler = (e) => {
@@ -65,8 +73,7 @@ export default function LoginConsumer() {
     <div className="LoginRestaurant">
       {(login === true) ? (
         <div className="welcome">
-          <h2>Tervettuloa <span>terve herra omistaja ...</span> </h2>
-          <Link to="/restaurants"><div>Selaa ravintoloita</div></Link>
+          <Navigate to='/restaurantUi' />
           <button onClick={Logout}>Kirjaudu ulos</button>
         </div> ) : (
       <RestaurantLoginForm Login={Login} error={error}/>
@@ -78,12 +85,13 @@ export default function LoginConsumer() {
 
  <div>
    <h2> Create an account </h2>
+  <div>Enter your username</div>
    <section>
-               <label for="username"/> Enter your username <label/>
+               <label htmlFor="username"/> Enter your email <label/>
                <input type="text" name="username" id="username" onChange= { e => setNewRestaurantUser({...newRestaurantUser, username: e.target.value})} value={newRestaurantUser.username}></input>
                <br/><br/>
 
-               <label for="password"/> Enter a password <label/>
+               <label htmlFor="password"/> Enter a password <label/>
                <input type="text" name="password" id="password" onChange= { e => setNewRestaurantUser({...newRestaurantUser, password: e.target.value})} value={newRestaurantUser.password}></input>
                <br/><br/>
 
