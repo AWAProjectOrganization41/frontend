@@ -9,18 +9,15 @@ let i = 0;
 var SortedCart = {}
 SortedCart.products = []
 var cart_items = [];
-let adding = 0;
-let prod
-var checkWord = "";
-
 
 
 export default function RestaurantDetailView(props, showContent) {
 
-  // ravintolan menu tallentuu muuttujaarrayhyn 'menu'. Esim. 'menu.item_name' = tuotteen nimi
 
+  // ravintolan menu tallentuu muuttujaarrayhyn 'menu'. Esim. 'menu.item_name' = tuotteen nimi
   const [menu, setMenu] = useState([]);
   const [all_restaurants, setRestaurants] = useState([])
+
   //const restaurantid = localStorage.getItem('restaurantdetailkey'+)
 
   var user_key = localStorage.getItem('user_key')
@@ -31,9 +28,11 @@ export default function RestaurantDetailView(props, showContent) {
 
   useEffect(() => {
     getRestaurant();
-    getMenu();
+    //getMenu();
+    getMenuById();
   }, []);
-  function getMenu() {
+
+  /*function getMenu() {
     fetch('http://localhost:3001/restaurant_menu') // http://localhost:3001/restaurant_menu jos lokaalisti, /restaurant_menu jos heroku
     .then(response => {
       return response.text();
@@ -42,7 +41,28 @@ export default function RestaurantDetailView(props, showContent) {
       console.log(JSON.stringify(data));
       setMenu(JSON.parse(data))
     });
+  }*/
+
+
+  function getMenuById(){
+    console.log(result.restaurant_id + "joooo");
+
+    fetch('http://localhost:3001/restaurant_menu', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: result.restaurant_id,
+  })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      alert(data);
+      setMenu(JSON.parse(data))
+    });
   }
+  
 
 function getRestaurant() {
   fetch('http://localhost:3001/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
@@ -105,8 +125,8 @@ function getRestaurant() {
   const result = useParams();
   const restaurant = all_restaurants.find(restaurant => restaurant.restaurant_id === parseInt(result.restaurant_id));
   if(restaurant == null) {
-    console.log(result.restaurant_id);
-    return <div>No matchiestaurng restaurant</div>
+    console.log("terve" + result.restaurant_id);
+    return <div>No matching restaurant</div>
   }
 
   const RestaurantView = ({ViewStatus}) => {
