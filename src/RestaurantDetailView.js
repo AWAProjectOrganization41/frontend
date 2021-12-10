@@ -22,6 +22,7 @@ export default function RestaurantDetailView(props, showContent) {
 
   var user_key = localStorage.getItem('user_key')
   console.log(JSON.parse(user_key))
+  let key = JSON.parse(user_key)
 
 // funktio hakkee menut. Tähän pitää lisätä id minkä mukaan hakee:
   
@@ -46,19 +47,20 @@ export default function RestaurantDetailView(props, showContent) {
 
   function getMenuById(){
     console.log(result.restaurant_id + "joooo");
-
+const idarr = [{id: result.restaurant_id}]
     fetch('http://localhost:3001/restaurant_menu', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: result.restaurant_id,
+    body: JSON.stringify(idarr),
   })
     .then(response => {
       return response.text();
     })
     .then(data => {
       alert(data);
+      console.log("tata:"+JSON.parse(data))
       setMenu(JSON.parse(data))
     });
   }
