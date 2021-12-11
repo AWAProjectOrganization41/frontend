@@ -59,7 +59,6 @@ const idarr = [{id: result.restaurant_id}]
       return response.text();
     })
     .then(data => {
-      alert(data);
       console.log("tata:"+JSON.parse(data))
       setMenu(JSON.parse(data))
     });
@@ -169,7 +168,7 @@ function getRestaurant() {
       cart_items.map(money => summa = summa+parseFloat(money.price))
       console.log("tässä näkyy" + JSON.stringify(cart_items) + summa)
     
-      localStorage.setItem('shoppincart', JSON.stringify(cart_items)+'...'+restaurant.owner_id);
+      localStorage.setItem('shoppincart', JSON.stringify(cart_items)+'...'+restaurant.name+'...'+restaurant.restaurant_id);
     return(<div className={styles.shoppingcartContainer}>
         <div className={styles.shoppingcart}> {cart_items.map(prodes =>
         <div className={styles.shoppingcartContainer}><img className={styles.menuImage} 
