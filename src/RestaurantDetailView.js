@@ -4,6 +4,7 @@ import styles from './RestaurantDetailView.module.css'
 import {  Link, useParams } from 'react-router-dom'
 import RestaurantList from './RestaurantList';
 import OrderStatus from './OrderStatus.js'
+import TopBar from './TopBar';
 
 let i = 0;
 var SortedCart = {}
@@ -59,7 +60,6 @@ const idarr = [{id: result.restaurant_id}]
       return response.text();
     })
     .then(data => {
-      alert(data);
       console.log("tata:"+JSON.parse(data))
       setMenu(JSON.parse(data))
     });
@@ -169,7 +169,7 @@ function getRestaurant() {
       cart_items.map(money => summa = summa+parseFloat(money.price))
       console.log("tässä näkyy" + JSON.stringify(cart_items) + summa)
     
-      localStorage.setItem('shoppincart', JSON.stringify(cart_items)+'...'+restaurant.owner_id);
+      localStorage.setItem('shoppincart', JSON.stringify(cart_items)+'...'+restaurant.name+'...'+restaurant.owner_id);
     return(<div className={styles.shoppingcartContainer}>
         <div className={styles.shoppingcart}> {cart_items.map(prodes =>
         <div className={styles.shoppingcartContainer}><img className={styles.menuImage} 
@@ -199,6 +199,9 @@ function getRestaurant() {
 
   return (
     <div>
+    <div className="topBar">
+      <TopBar/>
+    </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
     <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}

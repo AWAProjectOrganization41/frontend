@@ -1,6 +1,7 @@
 
 import { Link, Navigate } from 'react-router-dom'
 import React, {useState} from 'react'
+import TopBar from './TopBar';
 
 var submitted = false
 
@@ -17,26 +18,36 @@ export default function PaymentView(props){
 
     var total = 0
     var products_string = ''
-    var restaraunt_id = ''
-    var owner_id = products[1]
+    var restaurant_name = products[1]
+    var owner_id = products[2]
     console.log(products[1])
    
     var orderer = JSON.parse(localStorage.getItem('user_key'))
     orderer = JSON.stringify(orderer[0].username)
+    orderer = orderer.replace('"','').replace('"','')
+    console.log("orderer: "+orderer)
 
 
     // products[0]: muut
-    //products[1]: ravintolanomistajan id
+    //products[1]: ravintolan nimi
+    // products[2]: ravintolan id
 
-    const restaurantOrder = {orderer_username: "", products:"", total_price:"", restaurant_id:"", owner_id:""};
+    const restaurantOrder = {orderer_username: "", products:"", total_price:"", owner_id:"", restaurant_name:""};
+    const userOrder = {restaurant_name: "", products:"", total_price:""};
     var [submitted, setSubmit] = useState(false)
 
     function CreateRestaurantOrder(){
+      
         restaurantOrder.orderer_username = orderer    // tilaajan nimi
         restaurantOrder.products = products_string   // tuotteet
         restaurantOrder.total_price = total   // hinta
-        restaurantOrder.restaurant_id = restaraunt_id   // ravintolan autom. id
-        restaurantOrder.owner_id = owner_id    // ravintolan omistaja
+        restaurantOrder.owner_id = owner_id   // ravintolanomistajan id
+        restaurantOrder.restaurant_name = restaurant_name    // reavintolan nimi
+
+        userOrder.restaurant_name = restaurant_name    // reavintolan nimi
+        userOrder.products = products_string   // tuotteet
+        userOrder.total_price = total   // hinta
+        
 
         console.log("order: "+JSON.stringify(restaurantOrder))
         localStorage.setItem('order', JSON.stringify(restaurantOrder))
@@ -55,6 +66,20 @@ export default function PaymentView(props){
     .then(data => {
       alert(data);
     })
+
+    fetch('http://localhost:3001/user_orderhistory', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userOrder),
+  })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      alert(data);
+    })
     
     setSubmit(true)
   }
@@ -63,6 +88,9 @@ export default function PaymentView(props){
 
     return(
         <div>
+        <div className="topBar">
+          <TopBar/>
+        </div>
             <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
         {console.log(submitted)}{(submitted === true) ? (
             <div>
@@ -73,7 +101,6 @@ export default function PaymentView(props){
                 <h3> your order: </h3>{products_obj.map(p => <div> {p.item_name} {p.price}  
                 <script>
                     
-                    {restaraunt_id = p.restaraunt_id}
                     {total+=parseInt(p.price)}
                     {products_string+=p.item_name+','}
                 

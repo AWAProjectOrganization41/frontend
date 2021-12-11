@@ -2,6 +2,13 @@
   display:inline-flex;
   align-items: center;
   flex-direction: row;
+  display:flex;
+  flex-direction:row;
+    box-sizing: border-box;
+    font-weight: 700;
+    float:right;
+    align-items:flex-end;
+    padding-right: 200px;
 }
 
 .shoppingcart {

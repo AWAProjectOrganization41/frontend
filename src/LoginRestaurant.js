@@ -39,6 +39,7 @@ export default function LoginConsumer() {
 
         if (Login){
           localStorage.setItem('restaurant_key', JSON.stringify(restaurant_key));
+          localStorage.setItem('auth', 'restaurant');
         }
 
   const submitHandler = (e) => {
