@@ -1,6 +1,7 @@
 
 import { Link, Navigate } from 'react-router-dom'
 import React, {useState} from 'react'
+import TopBar from './TopBar';
 
 var submitted = false
 
@@ -18,31 +19,34 @@ export default function PaymentView(props){
     var total = 0
     var products_string = ''
     var restaurant_name = products[1]
-    var restaurant_id = products[2]
+    var owner_id = products[2]
     console.log(products[1])
    
     var orderer = JSON.parse(localStorage.getItem('user_key'))
     orderer = JSON.stringify(orderer[0].username)
+    orderer = orderer.replace('"','').replace('"','')
+    console.log("orderer: "+orderer)
 
 
     // products[0]: muut
     //products[1]: ravintolan nimi
     // products[2]: ravintolan id
 
-    const restaurantOrder = {orderer_username: "", products:"", total_price:"", restaurant_id:""};
-    const userOrder = {restaurant_name: "", products:"", total_price:"", restaurant_id:""};
+    const restaurantOrder = {orderer_username: "", products:"", total_price:"", owner_id:"", restaurant_name:""};
+    const userOrder = {restaurant_name: "", products:"", total_price:""};
     var [submitted, setSubmit] = useState(false)
 
     function CreateRestaurantOrder(){
+      
         restaurantOrder.orderer_username = orderer    // tilaajan nimi
         restaurantOrder.products = products_string   // tuotteet
         restaurantOrder.total_price = total   // hinta
-        restaurantOrder.restaurant_id = restaurant_id   // ravintolan autom. id
+        restaurantOrder.owner_id = owner_id   // ravintolanomistajan id
+        restaurantOrder.restaurant_name = restaurant_name    // reavintolan nimi
 
-        userOrder.restaurant_name = restaurant_name    // tilaajan nimi
+        userOrder.restaurant_name = restaurant_name    // reavintolan nimi
         userOrder.products = products_string   // tuotteet
         userOrder.total_price = total   // hinta
-        userOrder.restaurant_id = restaurant_id   // ravintolan autom. id
         
 
         console.log("order: "+JSON.stringify(restaurantOrder))
@@ -84,6 +88,9 @@ export default function PaymentView(props){
 
     return(
         <div>
+        <div className="topBar">
+          <TopBar/>
+        </div>
             <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
         {console.log(submitted)}{(submitted === true) ? (
             <div>

@@ -38,6 +38,7 @@ export default function LoginConsumer() {
 
         if (Login){
           localStorage.setItem('user_key', JSON.stringify(user_key));
+          localStorage.setItem('auth', 'user');
         }
 
   const submitHandler = (e) => {
