@@ -12,7 +12,7 @@ export default function LoginConsumer() {
 
   const Login = details => {
 
-    fetch('http://localhost:3001/user_login', {
+    fetch('/user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default function LoginConsumer() {
   function createUserLogin(newUser) {
     console.log("dt:"+newUser)
 
-    fetch('http://localhost:3001/create_user_login', {
+    fetch('/create_user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

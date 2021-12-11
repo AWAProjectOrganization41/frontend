@@ -15,7 +15,7 @@ export default function CreateMenu(){
     function createMenu(details){
         console.log(details);
 
-        fetch('http://localhost:3001/create_restaurant_menu', { 
+        fetch('/create_restaurant_menu', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
