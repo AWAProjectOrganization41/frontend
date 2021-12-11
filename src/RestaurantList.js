@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import styles from './RestaurantList.module.css'
 import OrderStatus from './OrderStatus.js';
+import TopBar from './TopBar';
 
 // Listaa ravintolat sivulle
 
@@ -33,6 +34,9 @@ function getRestaurant() {
   if (user_key !== null){
   return (
     <div className={ styles.restaurantList }>
+    <div className="topBar">
+      <TopBar/>
+    </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
       {user_key}
     <OrderStatus/>

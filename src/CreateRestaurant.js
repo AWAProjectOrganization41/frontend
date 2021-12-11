@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, {useState} from 'react'
+import TopBar from './TopBar';
 
 export default function CreateRestaurant(){
 
@@ -8,11 +9,12 @@ export default function CreateRestaurant(){
 
   const submitHandler = (e) => {
     alert('restaurant was submitted');
-    //console.log(details)
-    setDetails(details.owner_id = 1)
+    setDetails(details.owner_id = JSON.parse(localStorage.getItem('restaurant_key'))[0].restaurant_id)
+    console.log(details)
     createRestaurant(details);
     
   }
+  console.log(JSON.parse(localStorage.getItem(('restaurant_key'))))
 
  
   function createRestaurant(details) {

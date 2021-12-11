@@ -6,14 +6,13 @@ import RestaurantList from './RestaurantList'
 import RestaurantDetailView from './RestaurantDetailView'
 import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
-import CreateMenu from './CreateMenu';
-import TestUserOrderhistory from './TestUserOrderhistory';
+import OrderHistory from './OrderHistory';
 import PaymentView from './PaymentView';
-import OrderStatus from './OrderStatus';
-
+import TopBar from './TopBar'
 
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import React, {useState, useEffect} from 'react'
+import CreateMenu from './CreateMenu';
 
 
 function App() {
@@ -38,22 +37,16 @@ function deleteRestaurant() {
 
   return (
     <BrowserRouter>
-        <div className="topBar">
-          <Link to="/restaurants"><div style={{paddingRight:'50px'}}>RESTAURANTS</div></Link>
-          <Link to="/restaurantui/createrestaurant/createmenu"><div style={{paddingRight:'50px'}}>create menu</div></Link>
-          <Link to="/testuserorderhistory"><div style={{paddingRight:'50px'}}>order history</div></Link>
-        </div>
-
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/loginrestaurant" element={ <LoginRestaurant /> } />
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
           <Route path="/restaurants" element={ <RestaurantList /> } />
           <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={RestaurantDetailView}/> } />
+          <Route path="/Createmenu/:id*" element={ <CreateMenu rest_id={CreateMenu}/> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
-          <Route path="/restaurantui/createrestaurant/createmenu" element = { <CreateMenu /> } />
-          <Route path="/testuserorderhistory" element = { <TestUserOrderhistory /> } />
+          <Route path="/orderhistory" element = { <OrderHistory /> } />
           <Route path="/payment" element = { <PaymentView /> } />
 
         </Routes>

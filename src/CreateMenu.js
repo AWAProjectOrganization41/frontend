@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import React, {useState} from 'react'
+import TopBar from './TopBar';
 
 export default function CreateMenu(){
 
     const [details, setDetails] = useState({item_name:"", description:"", price:"", imagepath:"", owner_id:""});
-
     const submitHandler = (e) => {
         alert('menu was submitted');
+        setDetails(details.owner_id = rest_id )
         //setDetails(details.owner_id = 1);
         createMenu(details);
     }
@@ -29,9 +30,22 @@ export default function CreateMenu(){
         });
       }
 
+      const result = useParams();
+      const rest_id = result.id
+      console.log(rest_id)
+      if(rest_id === null) {
+        return <div>Something went wrong</div>
+      }
+
+      var restaurant_key = localStorage.getItem('restaurant_key')
+
+      if (restaurant_key !== null){
 
     return (
         <div>
+        <div className="topBar">
+          <TopBar/>
+        </div>
         <h1> Create a menu for your restaurant </h1>
         <br />
 
@@ -60,5 +74,17 @@ export default function CreateMenu(){
         <Link to="/restaurantui"><button onClick = {submitHandler}> Submit </button></Link>
         </div>
     )
+  }
+
+  else{
+    return(
+    <div>
+        <div>
+          YOU HAVE TO LOG IN
+        </div>
+        <button><Link to="/"><div style={{paddingRight:'50px'}}>PALAA PÄÄSIVULLE</div></Link></button>
+        </div>
+        )
+  }
 }
 
