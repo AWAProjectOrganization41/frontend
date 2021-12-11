@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
-import axios from 'axios'
 
 export default function LoginConsumer() {
 
