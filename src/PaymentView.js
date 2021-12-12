@@ -80,7 +80,7 @@ export default function PaymentView(props){
     .then(data => {
       alert(data);
     })
-    
+    localStorage.setItem('status', 'waiting'+'...'+orderer+'...'+owner_id)
     setSubmit(true)
   }
 

@@ -1,10 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import TopBar from './TopBar';
+import styles from './CreateMenu.module.css'
 
 export default function CreateMenu(){
 
     const [details, setDetails] = useState({item_name:"", description:"", price:"", imagepath:"", owner_id:""});
+    const [menu, setMenu] = useState([]);
     const submitHandler = (e) => {
         alert('menu was submitted');
         setDetails(details.owner_id = rest_id )
@@ -12,8 +14,27 @@ export default function CreateMenu(){
         createMenu(details);
     }
 
+    
+      function getMenuById(){
+      console.log("iidee:"+rest_id)
+      fetch('http://localhost:3001/restaurant_menu', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify([{id: rest_id}]),
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        console.log("tata:"+JSON.parse(data))
+        setMenu(JSON.parse(data))
+      });
+    }
+
     function createMenu(details){
-        console.log(details);
+        console.log("diitails:"+details);
 
         fetch('http://localhost:3001/create_restaurant_menu', { 
         method: 'POST',
@@ -33,6 +54,9 @@ export default function CreateMenu(){
       const result = useParams();
       const rest_id = result.id
       console.log(rest_id)
+      useEffect(() => {
+        getMenuById();
+      }, []);
       if(rest_id === null) {
         return <div>Something went wrong</div>
       }
@@ -45,9 +69,17 @@ export default function CreateMenu(){
         <div>
         <div className="topBar">
           <TopBar/>
+          
         </div>
+        <div>
+        <div className={ styles.menu }>{ menu.map(menu =>
+            <div>  <div>{menu.item_name}</div>
+               <img className={ styles.image }
+            src={`/images/${menu.imagepath}`}/></div>)}</div></div>
         <h1> Create a menu for your restaurant </h1>
         <br />
+
+        
 
         <section>
             <form onSubmit = {submitHandler}>
