@@ -35,7 +35,7 @@ export default function LoginConsumer() {
   return (
     <div className="LoginConsumer">
       {(user.email !== "") ? (
-        <div className="welcome">
+        <div className="Tervetuloa">
           <h2>Tervettuloa <span>{user.name}</span> </h2>
           <Link to="/restaurants"><div>Selaa ravintoloita</div></Link>
           <button onClick={Logout}>Kirjaudu ulos</button>
