@@ -6,10 +6,10 @@ import Search from './search';
 import Announcer from './announcer';
 
 const posts = [
-    { id: '1', name: 'This first post is about React' },
-    { id: '2', name: 'This next post is about Preact' },
-    { id: '3', name: 'We have yet another React post!' },
-    { id: '4', name: 'This is the fourth and final post' },
+    { id: '1', name: 'Ravintola 1' },
+    { id: '2', name: 'Ravintola 2' },
+    { id: '3', name: 'Ravintola 3' },
+    { id: '4', name: 'Ravintola 4' },
 ];
 
 const filterPosts = (posts, query) => {
