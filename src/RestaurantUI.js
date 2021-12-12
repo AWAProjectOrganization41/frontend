@@ -84,8 +84,8 @@ function getRestaurantsById(){
           window.location.reload()
         }
         else {
-            localStorage.removeItem('status')
-            window.location.reload()
+          localStorage.setItem('status', 'arrived'+'...'+check_status[1]+'...'+check_status[2])
+          window.location.reload()
         }
     }
   
