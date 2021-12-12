@@ -27,7 +27,7 @@ export default function UserHistory(props){
     
 
     function getOrderHistoryUser() {
-      fetch('/restaurantorderhistory', { 
+      fetch('http://localhost:3001/restaurantorderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export default function UserHistory(props){
     }) }
     
     function getOrderHistoryRestaurant() {
-      fetch('/userorderhistory', { 
+      fetch('http://localhost:3001/userorderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

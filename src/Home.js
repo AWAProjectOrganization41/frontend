@@ -5,10 +5,10 @@ import React from 'react'
 
 export default function Home() {
 
-  var status_save = localStorage.getItem('status_time')
+  var status_save = localStorage.getItem('status')
   //var order_save = localStorage.getItem('order')
   localStorage.clear();
-  localStorage.setItem('status_time', status_save)
+  localStorage.setItem('status', status_save)
   //localStorage.setItem('order', order_save)
 
   return (

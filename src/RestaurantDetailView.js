@@ -49,7 +49,7 @@ export default function RestaurantDetailView(props, showContent) {
   function getMenuById(){
     console.log(result.restaurant_id + "joooo");
 const idarr = [{id: result.restaurant_id}]
-    fetch('/restaurant_menu', { 
+    fetch('http://localhost:3001/restaurant_menu', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const idarr = [{id: result.restaurant_id}]
   
 
 function getRestaurant() {
-  fetch('/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+  fetch('http://localhost:3001/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
   .then(response => {
     return response.text();
   })
@@ -143,6 +143,7 @@ function getRestaurant() {
             src={`/images/${menu.imagepath}`}/> {menu.item_name}</button></div></div>)}</div> </div>
             
             
+          <div>Shopping cart</div>
         <div className={styles.menuInfo}>
         <CartView food={cart_items} />
         </div>

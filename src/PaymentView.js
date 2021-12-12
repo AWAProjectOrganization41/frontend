@@ -53,7 +53,7 @@ export default function PaymentView(props){
         localStorage.setItem('order', JSON.stringify(restaurantOrder))
         console.log("order:"+localStorage.getItem('order'))
     
-    fetch('/restaurant_orderhistory', { 
+    fetch('http://localhost:3001/restaurant_orderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function PaymentView(props){
     .then(data => {
       alert(data);
     })
-    
+    localStorage.setItem('status', 'waiting'+'...'+orderer+'...'+owner_id)
     setSubmit(true)
   }
 

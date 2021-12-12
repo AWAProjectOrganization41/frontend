@@ -21,7 +21,7 @@ export default function CreateRestaurant(){
 
     console.log("dt:"+details)
 
-    fetch('/restaurant', {
+    fetch('http://localhost:3001/restaurant', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,42 +1,32 @@
 .menuView {
-  display:inline-flex;
-  align-items: center;
-  flex-direction: row;
-  display:flex;
-  flex-direction:row;
-    box-sizing: border-box;
-    font-weight: 700;
-    float:right;
-    align-items:flex-end;
-    padding-right: 200px;
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(50px, auto);
+    width: 50%;
+    padding-left: 30px;
 }
 
 .shoppingcart {
     box-sizing: border-box;
     font-weight: 700;
     align-items: center;
-    padding-right: 200px;
     flex-direction: row;
 }
 
 .shoppingcartContainer {
   display:flex;
   flex-direction:row;
-    box-sizing: border-box;
     font-weight: 700;
     float:right;
-    align-items:flex-end;
-    padding-right: 200px;
 }
 
 .product {
     display:inline-block;
     width: 25%;
     box-sizing: border-box;
-    padding: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
     font-weight: 700;
+    
 }
 
 .header{
@@ -51,6 +41,8 @@
   align-items: center;
   flex-direction: row;
   float:left;
+  background-color: aqua;
+  width: 60%;
 }
 
 .button{
@@ -81,12 +73,13 @@
 }
 
 .menuInfo {
-  
-  padding-left: 14%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 10px;
+  display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ grid-gap: 1rem;
+ grid-auto-rows: minmax(50px, auto);
+ background-color: red;
+ float: right;
+ width: 30%;
 }
 
 .menuImage {
