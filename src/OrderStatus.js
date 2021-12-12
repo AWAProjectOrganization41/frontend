@@ -17,6 +17,15 @@ console.log(check_status[1])
 
 let page_not_updated;
 
+function handleCheck(){
+    localStorage.removeItem('status')
+    console.log("joo")
+    window.location.reload()
+    
+}
+
+
+
 if (check_status[1] === status_info[0].username){
     if (check_status[0] === 'waiting'){
 
@@ -43,7 +52,8 @@ if (check_status[1] === status_info[0].username){
         //console.log(status)
         
         else{
-        return (<div></div>
+            
+        return (<div>status info: {check_status[0]} <div>TILAUKSENNE ON SAAPUNUT PERILLE.</div>KUITTAA TILAUS VASTAANOTETUKSI<div><button onClick={() => handleCheck}>Kuittaus</button></div></div>
             
         )}
     }
