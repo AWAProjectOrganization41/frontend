@@ -43,7 +43,7 @@ function deleteRestaurant() {
           <Route path="/loginconsumer" element={ <LoginConsumer /> } />
           <Route path="/restaurants" element={ <RestaurantList /> } />
           <Route path="/restaurants/:restaurant_id/*" element={ <RestaurantDetailView restaurant={RestaurantDetailView}/> } />
-          <Route path="/Createmenu/:id*" element={ <CreateMenu rest_id={CreateMenu}/> } />
+          <Route path="restaurantui/createmenu/:id/*" element={ <CreateMenu rest_id={CreateMenu}/> } />
           <Route path="/restaurantui" element = { <RestaurantUI /> } />
           <Route path="/restaurantui/createrestaurant" element = { <CreateRestaurant /> } />
           <Route path="/orderhistory" element = { <OrderHistory /> } />

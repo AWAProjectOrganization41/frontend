@@ -143,6 +143,7 @@ function getRestaurant() {
             src={`/images/${menu.imagepath}`}/> {menu.item_name}</button></div></div>)}</div> </div>
             
             
+          <div>Shopping cart</div>
         <div className={styles.menuInfo}>
         <CartView food={cart_items} />
         </div>
