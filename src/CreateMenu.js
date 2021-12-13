@@ -52,6 +52,7 @@ export default function CreateMenu(){
         });
       }
 
+      //checks menus id and calls the getmenu function
       const result = useParams();
       const rest_id = result.id
       console.log(rest_id)
