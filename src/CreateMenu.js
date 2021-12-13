@@ -64,9 +64,10 @@ export default function CreateMenu(){
       }
 
       var restaurant_key = localStorage.getItem('restaurant_key')
-
       if (restaurant_key !== null){
 
+        //form for creating a menu
+        //requires authentication if not logged in
     return (
         <div>
         <div className="topBar">
@@ -82,7 +83,6 @@ export default function CreateMenu(){
         <br />
 
         
-
         <section>
             <form onSubmit = {submitHandler}>
                <label for="item_name"/> Enter a name <label/>
