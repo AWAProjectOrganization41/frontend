@@ -17,7 +17,7 @@ export default function CreateRestaurant(){
 
   console.log(JSON.parse(localStorage.getItem(('restaurant_key'))))
 
- 
+ //post method for creating a restaurant
   function createRestaurant(details) {
 
     console.log("dt:"+details)
