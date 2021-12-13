@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 export default function LoginConsumer() {
 
   var [login, setLogin] = useState(false);
-  const [error, setError] = useState("");
+  const error = useState("");
   const [user_key, setId] = useState([])
   const [newUser, setNewUser] = useState({username: "", password: ""});
 
@@ -24,15 +24,12 @@ export default function LoginConsumer() {
         return response.text();
       })
       .then(data => {
-        console.log("data: "+data)
         setId(JSON.parse(data))
         if(data!=='[]'){
           
-          console.log("Kirjauduttu sisään");
           setLogin(true)
         }
           else {
-            console.log("Kirjautuminen epäonnistui");
           }});      
         }
 
@@ -43,12 +40,10 @@ export default function LoginConsumer() {
 
   const submitHandler = (e) => {
     alert('a new user was submitted');
-    //console.log(details)
     createUserLogin(newUser);
   }
 
   function createUserLogin(newUser) {
-    console.log("dt:"+newUser)
 
     fetch('http://localhost:3001/create_user_login', {
       method: 'POST',
