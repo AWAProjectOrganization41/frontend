@@ -38,7 +38,7 @@ export default function LoginConsumer() {
           localStorage.setItem('auth', 'user');
         }
 
-
+//handles forms input variables
   const submitHandler = (e) => {
     alert('a new user was submitted');
     createUserLogin(newUser);
