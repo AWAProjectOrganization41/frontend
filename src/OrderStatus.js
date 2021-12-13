@@ -8,18 +8,14 @@ let status = localStorage.getItem('status')
 if (status !== null){
 
 let status_info = JSON.parse(localStorage.getItem('user_key'))
-console.log(status_info[0].username)
-
 
 // [0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
 let check_status = [] = status.split('...')
-console.log(check_status[1])
 
 let page_not_updated;
 
 function handleCheck(){
     localStorage.removeItem('status')
-    console.log("joo")
     window.location.reload()
     
 }
@@ -48,8 +44,7 @@ if (check_status[1] === status_info[0].username){
         status info: {check_status[0]} <div>TILAUKSENNE ON MATKALLA JA SAAPUU PIAN</div>ARVIOITU TOIMITUSAIKA:<div>10 min</div></div>
         
     )}
-        // date: status = JSON.parse(localStorage.getItem('order')) = status.date
-        //console.log(status)
+
         
         else{
             
