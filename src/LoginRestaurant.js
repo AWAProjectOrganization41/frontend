@@ -39,14 +39,14 @@ export default function LoginConsumer() {
           localStorage.setItem('auth', 'restaurant');
         }
 
-        //calls create login
+  //calls create login
   const submitHandler = (e) => {
     alert('a new user was submitted');
     createRestaurantLogin(newRestaurantUser);
   }
 
+  //creates a restaurant
   function createRestaurantLogin(newRestaurantUser) {
-    console.log("dt:"+newRestaurantUser)
 
     fetch('http://localhost:3001/create_restaurant_login', {
       method: 'POST',
@@ -63,6 +63,7 @@ export default function LoginConsumer() {
       });
   }
 
+  //handles logging out
   const Logout = () => {
     setLogin(false)
   }
