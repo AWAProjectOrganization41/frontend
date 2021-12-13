@@ -16,7 +16,6 @@ export default function CreateMenu(){
 
     //gets restaurants menu by id 
       function getMenuById(){
-      console.log("iidee:"+rest_id)
       fetch('http://localhost:3001/restaurant_menu', { 
       method: 'POST',
       headers: {
@@ -28,14 +27,12 @@ export default function CreateMenu(){
         return response.text();
       })
       .then(data => {
-        console.log("tata:"+JSON.parse(data))
         setMenu(JSON.parse(data))
       });
     }
 
     //creates new menu for a restaurant
     function createMenu(details){
-        console.log("diitails:"+details);
 
         fetch('http://localhost:3001/create_restaurant_menu', { 
         method: 'POST',
@@ -55,7 +52,6 @@ export default function CreateMenu(){
       //checks menus id and calls the getmenu function
       const result = useParams();
       const rest_id = result.id
-      console.log(rest_id)
       useEffect(() => {
         getMenuById();
       }, []);

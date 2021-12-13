@@ -8,31 +8,14 @@ import RestaurantUI from './RestaurantUI';
 import CreateRestaurant from './CreateRestaurant';
 import OrderHistory from './OrderHistory';
 import PaymentView from './PaymentView';
-import TopBar from './TopBar'
 
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
-import React, {useState, useEffect} from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react'
 import CreateMenu from './CreateMenu';
 
 
 function App() {
 
-// vanha deleterestaurant, poistuu:
-    /*
-function deleteRestaurant() {
-  let id = prompt('Enter restaurant id');
-  fetch(`http://localhost:3001/restaurant/${id}`, { // if developing locally: 'http://localhost:3001/restaurant/${id}'. If to heroku: '/restaurant/{$id}'
-    method: 'DELETE',
-  })
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      alert(data);
-      getRestaurant();
-    });
-}
-*/
 
   //Connections to other components
   return (
@@ -56,11 +39,6 @@ function deleteRestaurant() {
         
     </BrowserRouter>
   );
-
-/*
-<button onClick={deleteRestaurant}>Delete restaurant</button><br/><br/>
-*/
-
 }
 
 
