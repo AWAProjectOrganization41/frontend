@@ -9,7 +9,7 @@ export default function LoginConsumer() {
   const [user_key, setId] = useState([])
   const [newUser, setNewUser] = useState({username: "", password: ""});
 
-
+//checks if login is ok
   const Login = details => {
 
     fetch('http://localhost:3001/user_login', {
@@ -37,6 +37,7 @@ export default function LoginConsumer() {
           localStorage.setItem('user_key', JSON.stringify(user_key));
           localStorage.setItem('auth', 'user');
         }
+
 
   const submitHandler = (e) => {
     alert('a new user was submitted');
