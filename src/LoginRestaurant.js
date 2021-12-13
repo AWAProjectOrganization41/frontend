@@ -11,8 +11,8 @@ export default function LoginConsumer() {
 
   var data_id = ''
 
+  //checks login
   const Login = details => {
-
     fetch('http://localhost:3001/restaurant_login', {
       method: 'POST',
       headers: {
@@ -25,15 +25,12 @@ export default function LoginConsumer() {
         return response.text();
       })
       .then(data => {
-        console.log(data)
         setId(JSON.parse(data))
         if(data!=='[]'){
           
-          console.log("Kirjauduttu sisään");
           setLogin(true)
         }
           else {
-            console.log("Kirjautuminen epäonnistui");
           }});      
         }
 
@@ -42,9 +39,9 @@ export default function LoginConsumer() {
           localStorage.setItem('auth', 'restaurant');
         }
 
+        //calls create login
   const submitHandler = (e) => {
     alert('a new user was submitted');
-    //console.log(details)
     createRestaurantLogin(newRestaurantUser);
   }
 
