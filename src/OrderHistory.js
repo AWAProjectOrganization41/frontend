@@ -11,6 +11,7 @@ export default function UserHistory(props){
 
     const [history, setHistory] = useState([]);
 
+    //calls get orderhistory
     useEffect(() => {
       if (auth === 'user'){
       getOrderHistoryUser();
