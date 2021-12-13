@@ -7,10 +7,8 @@ export default function Home() {
 
   //manages local storage
   var status_save = localStorage.getItem('status')
-  //var order_save = localStorage.getItem('order')
   localStorage.clear();
   localStorage.setItem('status', status_save)
-  //localStorage.setItem('order', order_save)
 
   return (
     <div>
