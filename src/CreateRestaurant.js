@@ -38,7 +38,7 @@ export default function CreateRestaurant(){
       });
   }
 
-
+//renders a form for creating a restaurant
     return(
 
        <div>
