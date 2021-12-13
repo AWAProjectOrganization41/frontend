@@ -34,7 +34,7 @@ function deleteRestaurant() {
 }
 */
 
-
+  //Connections to other components
   return (
     <BrowserRouter>
         <Routes>
