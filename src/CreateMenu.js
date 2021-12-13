@@ -33,6 +33,7 @@ export default function CreateMenu(){
       });
     }
 
+    //creates new menu for a restaurant
     function createMenu(details){
         console.log("diitails:"+details);
 
