@@ -62,6 +62,7 @@ export default function LoginConsumer() {
       });
   }
 
+  //handles logging out
   const Logout = () => {
     setLogin(false)
   }
