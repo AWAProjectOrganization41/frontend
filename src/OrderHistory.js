@@ -21,7 +21,7 @@ export default function UserHistory(props){
     }, []);
 
     
-
+    //gests users order history
     function getOrderHistoryUser() {
       fetch('http://localhost:3001/restaurantorderhistory', { 
     method: 'POST',
@@ -36,7 +36,8 @@ export default function UserHistory(props){
     .then(data => {
       setHistory(JSON.parse(data))
     }) }
-    
+
+    //gets restaurants order history
     function getOrderHistoryRestaurant() {
       fetch('http://localhost:3001/userorderhistory', { 
     method: 'POST',
