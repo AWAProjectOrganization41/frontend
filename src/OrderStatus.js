@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import {  Link, useParams } from 'react-router-dom'
+import React from 'react'
 import styles from './OrderStatus.module.css'
 
 export default function OrderStatus() {
 
 let status = localStorage.getItem('status')
 if (status !== null){
-
 let status_info = JSON.parse(localStorage.getItem('user_key'))
-
-// [0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
 let check_status = [] = status.split('...')
 
-let page_not_updated;
 
+//clears order from local storage
 function handleCheck(){
     localStorage.removeItem('status')
     window.location.reload()
@@ -21,7 +17,7 @@ function handleCheck(){
 }
 
 
-
+//changes the status of the order
 if (check_status[1] === status_info[0].username){
     if (check_status[0] === 'waiting'){
 
