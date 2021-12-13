@@ -26,6 +26,8 @@ export default function PaymentView(props){
     const userOrder = {restaurant_name: "", products:"", total_price:""};
     var [submitted, setSubmit] = useState(false)
 
+
+    //creates an order for the restaurant
     function CreateRestaurantOrder(){
       
         restaurantOrder.orderer_username = orderer    // tilaajan nimi
@@ -40,7 +42,8 @@ export default function PaymentView(props){
         
         localStorage.setItem('order', JSON.stringify(restaurantOrder))
 
-    
+
+    //gets restaurants order history
     fetch('http://localhost:3001/restaurant_orderhistory', { 
     method: 'POST',
     headers: {
@@ -55,6 +58,7 @@ export default function PaymentView(props){
       alert(data);
     })
 
+    //gets users order history
     fetch('http://localhost:3001/user_orderhistory', { 
     method: 'POST',
     headers: {
