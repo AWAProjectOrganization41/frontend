@@ -44,6 +44,7 @@ export default function LoginConsumer() {
     createUserLogin(newUser);
   }
 
+  //creates a new user account
   function createUserLogin(newUser) {
 
     fetch('http://localhost:3001/create_user_login', {
