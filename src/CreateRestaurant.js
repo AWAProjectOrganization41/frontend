@@ -6,14 +6,15 @@ export default function CreateRestaurant(){
 
   const [details, setDetails] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:"", owner_id:""});
 
-
+  //gets restaurant id for create restaurant
+  //calls create restaurant
   const submitHandler = (e) => {
     alert('restaurant was submitted');
     setDetails(details.owner_id = JSON.parse(localStorage.getItem('restaurant_key'))[0].restaurant_id)
     console.log(details)
     createRestaurant(details);
-    
   }
+
   console.log(JSON.parse(localStorage.getItem(('restaurant_key'))))
 
  
