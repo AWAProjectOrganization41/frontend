@@ -14,7 +14,7 @@ export default function CreateMenu(){
         createMenu(details);
     }
 
-    
+    //gets restaurants menu by id 
       function getMenuById(){
       console.log("iidee:"+rest_id)
       fetch('http://localhost:3001/restaurant_menu', { 
