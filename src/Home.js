@@ -5,6 +5,7 @@ import React from 'react'
 
 export default function Home() {
 
+  //manages local storage
   var status_save = localStorage.getItem('status')
   //var order_save = localStorage.getItem('order')
   localStorage.clear();
