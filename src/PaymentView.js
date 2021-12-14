@@ -9,33 +9,25 @@ export default function PaymentView(props){
 
 
     var shoppingcart = localStorage.getItem('shoppincart')
-    console.log("cart:"+shoppingcart)
-
     var products = shoppingcart.split('...')
-    console.log(products[0])
-
     var products_obj = JSON.parse(products[0])
 
     var total = 0
     var products_string = ''
     var restaurant_name = products[1]
     var owner_id = products[2]
-    console.log(products[1])
+
    
     var orderer = JSON.parse(localStorage.getItem('user_key'))
     orderer = JSON.stringify(orderer[0].username)
     orderer = orderer.replace('"','').replace('"','')
-    console.log("orderer: "+orderer)
-
-
-    // products[0]: muut
-    //products[1]: ravintolan nimi
-    // products[2]: ravintolan id
 
     const restaurantOrder = {orderer_username: "", products:"", total_price:"", owner_id:"", restaurant_name:""};
     const userOrder = {restaurant_name: "", products:"", total_price:""};
     var [submitted, setSubmit] = useState(false)
 
+
+    //creates an order for the restaurant
     function CreateRestaurantOrder(){
       
         restaurantOrder.orderer_username = orderer    // tilaajan nimi
@@ -48,11 +40,10 @@ export default function PaymentView(props){
         userOrder.products = products_string   // tuotteet
         userOrder.total_price = total   // hinta
         
-
-        console.log("order: "+JSON.stringify(restaurantOrder))
         localStorage.setItem('order', JSON.stringify(restaurantOrder))
-        console.log("order:"+localStorage.getItem('order'))
-    
+
+
+    //gets restaurants order history
     fetch('http://localhost:3001/restaurant_orderhistory', { 
     method: 'POST',
     headers: {
@@ -67,6 +58,7 @@ export default function PaymentView(props){
       alert(data);
     })
 
+    //gets users order history
     fetch('http://localhost:3001/user_orderhistory', { 
     method: 'POST',
     headers: {
@@ -80,7 +72,7 @@ export default function PaymentView(props){
     .then(data => {
       alert(data);
     })
-    
+    localStorage.setItem('status', 'waiting'+'...'+orderer+'...'+owner_id)
     setSubmit(true)
   }
 
