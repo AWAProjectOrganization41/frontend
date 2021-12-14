@@ -12,7 +12,7 @@ export default function LoginConsumer() {
 //checks if login is ok
   const Login = details => {
 
-    fetch('/user_login', {
+    fetch('http://localhost:3001/user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,12 +42,13 @@ export default function LoginConsumer() {
   const submitHandler = (e) => {
     alert('a new user was submitted');
     createUserLogin(newUser);
+    window.location.reload()
   }
 
   //creates a new user account
   function createUserLogin(newUser) {
 
-    fetch('/create_user_login', {
+    fetch('http://localhost:3001/create_user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ export default function LoginConsumer() {
 
         </section>
 
-        <Link to="/restaurants"><button onClick = {submitHandler}> create </button></Link>
+        <button onClick = {submitHandler}> create </button>
  </div>
     </div>
   );

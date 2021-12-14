@@ -29,7 +29,7 @@ useEffect(() => {
   getRestaurantsById();
 }, []);
 function getRestaurantsById(){
-    fetch('/myrestaurants', { 
+    fetch('http://localhost:3001/myrestaurants', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

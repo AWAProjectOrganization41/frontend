@@ -44,7 +44,7 @@ export default function PaymentView(props){
 
 
     //gets restaurants order history
-    fetch('/restaurant_orderhistory', { 
+    fetch('http://localhost:3001/restaurant_orderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export default function PaymentView(props){
     })
 
     //gets users order history
-    fetch('/user_orderhistory', { 
+    fetch('http://localhost:3001/user_orderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

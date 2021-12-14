@@ -27,7 +27,7 @@ useEffect(() => {
   getRestaurant();
 }, []);
 function getRestaurant() {
-  fetch('/customer_restaurants') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+  fetch('http://localhost:3001/customer_restaurants') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
   .then(response => {
     return response.text();
   })

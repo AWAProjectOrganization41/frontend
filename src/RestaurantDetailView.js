@@ -32,7 +32,7 @@ export default function RestaurantDetailView(props, showContent) {
 
   function getMenuById(){
 const idarr = [{id: result.restaurant_id}]
-    fetch('/restaurant_menu', { 
+    fetch('http://localhost:3001/restaurant_menu', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const idarr = [{id: result.restaurant_id}]
   
 
 function getRestaurant() {
-  fetch('/customer_restaurants') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+  fetch('http://localhost:3001/customer_restaurants') // if developing locally: 'http://localhost:3001/customer_restaurants'. If to heroku: '/customer_restaurants'
   .then(response => {
     return response.text();
   })
