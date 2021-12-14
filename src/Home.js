@@ -11,7 +11,7 @@ export default function Home() {
   localStorage.setItem('status', status_save)
 
   return (
-    <div>
+    <div style={{backgroundColor:'blue'}}>
       <h1>LOGIN</h1>
       <h3>KIRJAUDU SISÄÄN TAI REKISTERÖIDY</h3>
 

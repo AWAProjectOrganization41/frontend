@@ -28,7 +28,7 @@ useEffect(() => {
   getRestaurant();
 }, []);
 function getRestaurant() {
-  fetch('http://localhost:3001/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+  fetch('/customer_restaurants') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
   .then(response => {
     return response.text();
   })
@@ -52,7 +52,7 @@ function getRestaurant() {
       { restaurant.map(restaurant =>
         <Link to={ "/restaurants/"+restaurant.restaurant_id }>
           <div className={ styles.product }>
-            <div><img className={ styles.image }src={`${restaurant.imagepath}`} /></div><div className={ styles.header }>{restaurant.name}</div><div>{restaurant.address}</div></div>
+            <div><img className={ styles.image }src={`${restaurant.imagepath}`} /></div><div className={ styles.header }>{restaurant.name}</div><div>{restaurant.address}</div><div>{restaurant.price_level.replaceAll("o", "€")}</div></div>
         </Link>
       )}
       </div>

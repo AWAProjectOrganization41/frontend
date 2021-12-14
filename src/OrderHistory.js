@@ -23,7 +23,7 @@ export default function UserHistory(props){
     
     //gests users order history
     function getOrderHistoryUser() {
-      fetch('http://localhost:3001/restaurantorderhistory', { 
+      fetch('/restaurantorderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export default function UserHistory(props){
 
     //gets restaurants order history
     function getOrderHistoryRestaurant() {
-      fetch('http://localhost:3001/userorderhistory', { 
+      fetch('/userorderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,9 +69,9 @@ export default function UserHistory(props){
             { history.map(history =>
                <>
                <br/>
-               <div> {history.restaurant_name} </div>
-               <div> {history.products} </div>
-               <div> {history.total_price} </div>
+               <div> Restaurant: {history.restaurant_name} </div>
+               <div> Order: {history.products.replaceAll(',',', ').slice(0, -2)} </div>
+               <div> Total price: {history.total_price} </div>
                </>
             )}
             </div></div>)}
@@ -88,9 +88,9 @@ export default function UserHistory(props){
             { history.map(history =>
                <>
                <br/>
-               <div> {history.restaurant_name} </div>
-               <div> {history.products} </div>
-               <div> {history.total_price} </div>
+               <div> Restaurant: {history.restaurant_name} </div>
+               <div> Order: {history.products.replaceAll(',',', ').slice(0, -2)} </div>
+               <div> Total price: {history.total_price} </div>
                </>
             )}
             </div></div>)}

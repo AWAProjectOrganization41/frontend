@@ -19,7 +19,7 @@ function handleCheck(){
 
 //changes the status of the order
 if (check_status[1] === status_info[0].username){
-    if (check_status[0] === 'waiting'){
+    if (check_status[0] === 'received'){
 
         return (
         <div className={styles.container}>
@@ -33,7 +33,7 @@ if (check_status[1] === status_info[0].username){
         status info: {check_status[0]} <div>TILAUKSENNE ON VASTAANOTETTU JA SITÄ VALMISTELLAAN</div>ARVIOITU TOIMITUSAIKA:<div>30 min</div></div>
         
     )}
-    if (check_status[0] === 'moving'){
+    if (check_status[0] === 'delivering'){
 
         return (
         <div className={styles.container}>

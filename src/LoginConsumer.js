@@ -12,7 +12,7 @@ export default function LoginConsumer() {
 //checks if login is ok
   const Login = details => {
 
-    fetch('http://localhost:3001/user_login', {
+    fetch('/user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function LoginConsumer() {
   //creates a new user account
   function createUserLogin(newUser) {
 
-    fetch('http://localhost:3001/create_user_login', {
+    fetch('/create_user_login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -83,9 +83,8 @@ export default function LoginConsumer() {
 
  <div>
    <h2> Create an account </h2>
-  <div>Enter your username</div>
    <section>
-               <label htmlFor="username"/> Enter your username <label/>
+               <label htmlFor="username"/> Enter your email <label/>
                <input type="text" name="username" id="username" onChange= { e => setNewUser({...newUser, username: e.target.value})} value={newUser.username}></input>
                <br/><br/>
 

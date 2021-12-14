@@ -19,7 +19,7 @@ export default function CreateRestaurant(){
   function createRestaurant(details) {
 
 
-    fetch('http://localhost:3001/restaurant', {
+    fetch('/restaurant', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

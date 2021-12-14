@@ -44,7 +44,7 @@ export default function PaymentView(props){
 
 
     //gets restaurants order history
-    fetch('http://localhost:3001/restaurant_orderhistory', { 
+    fetch('/restaurant_orderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function PaymentView(props){
     })
 
     //gets users order history
-    fetch('http://localhost:3001/user_orderhistory', { 
+    fetch('/user_orderhistory', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default function PaymentView(props){
     .then(data => {
       alert(data);
     })
-    localStorage.setItem('status', 'waiting'+'...'+orderer+'...'+owner_id)
+    localStorage.setItem('status', 'received'+'...'+orderer+'...'+owner_id)
     setSubmit(true)
   }
 

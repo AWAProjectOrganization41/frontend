@@ -11,7 +11,7 @@ export default function TopBar(){
             console.log("user"+auth)
         return(
 
-        <div className="topBar">
+        <div className="topBar" style={{backgroundColor:'lightblue'}}>
               <Link to="/restaurants"><div style={{paddingRight:'50px'}}>RESTAURANTS</div></Link>
               <Link to="/orderhistory"><div style={{paddingRight:'50px'}}>order history</div></Link>
             </div>
@@ -23,7 +23,7 @@ export default function TopBar(){
         console.log("rest"+auth)
         return(
 
-            <div className="topBar">
+            <div className="topBar" style={{backgroundColor:'lightblue'}}>
                   <Link to="/restaurantui"><div style={{paddingRight:'50px'}}>YOUR RESTAURANTS</div></Link>
                   <Link to="/orderhistory"><div style={{paddingRight:'50px'}}>order history</div></Link>
                 </div>

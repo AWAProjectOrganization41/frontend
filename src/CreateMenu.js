@@ -16,7 +16,7 @@ export default function CreateMenu(){
 
     //gets restaurants menu by id 
       function getMenuById(){
-      fetch('http://localhost:3001/restaurant_menu', { 
+      fetch('/restaurant_menu', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default function CreateMenu(){
     //creates new menu for a restaurant
     function createMenu(details){
 
-        fetch('http://localhost:3001/create_restaurant_menu', { 
+        fetch('/create_restaurant_menu', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

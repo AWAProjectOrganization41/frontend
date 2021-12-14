@@ -29,7 +29,7 @@ useEffect(() => {
   getRestaurantsById();
 }, []);
 function getRestaurantsById(){
-    fetch('http://localhost:3001/myrestaurants', { 
+    fetch('/myrestaurants', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -72,19 +72,20 @@ function getRestaurantsById(){
     }
   }
 
+  
     function setStatus(){
       console.log(localStorage.getItem('status'))
-        if (check_status[0] === 'waiting'){
+        if (check_status[0] === 'received'){
           console.log(status)
           localStorage.setItem('status', 'preparing'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }
         else if (check_status[0] === 'preparing'){
-          localStorage.setItem('status', 'moving'+'...'+check_status[1]+'...'+check_status[2])
+          localStorage.setItem('status', 'delivering'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }
         else {
-          localStorage.setItem('status', 'arrived'+'...'+check_status[1]+'...'+check_status[2])
+          localStorage.setItem('status', 'delivered'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }
     }
@@ -101,7 +102,7 @@ function getRestaurantsById(){
       <TopBar/>
     </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-      <div>{(checkStatus) ? (<div style={{fontSize:'40px'}}>You have an open order {check_status[0]}<div>from {check_status[1]}</div><div><button onClick={setStatus}>CHANGE STATUS</button></div></div>) : (<div></div>)}
+      <div>{(checkStatus) ? (<div style={{fontSize:'40px'}}>You have an open order with status:{check_status[0]}<div>from {check_status[1]}</div><div><button onClick={setStatus}>CHANGE STATUS</button></div></div>) : (<div></div>)}
           
       { restaurant.map(restaurant =>
           <div className={ styles.product }>
