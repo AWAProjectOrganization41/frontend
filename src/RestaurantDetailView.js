@@ -147,7 +147,7 @@ function getRestaurant() {
           LOPPUSUMMA: {summa+"€"}<div>
 
             <Link to={"/payment/"}><button onClick = {ToPayment}  food = {cart_items} summa = {summa} style={{margin:'20px'}}>PAY</button></Link>
-            <p>{console.log(cart_items + summa + "testii" + food)} </p>
+            
             
           </div>
           </div>
@@ -157,7 +157,7 @@ function getRestaurant() {
     
     const ToPayment = ({food, summa}) => {
       return(
-        console.log("mo" + food + summa)
+        null
       )
     }
 

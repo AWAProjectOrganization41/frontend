@@ -6,9 +6,7 @@ export default function TopBar(){
     
   let [auth, setAuth] = useState();
 
-    console.log("autti:" +auth)
     if (auth === 'user'){
-            console.log("user"+auth)
         return(
 
         <div className="topBar" style={{backgroundColor:'lightblue'}}>
@@ -20,7 +18,6 @@ export default function TopBar(){
             
     else if (auth === 'restaurant'){
         
-        console.log("rest"+auth)
         return(
 
             <div className="topBar" style={{backgroundColor:'lightblue'}}>

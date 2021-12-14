@@ -77,9 +77,6 @@ export default function LoginConsumer() {
       <LoginForm Login={Login} error={error}/>
      )}
 
-<div className="menu"> 
-<div> Terve herra ... </div>
- </div>
 
  <div>
    <h2> Create an account </h2>

@@ -17,7 +17,6 @@ export default function RestaurantList() {
 
   
   var user_key = localStorage.getItem('user_key')
-  console.log(JSON.parse(user_key))
 
   // props.restaurants = ravintolat tallennettuina. Esim. 'props.restaurants.name' = ravintolan nimi
 
@@ -33,7 +32,6 @@ function getRestaurant() {
     return response.text();
   })
   .then(data => {
-    console.log("mooi" + data)
     setRestaurants(JSON.parse(data));
     
   });

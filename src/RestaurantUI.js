@@ -40,43 +40,34 @@ function getRestaurantsById(){
       return response.text();
     })
     .then(data => {
-      console.log("tata:"+JSON.parse(data))
       setRestaurants(JSON.parse(data))
     });
   }
 
   function handleEditMenu(id){
     rest_id = id
-    console.log(rest_id)
     setState('menu')
   }
 
 
   let status = localStorage.getItem('status')
-  console.log(status)
   let check_status = [] 
 
   if (status !== null){
   // [0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
     check_status = status.split('...')
-    console.log("tilaus"+check_status[2])
-    console.log("id"+restaurants_by_id[0].id)
 
     if (restaurants_by_id[0].id===parseInt(check_status[2])){
-      console.log("on")
       checkStatus = true
     }
     else {
-      console.log("ei")
       checkStatus = false
     }
   }
 
   
     function setStatus(){
-      console.log(localStorage.getItem('status'))
         if (check_status[0] === 'received'){
-          console.log(status)
           localStorage.setItem('status', 'preparing'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }

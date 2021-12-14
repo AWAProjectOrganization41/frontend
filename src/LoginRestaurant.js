@@ -78,9 +78,6 @@ export default function LoginConsumer() {
       <RestaurantLoginForm Login={Login} error={error}/>
      )}
 
-<div className="menu"> 
-<div> morjes omistaja ... </div>
- </div>
 
  <div>
    <h2> Create an account </h2>
