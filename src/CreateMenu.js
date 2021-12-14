@@ -73,7 +73,7 @@ export default function CreateMenu(){
         <div className={ styles.menu }>{ menu.map(menu =>
             <div>  <div>{menu.item_name}</div>
                <img className={ styles.image }
-            src={`/images/${menu.imagepath}`}/></div>)}</div></div>
+            src={`${menu.imagepath}`}/></div>)}</div></div>
         <h1> Create a menu for your restaurant </h1>
         <br />
 
