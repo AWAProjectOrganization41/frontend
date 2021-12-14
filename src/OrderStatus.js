@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import {  Link, useParams } from 'react-router-dom'
+import React from 'react'
 import styles from './OrderStatus.module.css'
 
 export default function OrderStatus() {
 
 let status = localStorage.getItem('status')
 if (status !== null){
-
 let status_info = JSON.parse(localStorage.getItem('user_key'))
-console.log(status_info[0].username)
-
-
-// [0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
 let check_status = [] = status.split('...')
-console.log(check_status[1])
 
-let page_not_updated;
 
+//clears order from local storage
 function handleCheck(){
     localStorage.removeItem('status')
-    console.log("joo")
     window.location.reload()
     
 }
 
 
-
+//changes the status of the order
 if (check_status[1] === status_info[0].username){
     if (check_status[0] === 'waiting'){
 
@@ -48,8 +40,7 @@ if (check_status[1] === status_info[0].username){
         status info: {check_status[0]} <div>TILAUKSENNE ON MATKALLA JA SAAPUU PIAN</div>ARVIOITU TOIMITUSAIKA:<div>10 min</div></div>
         
     )}
-        // date: status = JSON.parse(localStorage.getItem('order')) = status.date
-        //console.log(status)
+
         
         else{
             

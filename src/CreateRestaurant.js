@@ -1,25 +1,22 @@
 import { Link } from 'react-router-dom'
 import React, {useState} from 'react'
-import TopBar from './TopBar';
 
 export default function CreateRestaurant(){
 
   const [details, setDetails] = useState({name:"", address:"", operating_hours:"", imagepath:"", restaurant_type:"", price_level:"", owner_id:""});
 
-
+  //gets restaurant id for create restaurant
+  //calls create restaurant
   const submitHandler = (e) => {
     alert('restaurant was submitted');
     setDetails(details.owner_id = JSON.parse(localStorage.getItem('restaurant_key'))[0].restaurant_id)
-    console.log(details)
     createRestaurant(details);
-    
   }
-  console.log(JSON.parse(localStorage.getItem(('restaurant_key'))))
 
- 
+
+ //post method for creating a restaurant
   function createRestaurant(details) {
 
-    console.log("dt:"+details)
 
     fetch('http://localhost:3001/restaurant', {
       method: 'POST',
@@ -37,7 +34,7 @@ export default function CreateRestaurant(){
       });
   }
 
-
+//renders a form for creating a restaurant
     return(
 
        <div>

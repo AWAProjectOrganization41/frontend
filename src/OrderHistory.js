@@ -8,14 +8,10 @@ export default function UserHistory(props){
     let auth = localStorage.getItem('auth');
     let loggedin = localStorage.getItem(auth+'_key')
     let user = JSON.parse(loggedin)[0];
-    console.log("loggedin"+loggedin)
-    console.log("user"+user)
 
     const [history, setHistory] = useState([]);
 
-    console.log(JSON.stringify(user))
-
-    
+    //calls get orderhistory
     useEffect(() => {
       if (auth === 'user'){
       getOrderHistoryUser();
@@ -25,7 +21,7 @@ export default function UserHistory(props){
     }, []);
 
     
-
+    //gests users order history
     function getOrderHistoryUser() {
       fetch('http://localhost:3001/restaurantorderhistory', { 
     method: 'POST',
@@ -38,10 +34,10 @@ export default function UserHistory(props){
       return response.text();
     })
     .then(data => {
-      console.log("data:"+data)
       setHistory(JSON.parse(data))
     }) }
-    
+
+    //gets restaurants order history
     function getOrderHistoryRestaurant() {
       fetch('http://localhost:3001/userorderhistory', { 
     method: 'POST',
@@ -54,13 +50,11 @@ export default function UserHistory(props){
       return response.text();
     })
     .then(data => {
-      console.log("data:"+data)
       setHistory(JSON.parse(data))
     }) }
       
 
     if (auth !== null){
-      console.log(loggedin)
       
       if (auth === 'user'){
 
@@ -112,3 +106,4 @@ export default function UserHistory(props){
         </div>
     )}
 }}
+
