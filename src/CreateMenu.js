@@ -45,7 +45,6 @@ export default function CreateMenu(){
           return response.text();
         })
         .then(data => {
-          alert(data);
         });
       }
 

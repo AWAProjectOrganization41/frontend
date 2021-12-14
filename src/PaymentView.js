@@ -55,7 +55,6 @@ export default function PaymentView(props){
       return response.text();
     })
     .then(data => {
-      alert(data);
     })
 
     //gets users order history
@@ -70,7 +69,6 @@ export default function PaymentView(props){
       return response.text();
     })
     .then(data => {
-      alert(data);
     })
     localStorage.setItem('status', 'received'+'...'+orderer+'...'+owner_id)
     setSubmit(true)

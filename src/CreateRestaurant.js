@@ -31,7 +31,6 @@ export default function CreateRestaurant(){
         return response.text();
       })
       .then(data => {
-        alert(data);
       });
   }
 

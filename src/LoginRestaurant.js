@@ -59,7 +59,6 @@ export default function LoginConsumer() {
         return response.text();
       })
       .then(data => {
-        alert(data);
       });
   }
 
