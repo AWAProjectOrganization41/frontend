@@ -45,7 +45,6 @@ export default function CreateMenu(){
           return response.text();
         })
         .then(data => {
-          alert(data);
         });
       }
 
@@ -74,7 +73,7 @@ export default function CreateMenu(){
         <div className={ styles.menu }>{ menu.map(menu =>
             <div>  <div>{menu.item_name}</div>
                <img className={ styles.image }
-            src={`/images/${menu.imagepath}`}/></div>)}</div></div>
+            src={`${menu.imagepath}`}/></div>)}</div></div>
         <h1> Create a menu for your restaurant </h1>
         <br />
 
@@ -95,7 +94,9 @@ export default function CreateMenu(){
 
                <label for="imagepath"/> Enter an imagepath for your image <label/>
                <input type="text" name="imagepath" id="imagepath" onChange= { e => setDetails({...details, imagepath: e.target.value})} value={details.imagepath}></input>
-               <br/><br/>
+               <a href="https://fi.imgbb.com/" target="_blank" rel="noopener noreferrer">CLICK HERE TO UPLOAD NEW IMAGE</a>
+                <div>(if you don't have one yet, You can upload one throught the link and copy the url as show in the image below: )</div><br/>
+                <div><img className={ styles.menuimage }src={`/images/example.png`} /></div><br/>
 
                </form>
 

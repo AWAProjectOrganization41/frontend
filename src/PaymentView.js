@@ -55,7 +55,6 @@ export default function PaymentView(props){
       return response.text();
     })
     .then(data => {
-      alert(data);
     })
 
     //gets users order history
@@ -70,9 +69,8 @@ export default function PaymentView(props){
       return response.text();
     })
     .then(data => {
-      alert(data);
     })
-    localStorage.setItem('status', 'waiting'+'...'+orderer+'...'+owner_id)
+    localStorage.setItem('status', 'received'+'...'+orderer+'...'+owner_id)
     setSubmit(true)
   }
 
@@ -84,9 +82,9 @@ export default function PaymentView(props){
           <TopBar/>
         </div>
             <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-        {console.log(submitted)}{(submitted === true) ? (
+        {(submitted === true) ? (
             <div>
-                {console.log(submitted)}{<Navigate to='/restaurants' />}
+                {<Navigate to='/restaurants' />}
             </div> ) : (<div>
          
     
@@ -153,7 +151,7 @@ export default function PaymentView(props){
 
                 <br/><br/>
                 
-            <button onClick = {CreateRestaurantOrder}> Submit order {console.log(submitted)}</button></div>)}
+            <button onClick = {CreateRestaurantOrder}> Submit order </button></div>)}
                 </div>
     )
 }

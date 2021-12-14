@@ -49,7 +49,7 @@ const idarr = [{id: result.restaurant_id}]
   
 
 function getRestaurant() {
-  fetch('http://localhost:3001/r') // if developing locally: 'http://localhost:3001/r'. If to heroku: '/r'
+  fetch('http://localhost:3001/customer_restaurants') // if developing locally: 'http://localhost:3001/customer_restaurants'. If to heroku: '/customer_restaurants'
   .then(response => {
     return response.text();
   })
@@ -108,7 +108,7 @@ function getRestaurant() {
             <div className={styles.menuView}>{ menu.map(menu => <div> 
             <div className={styles.product}><button className={styles.button} onClick={() => handleFoodClick(menu)}>
                <img className={styles.image} 
-            src={`/images/${menu.imagepath}`}/> {menu.item_name}</button></div></div>)}</div> </div>
+            src={`${menu.imagepath}`}/> {menu.item_name}<div>{menu.description}</div><div>{menu.price} e</div></button></div></div>)}</div> </div>
             
             
           <div>Shopping cart</div>
@@ -142,12 +142,12 @@ function getRestaurant() {
     return(<div className={styles.shoppingcartContainer}>
         <div className={styles.shoppingcart}> {cart_items.map(prodes =>
         <div className={styles.shoppingcartContainer}><img className={styles.menuImage} 
-        src={`/images/${prodes.imagepath}`}/><div style={{}}> { prodes.item_name }<div>{ prodes.description }</div><div>{ prodes.price }</div></div> 
+        src={`${prodes.imagepath}`}/><div style={{}}> { prodes.item_name }<div>{ prodes.description }</div><div>{ prodes.price }</div></div> 
           <button style={{}} onClick={() => handleDeleteFromCart(prodes)}><div>DELETE</div></button></div>)}
           LOPPUSUMMA: {summa+"€"}<div>
 
             <Link to={"/payment/"}><button onClick = {ToPayment}  food = {cart_items} summa = {summa} style={{margin:'20px'}}>PAY</button></Link>
-            <p>{console.log(cart_items + summa + "testii" + food)} </p>
+            
             
           </div>
           </div>
@@ -157,7 +157,7 @@ function getRestaurant() {
     
     const ToPayment = ({food, summa}) => {
       return(
-        console.log("mo" + food + summa)
+        null
       )
     }
 
@@ -172,9 +172,9 @@ function getRestaurant() {
       <TopBar/>
     </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-    <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
-          ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
-          {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
+    <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`${restaurant.imagepath}`} />
+    <div>{restaurant.name} {restaurant.address}</div>
+          <div>{restaurant.operating_hours} </div>{restaurant.restaurant_type} {restaurant.price_level.replaceAll("o", "€")}</div>
         <div>
           <RestaurantView ViewStatus={ViewStatus}/>
         </div>

@@ -42,6 +42,7 @@ export default function LoginConsumer() {
   const submitHandler = (e) => {
     alert('a new user was submitted');
     createUserLogin(newUser);
+    window.location.reload()
   }
 
   //creates a new user account
@@ -58,7 +59,6 @@ export default function LoginConsumer() {
         return response.text();
       })
       .then(data => {
-        alert(data);
       });
   }
 
@@ -77,15 +77,11 @@ export default function LoginConsumer() {
       <LoginForm Login={Login} error={error}/>
      )}
 
-<div className="menu"> 
-<div> Terve herra ... </div>
- </div>
 
  <div>
    <h2> Create an account </h2>
-  <div>Enter your username</div>
    <section>
-               <label htmlFor="username"/> Enter your username <label/>
+               <label htmlFor="username"/> Enter your email <label/>
                <input type="text" name="username" id="username" onChange= { e => setNewUser({...newUser, username: e.target.value})} value={newUser.username}></input>
                <br/><br/>
 
@@ -95,7 +91,7 @@ export default function LoginConsumer() {
 
         </section>
 
-        <Link to="/restaurants"><button onClick = {submitHandler}> create </button></Link>
+        <button onClick = {submitHandler}> create </button>
  </div>
     </div>
   );

@@ -40,51 +40,43 @@ function getRestaurantsById(){
       return response.text();
     })
     .then(data => {
-      console.log("tata:"+JSON.parse(data))
       setRestaurants(JSON.parse(data))
     });
   }
 
   function handleEditMenu(id){
     rest_id = id
-    console.log(rest_id)
     setState('menu')
   }
 
 
   let status = localStorage.getItem('status')
-  console.log(status)
   let check_status = [] 
 
   if (status !== null){
   // [0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
     check_status = status.split('...')
-    console.log("tilaus"+check_status[2])
-    console.log("id"+restaurants_by_id[0].id)
 
     if (restaurants_by_id[0].id===parseInt(check_status[2])){
-      console.log("on")
       checkStatus = true
     }
     else {
-      console.log("ei")
       checkStatus = false
     }
   }
 
+  
     function setStatus(){
-      console.log(localStorage.getItem('status'))
-        if (check_status[0] === 'waiting'){
-          console.log(status)
+        if (check_status[0] === 'received'){
           localStorage.setItem('status', 'preparing'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }
         else if (check_status[0] === 'preparing'){
-          localStorage.setItem('status', 'moving'+'...'+check_status[1]+'...'+check_status[2])
+          localStorage.setItem('status', 'delivering'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }
         else {
-          localStorage.setItem('status', 'arrived'+'...'+check_status[1]+'...'+check_status[2])
+          localStorage.setItem('status', 'delivered'+'...'+check_status[1]+'...'+check_status[2])
           window.location.reload()
         }
     }
@@ -94,24 +86,24 @@ function getRestaurantsById(){
 
     if (state !== 'menu'){
 
+  // check_status[0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
   return (
     <div className={ styles.restaurantList }>
     <div className="topBar">
       <TopBar/>
     </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-      {restaurant_key}
-      <div>{(checkStatus) ? (<div style={{fontSize:'40px'}}>You have and open order: {status}<div><button onClick={setStatus}>CHANGE STATUS</button></div></div>) : (<div></div>)}
+      <div>{(checkStatus) ? (<div style={{fontSize:'40px'}}>You have an open order with status:{check_status[0]}<div>from {check_status[1]}</div><div><button onClick={setStatus}>CHANGE STATUS</button></div></div>) : (<div></div>)}
           
       { restaurant.map(restaurant =>
           <div className={ styles.product }>
-            <div><img className={ styles.image }src={`./images/${restaurant.imagepath}`} /></div>
+            <div><img className={ styles.image }src={`${restaurant.imagepath}`} /></div>
             <div className={ styles.header }>{restaurant.name}</div>
-            <div>{restaurant.address}</div><div>{restaurant.restaurant_id}<Link to={ "createmenu/"+restaurant.restaurant_id }>
-               <button className={styles.button}onClick={() => handleEditMenu(restaurant.restaurant_id)}>ADD PRODUCT TO MENU</button></Link></div></div>
+            <div>{restaurant.address}</div><div><Link to={ "createmenu/"+restaurant.restaurant_id }>
+               <button className={styles.button}onClick={() => handleEditMenu(restaurant.restaurant_id)}>EDIT MENU</button></Link></div></div>
       )}
       </div>
-      <Link to="createrestaurant"><button> Create </button></Link>
+      <Link to="createrestaurant"><button> Create new Restaurant </button></Link>
     </div>
   )}
 else {
