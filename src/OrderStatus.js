@@ -44,13 +44,13 @@ if (check_status[1] === status_info[0].username){
         
         else{
             
-        return (<div>status info: {check_status[0]} <div>TILAUKSENNE ON SAAPUNUT PERILLE.</div>KUITTAA TILAUS VASTAANOTETUKSI<div><button onClick={() => handleCheck}>Kuittaus</button></div></div>
+        return (<div>status info: {check_status[0]} <div>TILAUKSENNE ON SAAPUNUT PERILLE.</div>KUITTAA TILAUS VASTAANOTETUKSI<div><button onClick={() => handleCheck()}>Kuittaus</button></div></div>
             
         )}
     }
     else{
         return (
-            null)}
+            <div></div>)}
         }
 
     else{

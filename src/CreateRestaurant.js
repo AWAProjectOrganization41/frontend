@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, {useState} from 'react'
+import styles from './CreateRestaurant.module.css'
 
 export default function CreateRestaurant(){
 
@@ -56,9 +57,10 @@ export default function CreateRestaurant(){
                <input type="text" name="hours" id="hours" onChange= { e => setDetails({...details, operating_hours: e.target.value})} value={details.operating_hours}></input>
                <br/><br/>
                
-               <label for="imagepath"/> Enter a file path for your image <label/>
-               <input type="text" name="imagepath" id="imagepath" onChange= { e => setDetails({...details, imagepath: e.target.value})} value={details.imagepath}></input>
-               <br/><br/>
+               <label for="imagepath"/> Enter a HTML url for your image: <label/>
+               <input type="text" name="imagepath" id="imagepath" onChange= { e => setDetails({...details, imagepath: e.target.value})} value={details.imagepath}></input><a href="https://fi.imgbb.com/" target="_blank" rel="noopener noreferrer">CLICK HERE TO UPLOAD NEW IMAGE</a>
+                <div>(if you don't have one yet, You can upload one throught the link and copy the url as show in the image below: )</div><br/>
+                <div><img className={ styles.image }src={`/images/example.png`} /></div><br/>
                
 
                <span> Enter the restaurant type </span>
@@ -105,7 +107,7 @@ export default function CreateRestaurant(){
            </section>
            </form>
 
-           <Link to="createmenu"><button onClick= {submitHandler}> Submit </button></Link>
+           <Link to="/restaurantUi"><button onClick= {submitHandler}> Submit </button></Link>
            
        </div> 
        

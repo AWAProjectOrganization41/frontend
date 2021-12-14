@@ -94,20 +94,20 @@ function getRestaurantsById(){
 
     if (state !== 'menu'){
 
+  // check_status[0]: statusinfo, [1]: orderer_id, [2]: restaurant_id
   return (
     <div className={ styles.restaurantList }>
     <div className="topBar">
       <TopBar/>
     </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-      {restaurant_key}
-      <div>{(checkStatus) ? (<div style={{fontSize:'40px'}}>You have and open order: {status}<div><button onClick={setStatus}>CHANGE STATUS</button></div></div>) : (<div></div>)}
+      <div>{(checkStatus) ? (<div style={{fontSize:'40px'}}>You have an open order {check_status[0]}<div>from {check_status[1]}</div><div><button onClick={setStatus}>CHANGE STATUS</button></div></div>) : (<div></div>)}
           
       { restaurant.map(restaurant =>
           <div className={ styles.product }>
-            <div><img className={ styles.image }src={`./images/${restaurant.imagepath}`} /></div>
+            <div><img className={ styles.image }src={`${restaurant.imagepath}`} /></div>
             <div className={ styles.header }>{restaurant.name}</div>
-            <div>{restaurant.address}</div><div>{restaurant.restaurant_id}<Link to={ "createmenu/"+restaurant.restaurant_id }>
+            <div>{restaurant.address}</div><div><Link to={ "createmenu/"+restaurant.restaurant_id }>
                <button className={styles.button}onClick={() => handleEditMenu(restaurant.restaurant_id)}>ADD PRODUCT TO MENU</button></Link></div></div>
       )}
       </div>

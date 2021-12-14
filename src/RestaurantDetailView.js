@@ -108,7 +108,7 @@ function getRestaurant() {
             <div className={styles.menuView}>{ menu.map(menu => <div> 
             <div className={styles.product}><button className={styles.button} onClick={() => handleFoodClick(menu)}>
                <img className={styles.image} 
-            src={`/images/${menu.imagepath}`}/> {menu.item_name}</button></div></div>)}</div> </div>
+            src={`${menu.imagepath}`}/> {menu.item_name}<div>{menu.description}</div><div>{menu.price} e</div></button></div></div>)}</div> </div>
             
             
           <div>Shopping cart</div>
@@ -142,7 +142,7 @@ function getRestaurant() {
     return(<div className={styles.shoppingcartContainer}>
         <div className={styles.shoppingcart}> {cart_items.map(prodes =>
         <div className={styles.shoppingcartContainer}><img className={styles.menuImage} 
-        src={`/images/${prodes.imagepath}`}/><div style={{}}> { prodes.item_name }<div>{ prodes.description }</div><div>{ prodes.price }</div></div> 
+        src={`${prodes.imagepath}`}/><div style={{}}> { prodes.item_name }<div>{ prodes.description }</div><div>{ prodes.price }</div></div> 
           <button style={{}} onClick={() => handleDeleteFromCart(prodes)}><div>DELETE</div></button></div>)}
           LOPPUSUMMA: {summa+"€"}<div>
 
@@ -172,7 +172,7 @@ function getRestaurant() {
       <TopBar/>
     </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-    <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`/images/${restaurant.imagepath}`} />
+    <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`${restaurant.imagepath}`} />
           ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
           {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
         <div>
