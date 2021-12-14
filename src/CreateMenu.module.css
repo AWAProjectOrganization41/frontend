@@ -1,4 +1,9 @@
 .image {
+  width: 50px;
+  object-fit: cover;
+}
+
+.menuimage {
   width: 500px;
   object-fit: cover;
 }

@@ -96,7 +96,7 @@ export default function CreateMenu(){
                <input type="text" name="imagepath" id="imagepath" onChange= { e => setDetails({...details, imagepath: e.target.value})} value={details.imagepath}></input>
                <a href="https://fi.imgbb.com/" target="_blank" rel="noopener noreferrer">CLICK HERE TO UPLOAD NEW IMAGE</a>
                 <div>(if you don't have one yet, You can upload one throught the link and copy the url as show in the image below: )</div><br/>
-                <div><img className={ styles.image }src={`/images/example.png`} /></div><br/>
+                <div><img className={ styles.menuimage }src={`/images/example.png`} /></div><br/>
 
                </form>
 

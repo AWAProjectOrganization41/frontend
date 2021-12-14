@@ -100,10 +100,10 @@ function getRestaurantsById(){
             <div><img className={ styles.image }src={`${restaurant.imagepath}`} /></div>
             <div className={ styles.header }>{restaurant.name}</div>
             <div>{restaurant.address}</div><div><Link to={ "createmenu/"+restaurant.restaurant_id }>
-               <button className={styles.button}onClick={() => handleEditMenu(restaurant.restaurant_id)}>ADD PRODUCT TO MENU</button></Link></div></div>
+               <button className={styles.button}onClick={() => handleEditMenu(restaurant.restaurant_id)}>EDIT MENU</button></Link></div></div>
       )}
       </div>
-      <Link to="createrestaurant"><button> Create </button></Link>
+      <Link to="createrestaurant"><button> Create new Restaurant </button></Link>
     </div>
   )}
 else {
