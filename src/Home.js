@@ -13,10 +13,10 @@ export default function Home() {
   return (
     <div>
       <h1>LOGIN</h1>
-      <h3>KIRJAUDU SISÄÄN TAI REKISTERÖIDY</h3>
+      <h3>LOGIN OR SIGN UP</h3>
 
-      <Link to="loginconsumer"><button>ASIAKKAANA</button></Link>
-      <Link to="loginrestaurant"><button>RAVINTOLOITSIJANA</button></Link>
+      <Link to="loginconsumer"><button>CONSUMER LOGIN</button></Link>
+      <Link to="loginrestaurant"><button>RESTAURANT OWNER LOGIN</button></Link>
       <br/><br/>
 
     </div>

@@ -23,28 +23,28 @@ if (check_status[1] === status_info[0].username){
 
         return (
         <div className={styles.container}>
-        status info: {status_info[1]} <div >TILAUKSENNE ODOTTAA VAHVISTUSTA</div>ARVIOITU TOIMITUSAIKA:<div>45 min</div></div>
+        status info: {status_info[1]} <div >Your order is awaiting confiramtion</div>Estimated delivery time: <div>45 min</div></div>
         
     )}
     if (check_status[0] === 'preparing'){
 
         return (
         <div className={styles.container}>
-        status info: {check_status[0]} <div>TILAUKSENNE ON VASTAANOTETTU JA SITÄ VALMISTELLAAN</div>ARVIOITU TOIMITUSAIKA:<div>30 min</div></div>
+        status info: {check_status[0]} <div>Your order is being prepared</div>Estimated delivery time: <div>30 min</div></div>
         
     )}
     if (check_status[0] === 'delivering'){
 
         return (
         <div className={styles.container}>
-        status info: {check_status[0]} <div>TILAUKSENNE ON MATKALLA JA SAAPUU PIAN</div>ARVIOITU TOIMITUSAIKA:<div>10 min</div></div>
+        status info: {check_status[0]} <div>Your order is being delivered</div>Estimated delivery time: <div>10 min</div></div>
         
     )}
 
         
         else{
             
-        return (<div>status info: {check_status[0]} <div>TILAUKSENNE ON SAAPUNUT PERILLE.</div>KUITTAA TILAUS VASTAANOTETUKSI<div><button onClick={() => handleCheck()}>Kuittaus</button></div></div>
+        return (<div>status info: {check_status[0]} <div>Your order has arrived</div>CONFRIM ARRIVAL<div><button onClick={() => handleCheck()}>CONFIRM</button></div></div>
             
         )}
     }

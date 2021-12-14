@@ -64,7 +64,7 @@ export default function UserHistory(props){
           <TopBar/>
         </div>
           <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
-            <h3> käyttäjän tekemät tilaukset </h3>
+            <h3> YOUR ORDER HISTORY: </h3>
             <div className="orderHistory"> 
             { history.map(history =>
                <>
@@ -83,7 +83,7 @@ export default function UserHistory(props){
           <div className="topBar">
             <TopBar/>
           </div>
-            <h3> ravintolalle tallennetut tilaukset </h3>
+            <h3> YOUR ORDER HISTORY </h3>
             <div className="orderHistoryRestaurant"> 
             { history.map(history =>
                <>
@@ -102,7 +102,7 @@ export default function UserHistory(props){
         <div>
           YOU HAVE TO LOG IN
         </div>
-        <button><Link to="/"><div style={{paddingRight:'50px'}}>PALAA PÄÄSIVULLE</div></Link></button>
+        <button><Link to="/"><div style={{paddingRight:'50px'}}> GO BACK AND LOGIN </div></Link></button>
         </div>
     )}
 }}

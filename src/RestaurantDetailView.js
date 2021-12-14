@@ -173,8 +173,8 @@ function getRestaurant() {
     </div>
       <Link to="/"><div style={{paddingRight:'50px'}}>Log Out</div></Link>
     <OrderStatus/><div className={styles.restaurantInfo}><img className={styles.restaurantImage} src={`${restaurant.imagepath}`} />
-          ID{restaurant.restaurant_id} {restaurant.name} {restaurant.address}
-          {restaurant.operating_hours} {restaurant.restaurant_type} {restaurant.price_level}</div>
+    <div>{restaurant.name} {restaurant.address}</div>
+          <div>{restaurant.operating_hours} </div>{restaurant.restaurant_type} {restaurant.price_level.replaceAll("o", "€")}</div>
         <div>
           <RestaurantView ViewStatus={ViewStatus}/>
         </div>
